@@ -1,0 +1,53 @@
+AUDITORIA DETALHADA DO PROJETO WILLY (ESP32-S3)
+DATA: 2026-02-28
+-----------------------------------------------------------
+
+[CRÍTICO / ERROS E LACUNAS FUNCIONAIS]
+1. main.cpp: As funções _setup_gpio() e _post_setup_gpio() estão vazias (weak). Isso impede a inicialização correta de pinos específicos da placa S3 se não houver um arquivo de interface linkado corretamente.
+2. ARPSpoofer.cpp: O modo MITM está marcado como "Still in development" (linha 78) e o modo Promíscuo está como "deactivated" (linha 107), sem implementação real.
+3. mic.cpp / audio.cpp: As funções _setup_codec_mic() e _setup_codec_speaker() estão vazias. O suporte a hardware de áudio/mic está incompleto.
+4. ESPNetifEthernetClient.cpp: Construtor e Destrutor vazios, indicando que a classe pode não estar gerenciando recursos corretamente ou está incompleta.
+5. main.cpp (Aviso): O log centralizado WillyLogger está comentado no setup() (linhas 529-537), o que desabilita uma das principais melhorias recentes.
+
+[MOCKS / SIMULAÇÕES / DEMONSTRAÇÕES]
+1. rf_advanced_atks.cpp:
+   - SpectrumTargetLock: Totalmente simulado com valores aleatórios (random), não é um scanner real.
+   - RollingCodeLearnerReplay: Usa dados "capturados" fixos (0x123456) para demonstração.
+   - StealthLowPowerExfilBeacon: Usa payload "BRUCE" fixo e simula modo LowPower.
+2. advanced_usb_attacks.cpp:
+   - ledBlinkExfilChannel: Simula a recepção de bytes com random().
+   - hidTimingSideChannel: Simula timing data com random().
+   - persistentHidBackdoor / ransomwareSimulationDemo: São scripts educacionais de demonstração, não ferramentas de ataque real completas para todos os cenários.
+3. nrf_stealth_exfil.cpp: Usa a string fixa "PMKID_OR_HANDSHAKE_DATA_MOCK".
+4. nrf_mass_pairing.cpp: Usa um payload de emparelhamento "mock" (0x0F, 0x0F...).
+
+[PLACEHOLDERS E CÓDIGO INCOMPLETO (TODO)]
+1. rf_utils.cpp: TODO para salvar/carregar códigos recentes na EEPROM (linhas 80-81).
+2. clicker.cpp: TODO para implementar funcionalidade Bluetooth HID (linhas 881-883).
+3. sd_functions.cpp: TODO para usar PSRAM para buffers de cópia e leitura se disponível (linha 434).
+4. passwords.cpp: TODO para fazer o parse de parâmetros não suportados (linha 91).
+5. cyber_menu.cpp: Mencionado como "visual placeholder" para algumas ações de leitura direta (linha 258).
+6. tcp_utils.cpp: "Minimal placeholder implementation" para ferramentas de rede TCP (linha 1).
+7. scrollableTextArea.h: TODO para mudar para std::vector<char *> e alocar em PSRAM (linha 40).
+
+[CONFIGURAÇÕES E VALORES PADRÃO]
+1. platformio.ini: upload_port = COM4 está "hardcoded" (pode falhar em outras máquinas).
+2. config.h: Credenciais padrão do WebUI (admin/willy) e Wi-Fi (WillyNet) expostas no código.
+3. configPins.h: CC1101_GDO2_PIN padrão é -1 (pode causar erro se o driver esperar um pino válido).
+4. ESP32-S3-WROOM-1-N8R2.ini: TFT_BL=-1 (Controle de brilho/backlight pode não funcionar via software).
+5. config.h: O link do "Rickroll" no menu de QR Codes é uma demonstração/piada (linha 96).
+
+[DEPENDÊNCIAS E MÓDULOS FALTANTES]
+1. RevEng_PAJ7620: Incluída no platformio.ini (board ini), mas NÃO é usada em nenhum lugar do código-fonte (src).
+2. Libs de Rede: Dependência de IRremoteESP8266 está apontando para um ZIP no GitHub do autor original/fork, o que é instável se o repositório mudar.
+3. Falta de Drivers: Não foram encontrados arquivos de driver para expansores de IO específicos que podem ser necessários para todos os módulos funcionarem simultaneamente no S3 sem conflitos (visto no main.cpp linha 185).
+
+[LINKS E MENUS QUEBRADOS]
+1. Vários menus (BLE, IR, LoRa) usam lambdas vazios "[]() {}" ou lambdas que apenas retornam, dando a impressão de menu funcional que não faz nada ao ser clicado.
+   Exemplos:
+   - advanced_ble_atks.cpp: HID Keyboard, Impressora, Headset, etc. (linhas 408-414).
+   - LoRaRF.cpp: SX1276, SX1262 (linhas 318-319).
+   - advanced_ir_atks.cpp: Power TV, Volume Up, etc. (linhas 809-812).
+
+-----------------------------------------------------------
+FIM DO RELATÓRIO -falta3.txt-

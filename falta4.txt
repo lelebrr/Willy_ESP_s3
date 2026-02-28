@@ -1,0 +1,67 @@
+AUDIT DE PROJETO WILLY (ESP32-S3) - RELATÓRIO DE FALHAS V4
+
+Este relatório foca em problemas NÃO LISTADOS no falta3.txt, incluindo códigos incompletos, placeholders, mocks e falhas de lógica funcional.
+
+1. RESUMO DE STUBS E CÓDIGOS EM BRANCO (CRÍTICO)
+-----------------------------------------------
+Muitos módulos "Avançados" são apenas cascas (UI) sem implementação real:
+
+- advanced_ir_atks.cpp:
+    * irProtocolFuzzer: A função que recebe config é apenas um stub (linha 1287).
+    * loadLearnedSignals: Retorna um vetor vazio, não carrega nada (linha 1291).
+    * irBurstOverloadJammer: Stub (linha 1296).
+    * startIRWebServer / stopIRWebServer: Stubs (linhas 1300, 1304).
+    * executeIRBrute: Stub (linha 1318).
+    * executeMultiIRAttack: Stub (linha 1326).
+    * smartIRDevicePredictor: Exposto no menu, mas sem lógica de predição real.
+
+- advanced_ble_atks.cpp:
+    * O menu de GATT Phishing (linhas 408-414) contém alvos como "HID Keyboard", "Impressora", "Headset", "Smart Lock" que chamam lambdas vazias []() {}. Nada acontece ao selecionar.
+
+- Ethernet (ARPSpoofer.cpp):
+    * Modo MITM: Marcado explicitamente como "Still in development" (ainda em desenvolvimento).
+    * Modo Promíscuo: Desativado no código.
+
+2. MOCKS E DEMONSTRAÇÕES (PLACEHOLDERS)
+--------------------------------------
+Funcionalidades que parecem reais mas usam dados fixos/falsos:
+
+- nrf_mousejack.cpp:
+    * Usa apenas dois endereços Dummy (0x1122334455 e 0xAABBCCDDEE). Não realiza scan real de periféricos.
+    * Payload fixo: Sempre injeta apenas a tecla 'A' (linha 52).
+
+- nrf_unifying.cpp:
+    * Endereço MAC fixo (0xAAAAAAAAAA) e payload fixo de tecla 'A'. Não é um exploit funcional real, apenas demonstração.
+
+- advanced_usb_attacks.cpp:
+    * ledBlinkExfilChannel: Usa random() para simular dados exfiltrados.
+    * hidTimingSideChannel: Usa random() para simular medição de tempo.
+
+- rf_advanced_atks.cpp:
+    * SpectrumTargetLock / RollingCodeLearnerReplay: Usam dados simulados para demonstração.
+
+3. FALHA DE COMPONENTES E MÓDULOS (FALTA DE DRIVERS)
+----------------------------------------------------
+- PAJ7620: A biblioteca está no platformio.ini, mas não há um ÚNICO arquivo ou include utilizando este sensor de gestos no src/. É um peso morto no projeto ou funcionalidade esquecida.
+- irWifiRemoteBridge: Afirma no display que o servidor está ativo, mas não há inicialização de WebServer. O código entra em um loop infinito que apenas checa o botão ESC.
+
+4. OTROMIZAÇÃO E PERFORMANCE (BLOQUEIOS)
+----------------------------------------
+- Uso excessivo de delay():
+    * No arquivo srix_tool.cpp, existem delays massivos (2000ms a 4000ms). Durante esse tempo, a interface LVGL trava completamente, impedindo atualizações de tela ou resposta a botões.
+    * Recomenda-se substituir por vTaskDelay() ou lógica de estados com millis().
+
+- Depuração Excessiva:
+    * Centenas de Serial.print() espalhados em loops de ataques (WiFi, NRF24). Isso consome ciclos de CPU preciosos e pode causar instabilidade em protocolos sensíveis a tempo.
+
+5. CONFIGURAÇÕES E COMPATIBILIDADE
+----------------------------------
+- MAC Address Aleatório (EthernetHelper.cpp): Gera MACs 100% aleatórios sem setar o bit de "localmente administrado". Isso pode fazer com que switches corporativos bloqueiem a porta por detectar MACs inválidos na tabela OUI.
+- Upload_port: Ainda fixo em COM4 no platformio.ini. Isso impede o "build and upload" automático em qualquer máquina que não use exatamente essa porta.
+- Pinos não checados: Em vários módulos (LoRa, Ethernet), se os pinos estiverem como NC no config, o erro é exibido mas às vezes o código continua tentando acessar o periférico, podendo causar crash.
+
+6. SUGESTÕES DE MELHORIA
+------------------------
+- Implementar o centralizador de logs (WillyLogger) em todos os módulos para remover os Serial.print() ad-hoc.
+- Mover buffers grandes de sniffer para a PSRAM (o ESP32-S3 do projeto tem 2MB/8MB de PSRAM) para evitar crashes por Heap exaurida.
+- Criar uma tarefa separada (Task) para os ataques de RF/WiFi para não travar a interface gráfica.
