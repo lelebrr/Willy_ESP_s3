@@ -50,7 +50,7 @@ Este diretório contém designs de PCB open-source criados pela comunidade Willy
 
 <div align="center">
 
-[![Willy PCB v2](https://raw.githubusercontent.com/lelebrr/Willy/refs/heads/main/media/pcbs/smoochie/Willy_PCB_full.png)](https://www.pcbway.com/project/shareproject/Willy_PCB_Smoochiee_d6a0284b.html)
+[![Willy PCB v2](https://raw.githubusercontent.com/lelebrr/Willy_ESP_s3/refs/heads/main/media/pcbs/smoochie/Willy_PCB_full.png)](https://www.pcbway.com/project/shareproject/Willy_PCB_Smoochiee_d6a0284b.html)
 
 </div>
 
@@ -72,7 +72,7 @@ Este diretório contém designs de PCB open-source criados pela comunidade Willy
 
 | Frente | Verso |
 |:------:|:-----:|
-| ![Frente](https://raw.githubusercontent.com/lelebrr/Willy/refs/heads/main/media/pcbs/smoochie/front.png) | ![Verso](https://raw.githubusercontent.com/lelebrr/Willy/refs/heads/main/media/pcbs/smoochie/back.png) |
+| ![Frente](https://raw.githubusercontent.com/lelebrr/Willy_ESP_s3/refs/heads/main/media/pcbs/smoochie/front.png) | ![Verso](https://raw.githubusercontent.com/lelebrr/Willy_ESP_s3/refs/heads/main/media/pcbs/smoochie/back.png) |
 
 </div>
 
@@ -106,7 +106,7 @@ Silkscreen: Branco
 
 <div align="center">
 
-![StickCPlus PCB](https://raw.githubusercontent.com/lelebrr/Willy/refs/heads/main/media/pcbs/Pirata/front.png)
+![StickCPlus PCB](https://raw.githubusercontent.com/lelebrr/Willy_ESP_s3/refs/heads/main/media/pcbs/Pirata/front.png)
 
 </div>
 
@@ -126,7 +126,7 @@ Silkscreen: Branco
 
 | Frente | Verso |
 |:------:|:-----:|
-| ![Frente](https://raw.githubusercontent.com/lelebrr/Willy/refs/heads/main/media/pcbs/Pirata/front.png) | ![Verso](https://raw.githubusercontent.com/lelebrr/Willy/refs/heads/main/media/pcbs/Pirata/back.png) |
+| ![Frente](https://raw.githubusercontent.com/lelebrr/Willy_ESP_s3/refs/heads/main/media/pcbs/Pirata/front.png) | ![Verso](https://raw.githubusercontent.com/lelebrr/Willy_ESP_s3/refs/heads/main/media/pcbs/Pirata/back.png) |
 
 </div>
 
@@ -327,6 +327,7 @@ Agradecemos novos designs de PCB da comunidade!
 **PCBWay** - Fabricação de PCB de Qualidade
 
 [Visite o PCBWay](https://www.pcbway.com/) para todas as suas necessidades de PCB:
+
 - Fabricação de PCB
 - Montagem PCBA
 - Impressão 3D
@@ -341,10 +342,12 @@ Agradecemos novos designs de PCB da comunidade!
 Estes designs de PCB são liberados sob a **CERN Open Hardware Licence v2**.
 
 Você é livre para:
+
 - ✅ Compartilhar — copiar e redistribuir o material
 - ✅ Adaptar — remixar, transformar e construir sobre o material
 
 Sob os seguintes termos:
+
 - 📝 Atribuição — Você deve dar crédito apropriado
 - 📝 CompartilhaIgual — Se você remixar, transformar ou construir sobre o material, você deve distribuir suas contribuições sob a mesma licença
 
@@ -375,7 +378,7 @@ Sob os seguintes termos:
 
 ### 🔌 Comunidade PCB do Willy
 
-**[⬆ Voltar ao Topo](#-pcbs-do-Willy)**
+**[⬆ Voltar ao Topo](#-pcbs-do-willy)**
 
 *Hardware Aberto para Segurança Aberta*
 

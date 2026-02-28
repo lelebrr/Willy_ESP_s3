@@ -726,7 +726,7 @@ String generalKeyboard(
                     }
                 }
                 if (box_list[buttons_start_index + 3].contain(touchPoint.x, touchPoint.y)) { // SPACE btn
-                    if (current_text.length() < max_size) {
+                    if ((int)current_text.length() < max_size) {
                         handleSpaceAdd(current_text, max_size);
                         touchHandled = true;
                     }

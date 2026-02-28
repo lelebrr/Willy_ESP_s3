@@ -837,7 +837,7 @@ pip install platformio
 
 #### Opção 1: Binário Pré-compilado (Recomendado para iniciantes)
 
-1. Baixe o firmware mais recente em [Releases](https://github.com/lelebrr/Willy/releases)
+1. Baixe o firmware mais recente em [Releases](https://github.com/lelebrr/Willy_ESP_s3/releases)
 2. Conecte seu dispositivo via USB
 3. Use o web flasher em [Willy.computer](https://Willy.computer)
    - OU use esptool:
@@ -850,8 +850,8 @@ pip install platformio
 
 ```bash
 # Clonar o repositório
-git clone https://github.com/lelebrr/Willy
-cd Willy
+git clone https://github.com/lelebrr/Willy_ESP_s3
+cd Willy_ESP_s3
 
 # Compilar para seu dispositivo (exemplo CYD-2USB)
 pio run -e CYD-2USB

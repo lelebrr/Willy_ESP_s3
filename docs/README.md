@@ -875,8 +875,8 @@ Filtre sinais fracos para melhor precisão em ambientes urbanos:
 pip install platformio
 
 # Clone o repositório
-git clone https://github.com/lelebrr/Willy
-cd Willy
+git clone https://github.com/lelebrr/Willy_ESP_s3
+cd Willy_ESP_s3
 
 # Compile para seu dispositivo
 pio run -e CYD-2USB

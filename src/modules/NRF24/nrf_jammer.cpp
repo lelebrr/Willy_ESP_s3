@@ -121,7 +121,7 @@ void nrf_jammer() {
             }
 
             hopIndex++;
-            if (hopIndex >= modes[modeIndex].count) hopIndex = 0;
+            if (hopIndex >= (int)modes[modeIndex].count) hopIndex = 0;
             if (CHECK_NRF_SPI(mode)) { NRFradio.setChannel(modes[modeIndex].channels[hopIndex]); }
 
             if (check(NextPress)) {

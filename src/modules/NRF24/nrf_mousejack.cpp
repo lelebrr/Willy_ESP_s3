@@ -53,10 +53,6 @@ void perform_promiscuous_mj_scan(NRF24_MODE mode) {
         NRFradio.setAddressWidth(5);
         NRFradio.setCRCLength(RF24_CRC_16);
     }
-
-    if (discovered_mj_macs.empty()) {
-        discovered_mj_macs.push_back({0x11, 0x22, 0x33, 0x44, 0x55}); // Fallback
-    }
 }
 
 void nrf_mousejack_injector() {
@@ -81,6 +77,12 @@ void nrf_mousejack_injector() {
     }
 
     perform_promiscuous_mj_scan(mode);
+
+    if (discovered_mj_macs.empty()) {
+        displayError("Nenhum alvo encontrado");
+        vTaskDelay(2000 / portTICK_PERIOD_MS);
+        return;
+    }
 
     tft.fillRect(10, 70, tftWidth - 20, 20, bruceConfig.bgColor);
     tft.setCursor(10, 70);

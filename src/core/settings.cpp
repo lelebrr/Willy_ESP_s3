@@ -679,10 +679,10 @@ void setRFModuleMenu() {
         // else display an error
         displayError("CC1101 nao encontrado", true);
         if (pins_setup == 1)
-            qrcode_display("https://github.com/lelebrr/Willy/blob/main/media/connections/cc1101_stick.jpg");
+            qrcode_display("https://github.com/lelebrr/Willy_ESP_s3/blob/main/media/connections/cc1101_stick.jpg");
         if (pins_setup == 2)
             qrcode_display(
-                "https://github.com/lelebrr/Willy/blob/main/media/connections/cc1101_stick_SDCard.jpg"
+                "https://github.com/lelebrr/Willy_ESP_s3/blob/main/media/connections/cc1101_stick_SDCard.jpg"
             );
         while (!check(AnyKeyPress)) vTaskDelay(50 / portTICK_PERIOD_MS);
     }
@@ -998,7 +998,6 @@ void runClockLoop(bool showMenuHint) {
             uint8_t f_size = 4;
             for (uint8_t i = 4; i > 0; i--) {
                 if (i * LW * strlen(timeStr) < static_cast<size_t>(tftWidth - BORDER_PAD_X * 2)) {
-                    int offset = (tftWidth - (i * LW * strlen(timeStr))) / 2;
                     f_size = i;
                     break;
                 }

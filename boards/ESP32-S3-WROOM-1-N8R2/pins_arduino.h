@@ -51,7 +51,7 @@ static const uint8_t MISO = 13;
 #define TFT_RST  14
 #endif
 #ifndef TFT_BL
-#define TFT_BL   -1   // Backlight controlado por VCC / 3.3V direto
+#define TFT_BL   3
 #endif
 
 // --- Touch XPT2046 (SPI compartilhado) ---

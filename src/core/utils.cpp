@@ -78,7 +78,7 @@ void updateTimeStr(struct tm timeInfo) {
         const char *ampm = (timeInfo.tm_hour < 12) ? "AM" : "PM";
 
         snprintf(
-            timeStr, sizeof(timeStr), "%02d:%02d:%02d %s", hour12, timeInfo.tm_min, timeInfo.tm_sec, ampm
+            timeStr, sizeof(timeStr), "%02d:%02d:%02d %s", (uint8_t)hour12, (uint8_t)timeInfo.tm_min, (uint8_t)timeInfo.tm_sec, ampm
         );
     }
 }

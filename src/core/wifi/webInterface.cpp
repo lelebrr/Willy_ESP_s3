@@ -165,11 +165,11 @@ bool checkUserWebAuth(AsyncWebServerRequest *request, bool onFailureReturnLoginP
 **********************************************************************/
 void createDirRecursive(String path, FS fs) {
     String currentPath = "";
-    int startIndex = 0;
+    size_t startIndex = 0;
     // Serial.print("Verifying folder: ");
     // Serial.println(path);
 
-    while (startIndex < path.length()) {
+    while (startIndex < (size_t)path.length()) {
         int endIndex = path.indexOf("/", startIndex);
         if (endIndex == -1) endIndex = path.length();
 
@@ -182,8 +182,8 @@ void createDirRecursive(String path, FS fs) {
             }
         }
 
-        if (endIndex < path.length()) { currentPath += "/"; }
-        startIndex = endIndex + 1;
+        if ((size_t)endIndex < (size_t)path.length()) { currentPath += "/"; }
+        startIndex = (size_t)endIndex + 1;
     }
 }
 /**********************************************************************

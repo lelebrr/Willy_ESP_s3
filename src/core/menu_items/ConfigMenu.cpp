@@ -30,6 +30,7 @@ void ConfigMenu::optionsMenu() {
             {"Config LED",    [this]() { ledMenu(); }      },
 #endif
             {"Config Áudio",  [this]() { audioMenu(); }    },
+            {"Config Joystick", [this]() { joystickMenu(); }},
             {"Config Sistema",[this]() { systemMenu(); }   },
             {"Energia",       [this]() { powerMenu(); }    },
         };
@@ -374,4 +375,12 @@ void ConfigMenu::drawIcon(float scale) {
         bruceConfig.bgColor,
         false
     );
+}
+
+/*********************************************************************
+**  Function: joystickMenu
+**  Stub for joystick configuration
+**********************************************************************/
+void ConfigMenu::joystickMenu() {
+    displayMessage("Módulo de Joystick\nem desenvolvimento.", "OK", nullptr, nullptr, bruceConfig.priColor);
 }

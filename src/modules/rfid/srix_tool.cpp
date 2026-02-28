@@ -79,14 +79,14 @@ void SRIXTool::setup() {
         padprintln("Chip: PN5" + String(chip, HEX));
         padprintln("FW: " + String(fw_major) + "." + String(fw_minor));
     }
-    delay(1000);
+    vTaskDelay(pdMS_TO_TICKS(1000));
 #ifdef T_EMBED_1101
     displayError("T-Embed detectado!", false);
-    delay(1000);
+    vTaskDelay(pdMS_TO_TICKS(1000));
     displayError("Leia Menu INFO!", true);
 #endif
     displaySuccess("PN532-SRIX pronto!");
-    delay(1000);
+    vTaskDelay(pdMS_TO_TICKS(1000));
 
     set_state(IDLE_MODE);
     return loop();
@@ -359,7 +359,7 @@ void SRIXTool::write_tag() {
 
     displaySuccess("Simulacao completa!");
     displayInfo("Cheque Serial Monitor");
-    delay(4000);
+    vTaskDelay(pdMS_TO_TICKS(4000));
     set_state(IDLE_MODE);
     return;
 

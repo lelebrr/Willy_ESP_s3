@@ -1,10 +1,10 @@
 /**
  * @file advanced_ir_atks.h
  * @brief Módulo de ataques IR avançados para fins acadêmicos e pesquisa em segurança.
- * 
+ *
  * AVISO: Este código é fornecido exclusivamente para fins educacionais e de pesquisa.
  * O uso indevido pode ser ilegal. Use apenas em ambientes controlados e com autorização.
- * 
+ *
  * @author Willy Team
  * @date 2026
  */
@@ -79,7 +79,7 @@ struct IRTimingAnalysis {
 //================================================================================
 /**
  * @brief IR Protocol Fuzzer - Testa códigos aleatórios por protocolo
- * 
+ *
  * O que faz: Testa códigos aleatórios por protocolo até achar crash.
  * Como faz: Loop random data em NEC/SIRC etc.
  * Para que serve: Descoberta de backdoors em TVs.
@@ -108,7 +108,7 @@ void irProtocolFuzzer(const IRFuzzerConfig& config);
 //================================================================================
 /**
  * @brief Auto Pattern Matcher Learner - Aprende protocolos desconhecidos automaticamente
- * 
+ *
  * O que faz: Aprende protocolos desconhecidos automaticamente.
  * Como faz: Análise de timing + salvamento no SD.
  * Para que serve: Suporte a qualquer controle novo.
@@ -135,7 +135,7 @@ std::vector<IRLearnedSignal> loadLearnedSignals(const String& filename);
 //================================================================================
 /**
  * @brief IR Anti-Replay Variable Timing - Replay com jitter
- * 
+ *
  * O que faz: Replay com jitter para burlar anti-replay.
  * Como faz: Adiciona variação de 5-15% nos tempos.
  * Para que serve: Funciona em sistemas modernos.
@@ -163,7 +163,7 @@ std::vector<uint16_t> applyJitter(const std::vector<uint16_t>& rawData, uint8_t 
 //================================================================================
 /**
  * @brief IR Burst Overload Jammer - Flood multi-protocolo
- * 
+ *
  * O que faz: Flood multi-protocol para cegar todos os receptores IR da sala.
  * Como faz: Envio simultâneo de todos protocolos.
  * Para que serve: Bloqueio total de controles remotos.
@@ -194,7 +194,7 @@ void irBurstOverloadJammer(const IRJammerConfig& config);
 //================================================================================
 /**
  * @brief IR WiFi Remote Bridge - Controla TV via celular
- * 
+ *
  * O que faz: Controla TV via celular (web interface).
  * Como faz: WebUI do Bruce + IR send.
  * Para que serve: Controle remoto em pentest físico.
@@ -216,7 +216,7 @@ void stopIRWebServer();
 //================================================================================
 /**
  * @brief Stealth Low-Duty IR Blaster - Envia comandos covert
- * 
+ *
  * O que faz: Envia comandos com duty cycle mínimo (quase invisível).
  * Como faz: Pulses espaçados.
  * Para que serve: Operações covert.
@@ -243,7 +243,7 @@ void sendStealthIR(const uint64_t data, uint16_t bits, decode_type_t protocol, c
 //================================================================================
 /**
  * @brief Smart IR Device Predictor - Adivinha marca por 1 sinal
- * 
+ *
  * O que faz: Depois de 1 sinal, adivinha marca e sugere comandos.
  * Como faz: Banco offline + matching.
  * Para que serve: Uso imediato sem aprender tudo.
@@ -265,7 +265,7 @@ std::vector<IRDatabaseCode> getSuggestedCommands(const String& brand);
 //================================================================================
 /**
  * @brief Offline IR Database Brute - Testa todos códigos de uma marca
- * 
+ *
  * O que faz: Testa todos códigos conhecidos de uma marca.
  * Como faz: SD com 10k+ códigos.
  * Para que serve: Universal remoto destrutivo.
@@ -298,7 +298,7 @@ void executeIRBrute(const IRBruteConfig& config);
 //================================================================================
 /**
  * @brief Synchronized Multi-IR Attack - Controla múltiplos dispositivos
- * 
+ *
  * O que faz: Controla 5 dispositivos ao mesmo tempo.
  * Como faz: Envio paralelo.
  * Para que serve: Chaos em sala de reunião.
@@ -326,6 +326,7 @@ struct MultiIRConfig {
     bool sync_power = false;
     bool sync_volume = false;
     uint8_t repeat_count = 2;
+    uint32_t interval_ms = 100;
 };
 
 /**
@@ -343,7 +344,7 @@ void executeMultiIRAttack(const MultiIRConfig& config);
 //================================================================================
 /**
  * @brief IR Waveform Visualizer - Mostra forma de onda no TFT
- * 
+ *
  * O que faz: Mostra forma de onda do sinal recebido no TFT.
  * Como faz: Plot LVGL em tempo real.
  * Para que serve: Análise avançada (útil + bonito no demo).

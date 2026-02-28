@@ -21,6 +21,7 @@ private:
     void advancedMenu(void);
     void powerMenu(void);
     void devMenu(void);
+    void joystickMenu(void);
 
     // Helper methods for complex operations
     void switchToUSBSerial(void);

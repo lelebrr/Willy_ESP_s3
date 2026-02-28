@@ -13,6 +13,12 @@
 #include <string>
 #include <vector>
 #include "ui/cyber_menu.h"
+#include "core/settings.h"
+#include "core/wifi/wifi_common.h"
+#include "modules/rf/rf_utils.h"
+#if !defined(LITE_VERSION) && !defined(DISABLE_INTERPRETER)
+#include "modules/bjs_interpreter/interpreter.h"
+#endif
 io_expander ioExpander;
 BruceConfig bruceConfig;
 BruceConfigPins bruceConfigPins;
@@ -133,17 +139,6 @@ volatile int tftWidth = VECTOR_DISPLAY_DEFAULT_HEIGHT;
 volatile int tftHeight = VECTOR_DISPLAY_DEFAULT_WIDTH;
 #endif
 
-#include "core/display.h"
-#include "core/led_control.h"
-#include "core/mykeyboard.h"
-#include "core/sd_functions.h"
-#include "core/serialcmds.h"
-#include "core/settings.h"
-#include "core/wifi/webInterface.h"
-#include "core/wifi/wifi_common.h"
-#include "modules/bjs_interpreter/interpreter.h" // for JavaScript interpreter
-#include "modules/others/audio.h"                // for playAudioFile
-#include "modules/rf/rf_utils.h"                 // for initCC1101once
 #include <Wire.h>
 #include "willy_logger.h"                        // Sistema de logging centralizado
 #include "ui/willy_splash.h"                     // Splash screen Willy
@@ -469,6 +464,21 @@ void setup() {
 #else
     tft.begin();
 #endif
+
+    // Explicit backlight initialization for debugging black screen
+    Serial.println("[DBG] Initializing Backlight...");
+#ifdef TFT_BL
+    if (TFT_BL >= 0) {
+        Serial.printf("[DBG] TFT_BL Pin: %d\n", TFT_BL);
+        pinMode(TFT_BL, OUTPUT);
+        digitalWrite(TFT_BL, HIGH);
+        Serial.println("[DBG] Backlight set to HIGH");
+    } else {
+        Serial.println("[DBG] TFT_BL Pin is -1 (Always on or not defined)");
+    }
+#else
+    Serial.println("[DBG] TFT_BL Pin not defined");
+#endif
     Serial.println("Starting begin_storage()...");
     begin_storage();
     Serial.println("begin_storage() completed successfully.");
@@ -485,7 +495,7 @@ void setup() {
         xSemaphoreGive(lvgl_mutex);
     }
 
-    for (int i = 0; i < 55; i++) { // Wait for animation (approx 5.5s)
+    for (unsigned int i = 0; i < 55; i++) { // Wait for animation (approx 5.5s)
         if (lvgl_mutex && xSemaphoreTake(lvgl_mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
             lv_timer_handler();
             xSemaphoreGive(lvgl_mutex);
@@ -574,6 +584,7 @@ void setup() {
     }
     if (bruceConfig.wifiAtStartup) {
         Serial.println("Creating wifiConnectTask...");
+#if !defined(LITE_VERSION)
         xTaskCreate(
             wifiConnectTask,   // Task function
             "wifiConnectTask", // Task Name
@@ -582,6 +593,7 @@ void setup() {
             2,                 // Task priority (0 to 3), loopTask has priority 2.
             NULL               // Task handle (not used)
         );
+#endif
         Serial.println("wifiConnectTask created.");
     }
 #endif
@@ -626,7 +638,11 @@ void loop() {
         Serial.println("Entering interpreter...");
         while (interpreter_state > 0) { vTaskDelay(pdMS_TO_TICKS(500)); }
         Serial.println("Exiting interpreter...");
-        if (interpreter_state == -1) { interpreterTaskHandler = NULL; }
+        if (interpreter_state == -1) {
+#if !defined(LITE_VERSION) && !defined(DISABLE_INTERPRETER)
+            interpreterTaskHandler = NULL;
+#endif
+        }
         startSerialCommandsHandlerTask();
         previousMillis = millis(); // ensure that will not dim screen when get back to menu
     }

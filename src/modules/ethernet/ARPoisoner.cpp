@@ -64,7 +64,6 @@ void ARPoisoner::setup(IPAddress gateway) {
         victimIP[i] = gateway[i];
     }
     victimIP[3] = 0; // Initialize victim IP base
-    long tmp = 0;
     drawMainBorderWithTitle("ARP Poisoning");
     padprintln("");
     padprintln("");
@@ -77,9 +76,10 @@ void ARPoisoner::setup(IPAddress gateway) {
 }
 
 void ARPoisoner::loop() {
-    long tmp = 0;
     while (!check(AnyKeyPress)) {
-        if (tmp + 5000 < millis()) { // sends frames every 5 seconds
+        static uint32_t last_arp_time = 0;
+        if (last_arp_time + 5000 < millis()) { // sends frames every 5 seconds
+            last_arp_time = millis();
             for (int i = 0; i < 6; i++) {
                 gatewayMAC[i] = random(256); // Create other random MAC to the Gateway
             }
@@ -106,7 +106,6 @@ void ARPoisoner::loop() {
                     1
                 );
             }
-            tmp = millis();
             tft.drawRightString("     Aguardando...", tftWidth - 12, tftHeight - 16, 1);
         }
     }

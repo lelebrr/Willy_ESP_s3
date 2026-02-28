@@ -170,7 +170,6 @@ void MACFlooding::setup() {
 
 void MACFlooding::send_packet() {
 
-    uint8_t *ethernet_frame = (uint8_t *)p->payload;
     change_mac_in_packet();
 
     // Send packet

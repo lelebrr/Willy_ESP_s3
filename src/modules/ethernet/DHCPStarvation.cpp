@@ -165,7 +165,6 @@ void DHCPStarvation::setup() {
 
 void DHCPStarvation::send_DHCP_packet() {
 
-    uint8_t *ethernet_frame = (uint8_t *)p->payload;
     randomize_mac();
     change_mac_in_packet();
 

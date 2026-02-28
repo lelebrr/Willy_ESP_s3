@@ -64,7 +64,7 @@ function goToPage(url) {
 
 /// TODO: Use storage.write('browser.js', 'https://newsite.com,\n  ', 'append', '// insert websites here') to add new websites
 var websites = [
-  'https://github.com/lelebrr/Willy/wiki',
+  'https://github.com/lelebrr/Willy_ESP_s3/wiki',
   'https://en.cppreference.com/w',
   'https://randomnerdtutorials.com',
   // insert websites here
@@ -164,10 +164,10 @@ function main() {
         // optional chain is not supported in willy js (now)
         var searchTextIndex = request.body.indexOf(
           ' ' +
-            ((_a = choice.match(/\d+/)) === null || _a === void 0
-              ? void 0
-              : _a[0]) +
-            '. http'
+          ((_a = choice.match(/\d+/)) === null || _a === void 0
+            ? void 0
+            : _a[0]) +
+          '. http'
         );
         var searchedUrl = request.body.substring(
           searchTextIndex,

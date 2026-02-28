@@ -14,7 +14,7 @@ void setupWillyWeb(AsyncWebServer* server) {
 
     // Live device status endpoint (JSON)
     server->on("/api/status", HTTP_GET, [](AsyncWebServerRequest *request) {
-        StaticJsonDocument<512> doc;
+        JsonDocument doc;
         doc["battery"] = 0;
         doc["uptime"] = millis() / 1000;
         doc["free_heap"] = ESP.getFreeHeap();

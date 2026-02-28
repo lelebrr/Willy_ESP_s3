@@ -1364,15 +1364,56 @@ std::vector<IRDatabaseCode> loadIRDatabase(const String& brand) {
 }
 
 void executeIRBrute(const IRBruteConfig& config) {
-    Serial.println("[IR] Iniciando Brute Force IR para " + config.brand);
-}
+    if (!initIRAttackMode()) return;
 
-void addIRTarget(const IRTarget& target) {
-    multi_ir_targets.push_back(target);
+    drawMainBorderWithTitle("IR Brute Force");
+    padprintln("Alvo: " + config.brand);
+    padprintln("Testando codigos...");
+
+    std::vector<IRDatabaseCode> database = loadIRDatabase(config.brand);
+    if (database.empty()) {
+        displayError("Banco de dados vazio");
+        deinitIRAttackMode();
+        return;
+    }
+
+    ir_attack_running = true;
+    for (const auto& cmd : database) {
+        if (!ir_attack_running || check(EscPress)) break;
+
+        decode_type_t proto = stringToProtocol(cmd.protocol);
+        if (proto == decode_type_t::NEC) ir_sender->sendNEC(cmd.data, cmd.bits);
+        else if (proto == decode_type_t::SAMSUNG) ir_sender->sendSAMSUNG(cmd.data, cmd.bits);
+        else ir_sender->sendRaw((uint16_t*)cmd.data, cmd.bits, 38);
+
+        delay(config.delay_ms);
+    }
+
+    deinitIRAttackMode();
+    displaySuccess("Brute Force finalizado");
 }
 
 void executeMultiIRAttack(const MultiIRConfig& config) {
-    Serial.println("[IR] Ataque Multiplo IR iniciado");
+    if (!initIRAttackMode()) return;
+
+    drawMainBorderWithTitle("Multi-IR Attack");
+    padprintln("Atacando " + String(multi_ir_targets.size()) + " alvos");
+
+    ir_attack_running = true;
+    while(ir_attack_running && !check(EscPress)) {
+        for (const auto& target : multi_ir_targets) {
+            if (!ir_attack_running) break;
+
+            if (target.protocol == decode_type_t::SAMSUNG) ir_sender->sendSAMSUNG(target.power_code, 32);
+            else if (target.protocol == decode_type_t::LG) ir_sender->sendLG(target.power_code, 32);
+            else ir_sender->sendNEC(target.power_code, 32);
+
+            delay(10);
+        }
+        delay(config.interval_ms);
+    }
+
+    deinitIRAttackMode();
 }
 
 IRWaveformData captureIRWaveform() {

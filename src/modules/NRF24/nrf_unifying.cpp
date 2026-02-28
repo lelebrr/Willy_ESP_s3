@@ -52,10 +52,6 @@ void perform_promiscuous_uni_scan(NRF24_MODE mode) {
         NRFradio.setAddressWidth(5);
         NRFradio.setCRCLength(RF24_CRC_16);
     }
-
-    if (discovered_uni_macs.empty()) {
-        discovered_uni_macs.push_back({0xCC, 0xCC, 0xCC, 0xCC, 0xCC}); // Fallback
-    }
 }
 
 void nrf_unifying_exploit() {
@@ -81,13 +77,19 @@ void nrf_unifying_exploit() {
 
     perform_promiscuous_uni_scan(mode);
 
+    if (discovered_uni_macs.empty()) {
+        displayError("Logitech nao encontrado");
+        vTaskDelay(2000 / portTICK_PERIOD_MS);
+        return;
+    }
+
     tft.fillRect(10, 60, tftWidth - 20, 40, bruceConfig.bgColor);
     tft.setCursor(10, 60);
-    tft.printf("Targets found: %d\n", discovered_uni_macs.size());
+    tft.printf("Targets found: %u\n", (unsigned int)discovered_uni_macs.size());
     tft.println("Broadcasting exploit...");
 
     int current_channel = 5;
-    int current_addr_idx = 0;
+    size_t current_addr_idx = 0;
     uint32_t attempts = 0;
 
     // Sequence of payloads (e.g. GUI+R, cmd, Enter)

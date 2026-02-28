@@ -32,7 +32,6 @@ void nrf_mass_pairing() {
     tft.println("Flooding pairing requests...");
 
     uint32_t attempts = 0;
-    int current_channel = 2;
 
     uint32_t start_time = millis();
     while (!check(EscPress) && (millis() - start_time < 60000)) {
