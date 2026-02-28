@@ -558,7 +558,7 @@ int loopOptions(
     int menuSize = options.size();
     int devModeCounter = 0;
     static unsigned long _clock_bat_timer = millis();
-    if (options.size() > MAX_MENU_SIZE) { menuSize = MAX_MENU_SIZE; }
+    if (options.size() > static_cast<size_t>(MAX_MENU_SIZE)) { menuSize = MAX_MENU_SIZE; }
     if (index > 0)
         tft.fillRoundRect(
             tftWidth * 0.10,
@@ -568,7 +568,7 @@ int loopOptions(
             5,
             bruceConfig.bgColor
         );
-    if (index >= options.size()) index = 0;
+    if (static_cast<size_t>(index) >= options.size()) index = 0;
     bool firstRender = true;
     drawMainBorder();
     while (1) {
@@ -821,7 +821,7 @@ void drawSubmenu(int index, std::vector<Option> &options, const char *title) {
     tft.drawCentreString(firstOption, tftWidth / 2, middle_up, SMOOTH_FONT);
 
     // Selected item
-    int selectedTextSize = options[index].label.length() <= tftWidth / (LW * FG) - 1 ? FG : FM;
+    int selectedTextSize = options[index].label.length() <= static_cast<size_t>(tftWidth / (LW * FG) - 1) ? FG : FM;
     tft.setTextSize(selectedTextSize);
     tft.setTextColor(bruceConfig.priColor);
     tft.fillRect(6, middle - FG * LH / 2 - 1, tftWidth - 12, FG * LH + 5, bruceConfig.bgColor);
@@ -1209,12 +1209,12 @@ void jpegRender(int xpos, int ypos) {
         }
 
         // calculate how many pixels must be drawn
-        uint32_t mcu_pixels = win_w * win_h;
+        //        uint32_t mcu_pixels = win_w * win_h;
 
         // draw image MCU block only if it will fit on the screen
-        if ((mcu_x + (int)win_w) <= tft.width() && (mcu_y + (int)win_h) <= tft.height())
+        if ((mcu_x + (int)win_w) <= (int)tft.width() && (mcu_y + (int)win_h) <= (int)tft.height())
             tft.pushImage(mcu_x, mcu_y, win_w, win_h, pImg);
-        else if ((mcu_y + (int)win_h) > tft.height())
+        else if ((mcu_y + (int)win_h) > (int)tft.height())
             JpegDec.abort(); // Image has run off bottom of screen so abort decoding
     }
 

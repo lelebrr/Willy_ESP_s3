@@ -256,7 +256,7 @@ void setUIColor() {
         addOptionToMainMenu();
 
         int selectedOption = loopOptions(options, idx);
-        if (selectedOption == -1 || selectedOption == options.size() - 1) return;
+        if (selectedOption == -1 || static_cast<size_t>(selectedOption) == options.size() - 1) return;
     }
 }
 
@@ -301,7 +301,7 @@ void setCustomUIColorChoiceMenu(int colorType) {
         };
 
         int selectedOption = loopOptions(options);
-        if (selectedOption == -1 || selectedOption == options.size() - 1) return;
+        if (selectedOption == -1 || static_cast<size_t>(selectedOption) == options.size() - 1) return;
     }
 }
 
@@ -367,8 +367,6 @@ void setCustomUIColorSettingMenu(
 
     static uint16_t colorStorage[32];
     int selectedIndex = 0;
-    uint32_t decimal = 0;
-    size_t length = strlen(hexString);
     int i = 0;
     int index = 0;
 
@@ -999,7 +997,8 @@ void runClockLoop(bool showMenuHint) {
             );
             uint8_t f_size = 4;
             for (uint8_t i = 4; i > 0; i--) {
-                if (i * LW * strlen(timeStr) < (tftWidth - BORDER_PAD_X * 2)) {
+                if (i * LW * strlen(timeStr) < static_cast<size_t>(tftWidth - BORDER_PAD_X * 2)) {
+                    int offset = (tftWidth - (i * LW * strlen(timeStr))) / 2;
                     f_size = i;
                     break;
                 }

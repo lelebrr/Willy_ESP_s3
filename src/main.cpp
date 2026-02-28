@@ -277,7 +277,7 @@ void boot_screen_anim() {
     tft.drawPixel(0, 0, 0);       // Forces back communication with TFT, to avoid ghosting
                                   // Start image loop
     Serial.println("[BOOT] Starting while loop...");
-    while (millis() < i + 7000) { // boot image lasts for 7 secs
+    while (millis() < static_cast<unsigned long>(i + 7000)) { // boot image lasts for 7 secs
         if ((millis() - i > 2000) && !drawn) {
             Serial.println("[BOOT] 2 seconds elapsed, starting drawing logic...");
             tft.fillRect(0, 45, tftWidth, tftHeight - 45, bruceConfig.bgColor);

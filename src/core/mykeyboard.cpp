@@ -328,9 +328,11 @@ String generalKeyboard(
     bool caps = false;
     bool selection_made = false; // used for detecting if an key or a button was selected
     bool redraw = true;
-    int longNextPress = 0;
-    int longPrevPress = 0;
-    unsigned long LongPressTmp = 0;
+#if defined(HAS_3_BUTTONS)
+    bool longNextPress = false;
+    bool longPrevPress = false;
+    int LongPressTmp = 0;
+#endif
     long last_input_time = millis(); // used for input debouncing
     // cursor coordinates: kep track of where the next character should be printed (in screen pixels)
     int cursor_x = 0;
@@ -657,7 +659,9 @@ String generalKeyboard(
             /* Next-Prev Btns to move in X axis (right-left) */
             else if (check(NextPress)) {
                 NextPress = false;
+#if defined(HAS_3_BUTTONS)
                 longNextPress = false;
+#endif
                 x++;
                 if ((y < 0 && x >= buttons_number) || x >= KeyboardWidth) x = 0;
                 redraw = true;
@@ -665,7 +669,9 @@ String generalKeyboard(
             /* Down-Up Btns to move in Y axis */
             else if (check(PrevPress)) {
                 PrevPress = false;
+#if defined(HAS_3_BUTTONS)
                 longPrevPress = false;
+#endif
                 x--;
                 if (y < 0 && x >= buttons_number) x = buttons_number - 1;
                 else if (x < 0) x = KeyboardWidth - 1;

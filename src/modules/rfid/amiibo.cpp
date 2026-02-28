@@ -175,13 +175,14 @@ bool Amiibo::openDumpFile() {
     Serial.println(printableUID.sak);
     Serial.print("Data: ");
     Serial.println(strDump);
-    byte sak = strtoul(printableUID.sak.c_str(), NULL, 16);
+    // byte sak = strtoul(printableUID.sak.c_str(), NULL, 16);
 
     return true;
 }
 
 bool Amiibo::checkEmulationTagType() {
     if (strDump.length() == 0) return false;
+    byte sak = strtoul(printableUID.sak.c_str(), NULL, 16);
     if (sak != 0x00) return false;
 
     if (strDump.substring(0, 8) == strDump.substring(strDump.length() - 8)) {

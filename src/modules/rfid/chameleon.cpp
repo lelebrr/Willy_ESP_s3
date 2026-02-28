@@ -233,6 +233,13 @@ void Chameleon::dumpScanResults() {
 }
 
 uint8_t Chameleon::selectSlot() {
+    uint8_t slot = 1;
+    options = {
+        {"1", [&]() { slot = 1; }},
+        {"2", [&]() { slot = 2; }},
+        {"3", [&]() { slot = 3; }},
+        {"4", [&]() { slot = 4; }},
+        {"5", [&]() { slot = 5; }},
         {"6", [&]() { slot = 6; }},
         {"7", [&]() { slot = 7; }},
         {"8", [&]() { slot = 8; }},

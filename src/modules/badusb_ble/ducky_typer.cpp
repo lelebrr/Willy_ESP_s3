@@ -739,11 +739,11 @@ void sendAltChar(HIDInterface *hid, uint8_t charCode) {
     }
 
     // Send each digit using numpad keys
-    for (int i = 0; i < codeStr.length(); i++) {
-        char digit = codeStr[i];
+    for (size_t i = 0; i < codeStr.length(); i++) {
+        char c = codeStr[i];
         uint8_t numpadKey = 0;
 
-        switch (digit) {
+        switch (c) {
             case '0': numpadKey = KEY_KP_0; break;
             case '1': numpadKey = KEY_KP_1; break;
             case '2': numpadKey = KEY_KP_2; break;
@@ -769,7 +769,7 @@ void sendAltChar(HIDInterface *hid, uint8_t charCode) {
 }
 
 void sendAltString(HIDInterface *hid, const String &text) {
-    for (int i = 0; i < text.length(); i++) {
+    for (size_t i = 0; i < text.length(); i++) {
         uint8_t charCode = (uint8_t)text[i];
         sendAltChar(hid, charCode);
         delay(bruceConfig.badUSBBLEKeyDelay);
@@ -851,7 +851,7 @@ void printTFTBadUSBBLE(String text, uint16_t color, bool newline) {
 
     // Crop the string if necessary
     String textToPrint = text;
-    if (text.length() > maxChars) { textToPrint = text.substring(0, maxChars); }
+    if (text.length() > static_cast<size_t>(maxChars)) { textToPrint = text.substring(0, maxChars); }
 
     // Print text
     if (newline) {
@@ -916,7 +916,7 @@ void PresenterMode(HIDInterface *&hid, bool ble) {
     unsigned long startTime = 0; // Will be set on first interaction
     unsigned long lastDisplayedSeconds = 0;
     bool timerStarted = false;
-    bool firstDraw = true;
+    //    bool firstDraw = true;
 
     // Helper function to draw static UI elements (only once)
     auto drawStaticUI = [&]() {
