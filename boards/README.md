@@ -1,29 +1,25 @@
-<div align="center">
-
-# 🔧 Willy Firmware - Guia de Configuração de Placas
+# Willy Firmware - Guia de Configuração de Placas
 
 [![PlatformIO](https://img.shields.io/badge/PlatformIO-Compat%C3%ADvel-brightgreen.svg)](https://platformio.org/)
 [![ESP32](https://img.shields.io/badge/ESP32-Suportado-green.svg)](https://www.espressif.com/)
 [![Arduino](https://img.shields.io/badge/Arduino-Framework-orange.svg)](https://www.arduino.cc/)
 
-**Guia completo para adicionar e configurar novas placas**
-
-</div>
+## Guia completo para adicionar e configurar novas placas
 
 ---
 
-## 📋 Índice
+### Índice
 
-- [Visão Geral](#-visão-geral)
-- [Estrutura de Diretórios](#-estrutura-de-diretórios)
-- [Adicionando Nova Placa](#-adicionando-nova-placa)
-- [Arquivos de Configuração](#-arquivos-de-configuração)
-- [Placas Suportadas](#-placas-suportadas)
-- [Solução de Problemas](#-solução-de-problemas)
+- [Visão Geral](#visao-geral)
+- [Estrutura de Diretórios](#estrutura-de-diretorios)
+- [Adicionando Nova Placa](#adicionando-nova-placa)
+- [Arquivos de Configuração](#arquivos-de-configuracao)
+- [Placas Suportadas](#placas-suportadas)
+- [Solução de Problemas](#solucao-de-problemas)
 
 ---
 
-## 🗺️ Visão Geral
+## Visão Geral
 
 Este diretório contém todas as configurações específicas de hardware para as placas suportadas pelo Willy Firmware. Cada placa possui seus próprios arquivos de configuração que definem:
 
@@ -34,9 +30,9 @@ Este diretório contém todas as configurações específicas de hardware para a
 
 ---
 
-## 📂 Estrutura de Diretórios
+## Estrutura de Diretórios
 
-```
+```bash
 boards/
 │
 ├── 📁 _boards_json/              # JSONs de configuração PlatformIO
@@ -60,11 +56,11 @@ boards/
 │   └── 📄 pins_arduino.h
 │
 └── 📄 README.md                  # Este arquivo
-```
+```bash
 
 ---
 
-## 🚀 Adicionando Nova Placa
+## Adicionando Nova Placa
 
 ### Passo a Passo
 
@@ -72,7 +68,7 @@ boards/
 
 ```bash
 mkdir boards/minha_placa
-```
+```bash
 
 #### 2. Criar JSON de Configuração
 
@@ -120,7 +116,7 @@ Crie `boards/_boards_json/minha_placa.json`:
   "url": "https://minhaplaca.com",
   "vendor": "Meu Fabricante"
 }
-```
+```cpp
 
 #### 3. Criar Header de Pinos
 
@@ -195,7 +191,7 @@ Crie `boards/minha_placa/pins_arduino.h`:
 #define GPS_SERIAL_RX       SERIAL_RX
 
 #endif /* Pins_Arduino_h */
-```
+```cpp
 
 #### 4. Criar Interface de Inicialização
 
@@ -232,7 +228,7 @@ float readBattery() {
 bool checkBtnPress() {
     return digitalRead(BTN_PIN) == LOW;
 }
-```
+```cpp
 
 #### 5. Criar Configuração PlatformIO
 
@@ -303,7 +299,7 @@ build_flags =
     -DNRF24_MISO_PIN=SPI_MISO_PIN
 
 lib_deps = ${env.lib_deps}
-```
+```ini
 
 #### 6. Atualizar Header de Pinouts
 
@@ -314,7 +310,7 @@ Adicione em `boards/pinouts/pins_arduino.h`:
 #ifdef MINHA_PLACA
 #include "../minha_placa/pins_arduino.h"
 #endif
-```
+```cpp
 
 #### 7. Atualizar platformio.ini Principal
 
@@ -327,13 +323,13 @@ default_envs = minha_placa
 extra_configs =
     boards/*.ini
     boards/*/*.ini
-```
+```bash
 
 ---
 
-## 📁 Arquivos de Configuração
+## Arquivos de Configuração
 
-### 📄 JSON de Configuração (`_boards_json/[placa].json`)
+### JSON de Configuração (`_boards_json/[placa].json`)
 
 | Campo | Descrição |
 |-------|-----------|
@@ -347,7 +343,7 @@ extra_configs =
 
 **Referência oficial:** [PlatformIO ESP32 Boards](https://github.com/platformio/platform-espressif32/blob/master/boards/)
 
-### 📄 Header de Pinos (`[placa]/pins_arduino.h`)
+### Header de Pinos (`[placa]/pins_arduino.h`)
 
 Define todos os pinos GPIO da placa:
 
@@ -356,7 +352,7 @@ Define todos os pinos GPIO da placa:
 | **I2C** | SDA, SCL |
 | **SPI** | MOSI, MISO, SCK, SS |
 | **Display** | TFT_CS, TFT_DC, TFT_RST, TFT_BL |
-| **Touch** | TOUCH_CS, TOUCH_IRQ |
+| **Touch** | TOUCH_CS, TOUCH_IRQ (T_IRQ - interrupção do touch) |
 | **Cartão SD** | SDCARD_CS, SDCARD_SCK, etc |
 | **IR** | IR_TX, IR_RX |
 | **RF** | RF_TX, RF_RX, GDO0 |
@@ -366,7 +362,7 @@ Define todos os pinos GPIO da placa:
 
 **Referência oficial:** [Arduino ESP32 Variants](https://github.com/espressif/arduino-esp32/blob/master/variants/)
 
-### 📄 Interface (`[placa]/interface.cpp`)
+### Interface (`[placa]/interface.cpp`)
 
 Contém código de inicialização específico:
 
@@ -375,9 +371,9 @@ Contém código de inicialização específico:
 void initBoard();        // Inicialização
 float readBattery();     // Leitura de bateria
 bool checkBtnPress();    // Verificar botão
-```
+```cpp
 
-### 📄 Configuração PlatformIO (`[placa]/[placa].ini`)
+### Configuração PlatformIO (`[placa]/[placa].ini`)
 
 Herda de `[env]` e define configurações específicas:
 
@@ -391,9 +387,9 @@ Herda de `[env]` e define configurações específicas:
 
 ---
 
-## 🖥️ Placas Suportadas
+## Placas Suportadas
 
-### 📱 CYD-2432S028 (Cheap Yellow Display)
+### CYD-2432S028 (Cheap Yellow Display)
 
 | Especificação | Valor |
 |---------------|-------|
@@ -406,7 +402,8 @@ Herda de `[env]` e define configurações específicas:
 
 #### Pinagem CYD
 
-```
+```bash
+
 TFT:
   MOSI → GPIO 13
   MISO → GPIO 12
@@ -427,9 +424,10 @@ Cartão SD:
   MISO → GPIO 19
   SCK  → GPIO 18
   CS   → GPIO 5
-```
 
-### 📱 CYD-2USB
+```bash
+
+### CYD-2USB
 
 Igual ao CYD-2432S028, mas com 2 portas USB-C.
 
@@ -438,7 +436,7 @@ Igual ao CYD-2432S028, mas com 2 portas USB-C.
 | **USB** | 2x USB-C |
 | **Display** | ILI9341 com inversão |
 
-### 📱 CYD-3248S035 (Cheap Yellow Display 3.5")
+### CYD-3248S035 (Cheap Yellow Display 3.5")
 
 | Especificação | Valor |
 |---------------|-------|
@@ -453,7 +451,8 @@ Igual ao CYD-2432S028, mas com 2 portas USB-C.
 
 #### Pinagem CYD-3248S035
 
-```
+```bash
+
 TFT (ST7796):
   MOSI → GPIO 13
   MISO → GPIO 12
@@ -489,11 +488,12 @@ Periféricos & Expansão:
   P1 (UART)   → TX (1), RX (3)
   P3 (IO)     → GPIO 35, 22, 21
   CN1 (I2C)   → SCL (22), SDA (27)
-```
+
+```bash
 
 📖 **Documentação completa:** [hardware_cyd_3248s035.md](../docs/hardware_cyd_3248s035.md)
 
-### 📱 ESP-General
+### ESP-General
 
 Configuração genérica para qualquer ESP32:
 
@@ -503,7 +503,7 @@ Configuração genérica para qualquer ESP32:
 
 ---
 
-## 🔧 Solução de Problemas
+## Solução de Problemas
 
 ### Problemas Comuns
 
@@ -523,7 +523,7 @@ pio run -e minha_placa -v
 
 # Ver erros
 pio run -e minha_placa 2>&1 | grep error
-```
+```bash
 
 ### Validação
 
@@ -533,11 +533,11 @@ pio boards | grep minha_placa
 
 # Listar ambientes
 pio run --list-targets
-```
+```bash
 
 ---
 
-## 📚 Referências
+## Referências
 
 ### Documentação Oficial
 
@@ -557,12 +557,10 @@ pio run --list-targets
 
 ---
 
-<div align="center">
 
-### 🛡️ Willy Firmware
+### Willy Firmware
 
-**[⬆ Voltar ao Topo](#-Willy-firmware---guia-de-configuração-de-placas)**
+**[⬆ Voltar ao Topo](#willy-firmware-guia-de-configuracao-de-placas)**
 
 *Documentação mantida pela comunidade Willy*
 
-</div>

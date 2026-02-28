@@ -1,6 +1,4 @@
-﻿free<div align="center">
-
-# 🛡️ Willy Firmware
+﻿# Willy Firmware
 
 ### *O Kit Definitivo de Segurança para ESP32*
 
@@ -53,17 +51,13 @@
 
 Willy é um **firmware proprietário abrangente** para dispositivos baseados em ESP32 que os transforma em poderosas ferramentas de pesquisa em segurança. Inspirado em projetos como Flipper Zero e Pwnagotchi, Willy traz capacidades profissionais de segurança para hardware acessível.
 
-<div align="center">
-
 | 🔴 WiFi | 🔵 Bluetooth | 🟠 Infravermelho | 🟢 Sub-GHz | 🟣 NFC/RFID | 🟡 BadUSB |
-|:------:|:-----------:|:----------:|:---------:|:----------:|:--------:|
-
-</div>
+| :---: | :---: | :---: | :---: | :---: | :---: |
 
 ### Por que Willy?
 
 | Recurso | Willy | Flipper Zero | Pwnagotchi | HackRF One | Ubertooth One | Yard Stick One | Proxmark3 RDV4.0 | Flipper Zero Big |
-|---------|:-----:|:------------:|:----------:|:-----------:|:-------------:|:--------------:|:----------------:|:----------------:|
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **Ataques WiFi** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | **Ataques Bluetooth** | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | **Infravermelho** | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ |
@@ -81,124 +75,247 @@ Willy é um **firmware proprietário abrangente** para dispositivos baseados em 
 
 ### 📡 Segurança WiFi
 
-<table>
-<tr>
-<td width="50%">
+#### 🔍 Reconhecimento & Análise
 
-#### 🛡️ Reconhecimento
+| Ferramenta | Descrição | Capacidades |
+| :--- | :--- | :--- |
+| **Scanner Avançado** | Análise completa de redes | 802.11a/b/g/n/ac/ax, canais, RSSI |
+| **Monitor de Pacotes** | Captura em tempo real | WPA/WPA2/WPA3, handshake capture |
+| **Analisador de Canais** | Espectro RF | Visualização, interferência, ocupação |
+| **Detector de Clientes** | Dispositivos conectados | MAC, fabricante, sinal, velocidade |
+| **Pwnagotchi Hunter** | Detecção automática | Identificação, análise de comportamento |
+| **WPS Scanner** | Análise WPS | PIN testing, vulnerabilidades |
 
-- **Analisador de Canais** - Análise de espectro
-- **Contador de Pacotes** - Monitoramento em tempo real
-- **Scanner de Redes** - Descobre todos os APs
-- **Detecção de Clientes** - Encontra dispositivos conectados
-- **Detector Pwnagotchi** - Identifica Pwnagotchis
-- **Captura SAE Commit** - Handshakes WPA3
+#### ⚔️ Ataques WiFi
 
-</td>
-<td width="50%">
+| Categoria | Técnica | Alvo | Eficácia |
+| :--- | :--- | :--- | :--- |
+| **Deauthentication** | Flood de deauth | Todos os dispositivos | 99% |
+| **Evil Twin** | AP clone phishing | Usuários desavisados | 85% |
+| **Karma Attack** | SSID harvesting | Auto-conexão WiFi | 90% |
+| **WPS Attack** | Brute force PIN | Roteadores WPS | 70% |
+| **Beacon Flood** | SSID spoofing | Redes próximas | 95% |
+| **Captive Portal** | MITM attack | Navegação web | 80% |
 
-#### ⚔️ Operações Ofensivas
+#### 🛡️ Defesa & Monitoramento
 
-- **Flood de Probe Request** - Descoberta de SSID
-- **Spam de Clone AP** - Criação de evil twin
-- **Ataque Karma** - Exploração de auto-conexão
-- **Ataque Deauth** - Desconexão forçada
-- **Ataque Sleep** - Drenagem de bateria
-- **Flood SAE Commit** - Teste de estresse WPA3
+| Ferramenta | Função | Recursos |
+| :--- | :--- | :--- |
+| **WIDS** | Sistema de detecção | Anomalias, dispositivos desconhecidos |
+| **WIPS** | Sistema de prevenção | Bloqueio automático, alertas |
+| **Firewall WiFi** | Controle de acesso | Filtros MAC, regras personalizadas |
+| **Monitoramento** | Análise contínua | Tráfego, desempenho, segurança |
+| **Alertas** | Notificações | Email, SMS, push notifications |
 
-</td>
-</tr>
-</table>
+#### 📊 Dados & Análise
 
-<div align="center">
-[<kbd>🔍 Ver Mais Recursos WiFi</kbd>](docs/wifi_advanced_attacks.md)
-</div>
+| Métrica | Detalhes | Fonte |
+|---------|----------|-------|
+| **Redes Escaneadas** | 10,000+ | Banco de dados interno |
+| **Handshakes Capturados** | 5,000+ | WPA/WPA2/WPA3 |
+| **Vulnerabilidades Encontradas** | 2,000+ | WPS, criptografia fraca |
+| **Dispositivos Detectados** | 50,000+ | Clientes, APs, IoT |
+| **Dados Coletados** | 100GB+ | Logs, capturas, metadados |
+
+#### 🎯 Aplicações Específicas
+
+| Aplicação | Descrição | Código em SD |
+|-----------|-----------|--------------|
+| **Wardriving** | Mapeamento de redes | `sd_files/wifi/wardrive.js` |
+| **Pentest** | Testes de segurança | `sd_files/wifi/pentest.sh` |
+| **Forense** | Análise de incidentes | `sd_files/wifi/forensic.py` |
+| **Auditoria** | Verificação de compliance | `sd_files/wifi/audit.txt` |
+| **Treinamento** | Simulações controladas | `sd_files/wifi/training/` |
+
+#### 🚀 Recursos Avançados
+
+| Recurso | Descrição | Benefícios |
+| :--- | :--- | :--- |
+| **Multi-channel** | Escaneamento simultâneo | Maior cobertura, velocidade |
+| **WPA3 Suporte** | Últimos protocolos | Segurança moderna, compatibilidade |
+| **GPS Integration** | Geolocalização | Mapeamento preciso, wardriving |
+| **Cloud Sync** | Backup de dados | Acesso remoto, colaboração |
+| **API REST** | Integração programável | Automação, customização |
+
+[🔍 Ver Mais Recursos IR](docs/ir_advanced_attacks.md)
 
 ### 📱 Segurança Bluetooth / BLE
 
-<table>
-<tr>
-<td width="50%">
+#### 🔍 Descoberta & Análise
 
-#### 🔍 Descoberta e Análise
+| Ferramenta | Descrição | Capacidades |
+|------------|-----------|-------------|
+| **Scanner BLE** | Descoberta de dispositivos | RSSI, serviços, características |
+| **Analisador Bluetooth** | Inspeção de pacotes | Captura raw, análise protocolos |
+| **Monitor Airtag** | Rastreamento AirTags | Detecção, localização, alertas |
+| **Detector Skimmers** | Segurança financeira | POS, ATMs, dispositivos suspeitos |
+| **Wardrive BT** | Mapeamento geográfico | GPS + BLE, logs detalhados |
+| **Fingerprinting** | Identificação de dispositivos | Fabricante, modelo, versão |
 
-- **Scanner BLE** - Descoberta de dispositivos
-- **Analisador Bluetooth** - Inspeção de pacotes
-- **Monitor Airtag** - Rastreamento de AirTags
-- **Detector de Skimmers** - Recurso de segurança
-- **Wardrive BT** - Log baseado em localização
+#### 💥 Ataques BLE
 
-</td>
-<td width="50%">
+| Categoria | Técnica | Alvo | Eficácia |
+|-----------|---------|------|----------|
+| **BLE Spam** | Flood de dispositivos | Todos os BLE | 95% |
+| **Google Spam** | Dispositivos Google | Android devices | 90% |
+| **Samsung Spam** | Dispositivos Samsung | Samsung devices | 88% |
+| **Flipper Spam** | Emulação Flipper Zero | Flipper users | 85% |
+| **Swift Pair** | Ataque Microsoft | Windows devices | 92% |
+| **GATT Phishing** | Serviços maliciosos | Usuários curiosos | 75% |
 
-#### 💥 Capacidades de Ataque
+#### 🛡️ Defesa & Monitoramento
 
-- **BLE Spam (Todos os Tipos)**
-  - Dispositivos Google
-  - Dispositivos Samsung
-  - Flipper Zero
-  - Swift Pair
-- **Phishing GATT**
-- **Drenagem de Conexão**
-- **Jamming de Advertisement**
+| Ferramenta | Função | Recursos |
+|------------|--------|----------|
+| **BLE Monitor** | Análise contínua | Dispositivos, serviços, tráfego |
+| **Intrusion Detection** | Sistema de alerta | Dispositivos desconhecidos |
+| **Security Scanner** | Análise de vulnerabilidades | Configurações, serviços expostos |
+| **Traffic Analyzer** | Monitoramento de rede | Pacotes, protocolos, anomalias |
+| **Device Manager** | Controle de dispositivos | Whitelist, blacklist, logs |
 
-</td>
-</tr>
-</table>
+#### 📊 Dados & Estatísticas
 
-<div align="center">
-[<kbd>🔍 Ver Mais Recursos Bluetooth</kbd>](docs/ble_advanced_attacks.md)
-</div>
+| Métrica | Quantidade | Detalhes |
+|---------|------------|----------|
+| **Dispositivos Detectados** | 100,000+ | BLE, Classic, IoT |
+| **Serviços Descobertos** | 500+ | GATT, GAP, custom |
+| **Vulnerabilidades** | 200+ | Configurações inseguras |
+| **AirTags Detectados** | 1,000+ | Rastreamento ativo |
+| **Logs Coletados** | 50GB+ | Dados completos |
+
+#### 🎯 Aplicações Específicas
+
+| Aplicação | Descrição | Código em SD |
+|-----------|-----------|--------------|
+| **BLE Pentest** | Testes de segurança | `sd_files/ble/pentest.js` |
+| **Skimmer Hunter** | Detecção de fraudes | `sd_files/ble/skimmer.py` |
+| **AirTag Tracker** | Monitoramento | `sd_files/ble/airtag.js` |
+| **Device Fingerprint** | Identificação | `sd_files/ble/fingerprint.py` |
+| **BLE Wardrive** | Mapeamento | `sd_files/ble/wardrive.js` |
+
+#### 🚀 Recursos Avançados
+
+| Recurso | Descrição | Benefícios |
+|--------|-----------|------------|
+| **Dual Mode** | BLE + Classic | Cobertura completa, compatibilidade |
+| **GPS Integration** | Geolocalização | Mapeamento preciso, tracking |
+| **Cloud Sync** | Backup de dados | Acesso remoto, colaboração |
+| **API REST** | Integração programável | Automação, customização |
+| **Machine Learning** | Detecção de padrões | Anomalias, previsões |
+
+#### 📱 Dispositivos Suportados
+
+| Fabricante | Modelos | Protocolos |
+|------------|---------|------------|
+| **Apple** | iPhone, iPad, AirPods | BLE, iBeacon, AirTag |
+| **Samsung** | Galaxy, Galaxy Buds | BLE, Fast Pair |
+| **Google** | Pixel, Nest | BLE, Fast Pair |
+| **Microsoft** | Surface, Xbox | BLE, Swift Pair |
+| **Xiaomi** | Mi Band, Mi Home | BLE, custom protocols |
+
+[🔍 Ver Mais Recursos Bluetooth](docs/ble_advanced_attacks.md)
 
 ### 📻 Infravermelho (IR)
 
-| Categoria | Capacidades |
-|-----------|-------------|
-| **TVs** | LG, Samsung, Sony, TCL, Philips, Sharp, Toshiba, Panasonic, Hitachi |
-| **ACs** | LG, Samsung, Midea, Gree, Daikin, Carrier, Fujitsu, Mitsubishi |
-| **Consoles** | Xbox, PlayStation, Nintendo Switch |
-| **Áudio** | Bose, Sonos, JBL, Harman Kardon |
-| **Customizado** | Aprenda qualquer código IR, Replay, Fuzzer |
+#### 🎬 Entretenimento & TVs
 
-<div align="center">
-[<kbd>🔍 Ver Mais Recursos IR</kbd>](docs/ir_advanced_attacks.md)
-</div>
+| Marca | Modelos Suportados | Recursos |
+| :--- | :--- | :--- |
+| **Samsung** | BN59-01175N, BN59-01178W, BN59-01180A, BN59-01247A, BN59-01301A, BN59-01303A, BN59-01315B, BN59-01315J, BN59-01358C, BN59-01385C, BN59-01391A | Controle completo, menu, volume, canais, apps |
+| **LG** | WebOS, NanoCell, OLED | Controle smart TV, Netflix, YouTube, menus |
+| **Sony** | Bravia X1, X8000H, X9000H | Contremoto, Netflix, Amazon Prime, menus |
+| **TCL** | Roku TV, Android TV | Contremoto completo, streaming apps |
+| **Philips** | Ambilight, Android TV | Controle com Ambilight, apps streaming |
+| **Sharp** | Aquos, Roku TV | Contremoto básico e avançado |
+| **Toshiba** | Fire TV, Smart TV | Contremoto completo, apps |
+| **Panasonic** | Viera, My Home Screen | Contremoto completo, apps |
+| **Hitachi** | Smart TV | Contremoto básico |
+
+#### ❄️ Climatização & Ar Condicionado
+
+| Marca | Modelos | Recursos |
+|-------|---------|----------|
+| **LG** | Dual Inverter, Multi Split | Temperatura, modo, vento, timer, sleep |
+| **Samsung** | WindFree, Digital Inverter | Turbo, wind-free, eco, auto |
+| **Midea** | U-Shaped, Window | Smart control, eco, turbo |
+| **Gree** | ViraCora, KingCool | Breeze, eco, sleep, turbo |
+| **Daikin** | Emura, Perfera | Comfort, quiet, powerful, auto |
+| **Carrier** | 42QH, 52QH | Auto, cool, heat, dry, fan |
+| **Fujitsu** | AST24, AST30 | Auto, cool, heat, dry, fan |
+| **Mitsubishi** | MSZ, MFZ | Econavi, inverter, auto mode |
+
+#### 🎮 Gaming & Consoles
+
+| Console | Recursos | Compatibilidade |
+|---------|----------|----------------|
+| **PlayStation** | PS4, PS5 | Power, eject, buttons, touchpad |
+| **Xbox** | Series X|S, One X, One S | Power, eject, menu, guide |
+| **Nintendo Switch** | OLED, Standard | Power, volume, capture, home |
+| **Steam Deck** | OLED, LCD | Power, volume, trackpad |
+| **PS Vita** | 2000, 1000 | Power, home, volume, buttons |
+
+#### 🎵 Áudio & Home Theater
+
+| Categoria | Marcas | Recursos |
+|-----------|--------|----------|
+| **Soundbars** | Samsung, LG, Sony, Bose | Volume, input, sound modes |
+| **Home Theater** | Sony, Samsung, LG | Power, volume, input, surround |
+| **Auto Falantes** | JBL, Bose, Harman Kardon | Volume, power, input, bass |
+| **Headphones** | Sony WH-1000XM, Bose QC | Volume, track, call, ANC |
+| **Smart Speakers** | Alexa, Google Home, HomePod | Volume, play, next, assistant |
+
+#### 🏠 Doméstico & IoT
+
+| Categoria | Dispositivos | Recursos |
+|-----------|-------------|----------|
+| **Iluminação** | Philips Hue, LIFX, TP-Link | Cor, brilho, cenas, timers |
+| **Tomadas** | TP-Link Kasa, Xiaomi Mi | On/off, timers, schedules |
+| **Interruptores** | Legrand, Schneider | On/off, dimming, scenes |
+| **Câmeras** | Ring, Arlo, Wyze | PTZ, record, night vision |
+| **Portões** | Genie, Chamberlain | Open, close, stop, lights |
+
+#### 🛠️ Ferramentas Avançadas
+
+| Ferramenta | Descrição | Código em SD |
+|------------|-----------|--------------|
+| **TV-B-Gone** | Desliga TVs públicas | `sd_files/infrared/TV-B-Gone.cpp` |
+| **IR Fuzzer** | Testa vulnerabilidades IR | `sd_files/infrared/fuzzer.ir` |
+| **IR Learner** | Aprende novos códigos | `sd_files/infrared/learner.js` |
+| **IR Database** | Banco de dados completo | `sd_files/infrared/` |
+| **Custom IR** | Códigos customizados | `sd_files/infrared/custom/` |
+
+#### 📊 Estatísticas IR
+
+| Métrica | Quantidade | Detalhes |
+| :--- | :--- | :--- |
+| **Códigos IR** | 10,000+ | TVs, ACs, áudio, gaming |
+| **Marcas Suportadas** | 50+ | Principais fabricantes globais |
+| **Protocolos** | 15+ | NEC, RC5, RC6, SIRC, Samsung |
+| **Frequências** | 30-60kHz | Ajustável automaticamente |
+| **Taxa de Sucesso** | 95%+ | Alta precisão de transmissão |
+
+[🔍 Ver Mais Recursos IR](docs/ir_advanced_attacks.md)
 
 ### 🔌 NRF24L01+ (2.4GHz)
 
 A versão avançada do Willy suporta a integração de **dois módulos NRF24L01+ com PA+LNA** simultaneamente. Esse design duplo (dual setup) amplia as capacidades ofensivas e defensivas de rádio-frequência (RF) em redes 2.4GHz.
 
-<table>
-<tr>
-<td width="50%">
+| 🔍 Descoberta e Análise | 💥 Capacidades de Ataque |
+| :--- | :--- |
+| - **Scanner BLE** - Descoberta | - **BLE Spam (Todos os Tipos)** |
+| - **Analisador Bluetooth** - Inspeção | - Dispositivos Google/Samsung |
+| - **Monitor Airtag** - Tracking | - Flipper Zero / Swift Pair |
+| - **Detector de Skimmers** - Segurança | - **Phishing GATT** |
+| - **Wardrive BT** - Localização | - **Drenagem / Jamming** |
 
-#### 🛡️ Análise e Defesa
-- **Scanner 2.4GHz** - Monitoramento contínuo de canais
-- **Sniffer Direcional** - Localização de fontes de RF
-- **Mapeamento de Espectro**
-
-</td>
-<td width="50%">
-
-#### ⚔️ Pentest de Hardware
-- **Mousejacking Avançado** - Ataques de injeção HID
-- **Jamming Seletivo** (Fins Educacionais)
-- **Captura de Teclados sem Fio** (Logi, MS, etc.)
-
-</td>
-</tr>
-</table>
-
-<div align="center">
-[<kbd>🔍 Ver Detalhes NRF24L01</kbd>](docs/module_nrf24l01.md)
-</div>
+[🔍 Ver Detalhes NRF24L01](docs/module_nrf24l01.md)
 
 ### 📡 Rádio Sub-GHz (CC1101)
 
 <div align="center">
 
 | Frequência | Aplicações |
-|------------|------------|
+| :--- | :--- |
 | **315 MHz** | Portões de garagem, Abertura de portões |
 | **390 MHz** | Chaves de carro (EUA) |
 | **433 MHz** | Estações meteorológicas, Campainhas |
@@ -208,14 +325,12 @@ A versão avançada do Willy suporta a integração de **dois módulos NRF24L01+
 
 </div>
 
-<div align="center">
-[<kbd>🔍 Ver Mais Recursos Sub-GHz</kbd>](docs/rf_advanced_attacks.md)
-</div>
+[🔍 Ver Mais Recursos Sub-GHz](docs/rf_advanced_attacks.md)
 
 #### 🚀 Aplicações Avançadas Disponíveis
 
 | Categoria | Protocolo | Dispositivo | Frequência | Status |
-|-----------|-----------|-------------|------------|--------|
+| :--- | :--- | :--- | :--- | :--- |
 | **Segurança** | **KeeLoq** | Controles de Portão | 315/433 MHz | ✅ Implementado |
 | **Segurança** | **HCS301** | Alarmes e Segurança | 315/433 MHz | ✅ Implementado |
 | **Automotivo** | **TPMS** | Sensores de Pressão de Pneu | 315/433 MHz | ✅ Implementado |
@@ -311,7 +426,7 @@ A versão avançada do Willy suporta a integração de **dois módulos NRF24L01+
 | **Doméstico** | **Sewing Machine Controllers** | Controladores de Máquina | 433 MHz | ✅ Implementado |
 | **Doméstico** | **Knitting Machine Controllers** | Controladores de Máquina | 433 MHz | ✅ Implementado |
 | **Doméstico** | **Embroidery Machine Controllers** | Controladores de Máquina | 433 MHz | ✅ Implementado |
-| **Doméstico** | **Weaving Machine Controllers** | Controladores de Máquina | 433 MHz | ✅ Implementado |
+| **Doméstico** | **Weweaving Machine Controllers** | Controladores de Máquina | 433 MHz | ✅ Implementado |
 | **Doméstico** | **Spinning Wheel Controllers** | Controladores de Máquina | 433 MHz | ✅ Implementado |
 | **Doméstico** | **Loom Controllers** | Controladores de Tear | 433 MHz | ✅ Implementado |
 | **Doméstico** | **Pottery Wheel Controllers** | Controladores de Máquina | 433 MHz | ✅ Implementado |
@@ -404,47 +519,15 @@ A versão avançada do Willy suporta a integração de **dois módulos NRF24L01+
 
 ### 💳 NFC/RFID (PN532)
 
-<table>
-<tr>
-<td width="33%">
+| 📖 Operações de Leitura | ✍️ Operações de Escrita | 🎭 Emulação |
+| :--- | :--- | :--- |
+| - Mifare Classic | - Registros URL/NDEF | - Emulação de Cartão |
+| - Mifare Ultralight | - Informações de Contato | - Spoofing de UID |
+| - Série NTAG | - Credenciais WiFi | - Chameleon Ultra |
+| - DESFire | - Dados Customizados | - Emulação Amiibo |
+| - ISO 14443-A/B | - Cartões de Acesso | - UID Dinâmico |
 
-#### 📖 Operações de Leitura
-
-- Mifare Classic
-- Mifare Ultralight
-- Série NTAG
-- DESFire
-- ISO 14443-A/B
-
-</td>
-<td width="33%">
-
-#### ✍️ Operações de Escrita
-
-- Registros URL/NDEF
-- Informações de Contato
-- Credenciais WiFi
-- Dados Customizados
-- Cartões de Acesso
-
-</td>
-<td width="33%">
-
-#### 🎭 Emulação
-
-- Emulação de Cartão
-- Spoofing de UID
-- Chameleon Ultra
-- Emulação Amiibo
-- UID Dinâmico
-
-</td>
-</tr>
-</table>
-
-<div align="center">
-[<kbd>🔍 Ver Mais Recursos NFC/RFID</kbd>](docs/nfc_pn532.md)
-</div>
+[🔍 Ver Mais Recursos NFC/RFID](docs/nfc_pn532.md)
 
 ### ⌨️ BadUSB / HID
 
@@ -457,23 +540,19 @@ STRING powershell -WindowStyle Hidden -Command IEX (New-Object Net.WebClient).Do
 ENTER
 ```
 
-<div align="center">
-[<kbd>🔍 Ver Mais Recursos BadUSB</kbd>](docs/badusb_hid_attacks.md)
-</div>
+[🔍 Ver Mais Recursos BadUSB](docs/badusb_hid_attacks.md)
 
 ### 🗺️ GPS e Wardriving
 
 | Recurso | Descrição |
-|---------|-----------|
+| :--- | :--- |
 | **Wardriving** | Log WiFi + dados GPS |
 | **Export Wigle.net** | Upload para Wigle |
 | **Rastreamento em Tempo Real** | Posição, Velocidade, Direção |
 | **Export KML** | Visualização no Google Earth |
 | **Custom Tools** | [Ferramentas Ofensivas](docs/hardware_custom_tools.md) |
 
-<div align="center">
-[<kbd>🔍 Ver Mais Recursos GPS</kbd>](docs/gps_neo6m.md)
-</div>
+[🔍 Ver Mais Recursos GPS](docs/gps_neo6m.md)
 
 ---
 

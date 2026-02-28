@@ -53,7 +53,7 @@ Compartilha o barramento SPI com o display.
 | **TOUCH_CLK** | 14 | Compartilhado com TFT_SCLK |
 | **TOUCH_DIN** | 13 | Compartilhado com TFT_MOSI |
 | **TOUCH_DOUT** | 12 | Compartilhado com TFT_MISO |
-| **TOUCH_IRQ** | 36 | Interrupção (SENSOR_VP, input-only) |
+| **TOUCH_IRQ** | 36 | **Interrupção do Touch** (SENSOR_VP, input-only) - Obrigatório para modo de interrupção |
 
 ### 3. Touchscreen Capacitivo — GT911 (Modelo "C")
 

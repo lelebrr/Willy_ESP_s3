@@ -113,6 +113,7 @@ graph TD
 | `9` | **TFT_DC** (Data/Command) | Display TFT ILI9341 |
 | `14` | **TFT_RST** (Reset) | Display TFT ILI9341 |
 | `15` | **TOUCH_CS** | Touch XPT2046 |
+| `36` | **TOUCH_IRQ** | **Interrupção do Touch** (T_IRQ) |
 | `38` | **SDCARD_CS** | Cartão Micro SD |
 | `16` | **NRF1_CSN** | NRF24L01+PA+LNA #1 |
 | `21` | **NRF1_CE** | NRF24L01+PA+LNA #1 |

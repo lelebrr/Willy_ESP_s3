@@ -393,12 +393,16 @@ O controlador de touch vem **embutido** na mesma placa do display ILI9341. Compa
 | T_CS | Touch Chip Select | `15` | 🟤 Marrom |
 | T_DIN | SPI MOSI (compartilhado) | `11` | 🔵 Azul |
 | T_DO | SPI MISO (compartilhado) | `13` | 🟢 Verde |
-| T_IRQ | Interrupção (opcional) | Não conectado | — |
+| T_IRQ | **Interrupção do Touch** | `36` | ⚪ Branco |
 
 ```cpp
 #define TOUCH_CS 15
+#define TOUCH_IRQ 36  // Pino de interrupção do touch (T_IRQ)
 #define SPI_TOUCH_FREQUENCY 2500000 // 2.5MHz (touch é mais lento)
 ```
+
+> **Importante**: O pino T_IRQ (GPIO 36) é essencial para o modo de interrupção do touch.
+> Ele permite detecção instantânea de toques e economia de energia, evitando polling contínuo.
 
 ---
 
@@ -438,7 +442,7 @@ SD.begin(38, spi);
 | SCK | SPI Clock | `12` | 🟠 Laranja |
 | MOSI | SPI Data In | `11` | 🔵 Azul |
 | MISO | SPI Data Out | `13` | 🟢 Verde |
-| IRQ | Interrupção (opcional) | Não conectado | — |
+| IRQ | **Interrupção do Touch** | `36` | ⚪ Branco |
 
 > [!CAUTION]
 > **Solde um capacitor de 10μF + 100nF** entre VCC e GND do módulo NRF, o mais perto possível dos pinos. Sem esse capacitor, o módulo vai resetar o ESP32 inteiro ao transmitir.
@@ -456,7 +460,7 @@ SD.begin(38, spi);
 | SCK | SPI Clock | `12` | 🟠 Laranja |
 | MOSI | SPI Data In | `11` | 🔵 Azul |
 | MISO | SPI Data Out | `13` | 🟢 Verde |
-| IRQ | Interrupção (opcional) | Não conectado | — |
+| IRQ | **Interrupção do Touch** | `36` | ⚪ Branco |
 
 > [!WARNING]
 > **NUNCA** energize um módulo NRF PA+LNA sem a antena SMA conectada. A potência refletida destrói o estágio amplificador instantaneamente.

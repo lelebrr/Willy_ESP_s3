@@ -46,10 +46,29 @@ Compartilha o barramento SPI com o display.
 | Função | Pino (GPIO) | Notas |
 | :--- | :--- | :--- |
 | **TOUCH_CS** | 33 | Chip Select do Touch |
-| **TOUCH_IRQ** | 36 | Interrupção do Touch |
+| **TOUCH_IRQ** | 36 | **Interrupção do Touch** (Obrigatório para modo de interrupção) |
 | **CLK** | 25 | Clock dedicado (em algumas revisões) |
 | **MOSI** | 32 | MOSI dedicado |
 | **MISO** | 39 | MISO dedicado |
+
+#### **Sobre o TOUCH_IRQ (GPIO 36)**
+
+O pino `TOUCH_IRQ` é **essencial** para o funcionamento otimizado do touchscreen XPT2046:
+
+- **Modo de Interrupção**: Permite que o touch notifique o ESP32 quando há um toque
+- **Economia de Energia**: Reduz consumo de CPU evitando polling contínuo
+- **Resposta Rápida**: Detecção instantânea de toques
+- **Performance**: Sistema touch mais eficiente e responsivo
+
+**Configuração:**
+
+```cpp
+#define TOUCH_IRQ 36  // Pino de interrupção do touch
+pinMode(TOUCH_IRQ, INPUT);
+attachInterrupt(digitalPinToInterrupt(TOUCH_IRQ), isrHandler, FALLING);
+```
+
+> **Nota**: Sem o TOUCH_IRQ conectado, o touch funciona em modo polling (menos eficiente).
 
 ### 3. Cartão SD
 

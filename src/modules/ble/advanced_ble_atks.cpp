@@ -22,10 +22,10 @@
 
 // Controle de estado
 static bool ble_attack_running = false;
-static TaskHandle_t ble_attack_task_handle = NULL;
+// static TaskHandle_t ble_attack_task_handle = NULL;
 
 // Callback de pairing
-static PairingKeyCallback pairing_key_callback = nullptr;
+// static PairingKeyCallback pairing_key_callback = nullptr;
 
 // Alvos de disconnect
 static std::vector<NimBLEAddress> disconnect_targets;
@@ -350,6 +350,7 @@ void malformedATTFuzzer() {
 //================================================================================
 
 // UUIDs de serviços comuns
+/*
 static const char* SERVICE_UUIDS[] = {
     "1800", // Generic Access
     "1801", // Generic Attribute
@@ -362,6 +363,7 @@ static const char* SERVICE_UUIDS[] = {
     "1816", // Cycling Speed and Cadence
     "181A", // Environmental Sensing
 };
+*/
 
 class GATTPhishingCallbacks : public NimBLEServerCallbacks {
 public:
@@ -488,7 +490,7 @@ void gattPhishingServer() {
         }
         case PROFILE_FITNESS: {
             NimBLEService* pHRService = pServer->createService("180D");
-            NimBLECharacteristic* pHRChar = pHRService->createCharacteristic("2A37", NIMBLE_PROPERTY::NOTIFY);
+            pHRService->createCharacteristic("2A37", NIMBLE_PROPERTY::NOTIFY);
             pHRService->start();
             serverNameStr = "Mi Band 6";
             pAdvertising->setName(serverNameStr.c_str());
@@ -793,7 +795,7 @@ void connectionParameterDrain() {
 
             if (param_update_counter % 10 == 0) {
                 // Notifica heart rate (mantém conexão ativa)
-                uint8_t hr_data[] = {0x00, 75 + (random(0, 20))};
+                uint8_t hr_data[] = {0x00, static_cast<uint8_t>(75 + random(0, 20))};
                 pHRChar->setValue(hr_data, 2);
                 pHRChar->notify();
             }
@@ -1067,7 +1069,7 @@ void pairingMITMSimulator() {
 
     // Serviço genérico
     NimBLEService* pService = pServer->createService("1812");
-    NimBLECharacteristic* pChar = pService->createCharacteristic(
+    pService->createCharacteristic(
         "2A4D",
         NIMBLE_PROPERTY::READ | NIMBLE_PROPERTY::WRITE | NIMBLE_PROPERTY::READ_ENC
     );
@@ -1120,9 +1122,9 @@ void pairingMITMSimulator() {
     returnToMenu = true;
 }
 
-void setPairingKeyCallback(PairingKeyCallback callback) {
+/* void setPairingKeyCallback(PairingKeyCallback callback) {
     pairing_key_callback = callback;
-}
+} */
 
 //================================================================================
 // 8. ADVERTISEMENT STEALTH EXFIL - IMPLEMENTAÇÃO COMPLETA

@@ -407,12 +407,10 @@ static JSValue func_storage_exists(JSContext *ctx, JSValue *this_val, int argc, 
 static JSValue func_subghz_tx(JSContext *ctx, JSValue *this_val, int argc, JSValue *argv) {
     JSCStringBuf buf;
     const char *data = JS_TO_CSTRING(ctx, argv[0], &buf);
-    float freq = 433.92;
     int te = 300, count = 10;
     if (argc > 1) {
         int freqInt;
         JS_ToInt32(ctx, &freqInt, argv[1]);
-        freq = (float)freqInt;
     }
     if (argc > 2) JS_ToInt32(ctx, &te, argv[2]);
     if (argc > 3) JS_ToInt32(ctx, &count, argv[3]);
