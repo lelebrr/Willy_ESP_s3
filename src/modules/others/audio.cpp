@@ -137,6 +137,7 @@ static void initAudioPlayer() {
 
 // Internal helper - unified audio output creation
 static AudioOutputI2S *createConfiguredAudioOutput() {
+#ifndef DISABLE_AUDIO
     AudioOutputI2S *audioout = new AudioOutputI2S();
 
     if (!audioout) {
@@ -148,6 +149,9 @@ static AudioOutputI2S *createConfiguredAudioOutput() {
     audioout->SetGain(bruceConfig.soundVolume / AUDIO_VOLUME_MAX);
 
     return audioout;
+#else
+    return nullptr;
+#endif
 }
 
 // Helper to validate file existence
@@ -745,6 +749,8 @@ void _tone(unsigned int frequency, unsigned long duration) {
 #if defined(BUZZ_PIN)
     tone(BUZZ_PIN, frequency, duration);
 #elif defined(HAS_NS4168_SPKR)
+#ifndef DISABLE_AUDIO
     playTone(frequency, duration, 0);
+#endif
 #endif
 }

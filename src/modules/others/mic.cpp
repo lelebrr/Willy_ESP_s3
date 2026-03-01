@@ -135,8 +135,10 @@ bool deinitMicroPhone() {
     // Disable codec, if exists
     _setup_codec_mic(false);
     esp_err_t err = ESP_OK;
+#ifndef DISABLE_AUDIO
     i2s_stop(i2s_num);
     err = i2s_driver_uninstall(i2s_num);
+#endif
     gpio_reset_pin(GPIO_NUM_0);
     return (err == ESP_OK);
 }
@@ -167,7 +169,11 @@ bool InitI2SMicroPhone() {
     }
 #endif
 
+#ifndef DISABLE_AUDIO
     esp_err_t err = i2s_driver_install(i2s_num, &i2s_config, 0, NULL);
+#else
+    esp_err_t err = ESP_OK;
+#endif
     if (err != ESP_OK) return false;
 
     i2s_pin_config_t pin_config = {
@@ -177,10 +183,14 @@ bool InitI2SMicroPhone() {
         .data_in_num = (int)PIN_DATA
     };
 
+#ifndef DISABLE_AUDIO
     err = i2s_set_pin(i2s_num, &pin_config);
+#endif
     if (err != ESP_OK) return false;
 
+#ifndef DISABLE_AUDIO
     err = i2s_start(i2s_num);
+#endif
     return (err == ESP_OK);
 }
 

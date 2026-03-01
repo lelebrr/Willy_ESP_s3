@@ -407,6 +407,7 @@ void init_led() {
  **  Play sound or tone depending on device hardware
  *********************************************************************/
 void startup_sound() {
+#ifndef DISABLE_AUDIO
     if (bruceConfig.soundEnabled == 0) return; // if sound is disabled, do not play sound
 #if !defined(LITE_VERSION)
 #if defined(BUZZ_PIN)
@@ -426,6 +427,7 @@ void startup_sound() {
     }
 #endif
 #endif
+#endif
 }
 
 /*********************************************************************
@@ -437,6 +439,8 @@ void setup() {
         SAFE_STACK_BUFFER_SIZE / 4
     ); // Must be invoked before Serial.begin(). Default is 256 chars
     Serial.begin(115200);
+    delay(1000); // Give time for Serial to stabilize
+    Serial.println("\n\n[BOOT] Willy ESP32-S3 Starting...");
 
     log_d("Total heap: %d", ESP.getHeapSize());
     log_d("Free heap: %d", ESP.getFreeHeap());
@@ -453,6 +457,8 @@ void setup() {
     BLEConnected = false;
     bruceConfig.bright = 100; // theres is no value yet
     bruceConfigPins.rotation = ROTATION;
+
+    Serial.println("[BOOT] Initializing GPIOs...");
     setup_gpio();
 #if defined(HAS_SCREEN)
     tft.init();
@@ -477,6 +483,10 @@ void setup() {
         Serial.println("[DBG] TFT_BL Pin is -1 (Always on or not defined)");
     }
 #else
+    // Force GPIO 3 just in case it's the backlight pin and not defined
+    Serial.println("[DBG] Forcing GPIO 3 HIGH (Backlight potential)...");
+    pinMode(3, OUTPUT);
+    digitalWrite(3, HIGH);
     Serial.println("[DBG] TFT_BL Pin not defined");
 #endif
     Serial.println("Starting begin_storage()...");
