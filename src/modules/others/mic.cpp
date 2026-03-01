@@ -143,6 +143,7 @@ bool deinitMicroPhone() {
     return (err == ESP_OK);
 }
 
+#ifndef DISABLE_AUDIO
 bool InitI2SMicroPhone() {
     // Enable codec, if exists
     _setup_codec_mic(true);
@@ -169,11 +170,7 @@ bool InitI2SMicroPhone() {
     }
 #endif
 
-#ifndef DISABLE_AUDIO
     esp_err_t err = i2s_driver_install(i2s_num, &i2s_config, 0, NULL);
-#else
-    esp_err_t err = ESP_OK;
-#endif
     if (err != ESP_OK) return false;
 
     i2s_pin_config_t pin_config = {
@@ -183,17 +180,15 @@ bool InitI2SMicroPhone() {
         .data_in_num = (int)PIN_DATA
     };
 
-#ifndef DISABLE_AUDIO
     err = i2s_set_pin(i2s_num, &pin_config);
-#endif
     if (err != ESP_OK) return false;
 
-#ifndef DISABLE_AUDIO
     err = i2s_start(i2s_num);
-#endif
     return (err == ESP_OK);
 }
+#endif
 
+#ifndef DISABLE_AUDIO
 void mic_test_one_task() {
     tft.fillScreen(TFT_BLACK);
 
@@ -274,6 +269,7 @@ void mic_test_one_task() {
 
     free(frameBuffer);
 }
+#endif
 
 bool isGPIOOutput(gpio_num_t gpio) {
     if (gpio < 0 || gpio > 39) return false;
@@ -287,6 +283,7 @@ bool isGPIOOutput(gpio_num_t gpio) {
     }
 }
 
+#ifndef DISABLE_AUDIO
 void mic_test() {
     ioExpander.turnPinOnOff(IO_EXP_MIC, HIGH);
     // Devices that use GPIO 0 to navigation (or any other purposes) will break after start mic
@@ -331,6 +328,7 @@ void mic_test() {
     Serial.println("Spectrum finished");
     ioExpander.turnPinOnOff(IO_EXP_MIC, LOW);
 }
+#endif
 
 // https://github.com/MhageGH/esp32_SoundRecorder/tree/master
 
@@ -405,7 +403,9 @@ bool mic_record_wav_to_path(
 
     bool ok = false;
     do {
+#ifndef DISABLE_AUDIO
         if (!InitI2SMicroPhone()) break;
+#endif
 
         // Buffer Allocation
         if (psramFound()) i2s_buffer = (int16_t *)ps_malloc(FFT_SIZE * sizeof(int16_t));
@@ -442,6 +442,7 @@ bool mic_record_wav_to_path(
             // If the callback exists and returns FALSE, stop recording.
             if (onProgress && !onProgress()) break;
 
+#ifndef DISABLE_AUDIO
             size_t bytesRead = 0;
             esp_err_t err = i2s_read(i2s_num, (char *)i2s_buffer, bytesPerRead, &bytesRead, pdMS_TO_TICKS(1000));
             if (err != ESP_OK) {
@@ -453,6 +454,7 @@ bool mic_record_wav_to_path(
                 audioFile.write((const uint8_t *)i2s_buffer, bytesRead);
                 dataSize += (uint32_t)bytesRead;
             }
+#endif
 
             // Watchdog reset and yield to other tasks
             delay(1);
@@ -475,7 +477,9 @@ bool mic_record_wav_to_path(
     }
 
     delay(10);
+#ifndef DISABLE_AUDIO
     deinitMicroPhone();
+#endif
 
     // Restore GPIO
     if (gpioInput) {

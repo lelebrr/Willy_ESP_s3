@@ -2,6 +2,7 @@
 #include "core/mykeyboard.h"
 
 #if defined(HAS_NS4168_SPKR)
+#ifndef DISABLE_AUDIO
 #include "AudioFileSourceFunction.h"
 #include "AudioGeneratorAAC.h"
 #include "AudioGeneratorFLAC.h"
@@ -10,6 +11,7 @@
 #include "AudioOutputI2SNoDAC.h"
 #include <ESP8266Audio.h>
 #include <ESP8266SAM.h>
+#endif
 
 /**
  * @brief Initialize the speaker/amplifier codec.

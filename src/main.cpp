@@ -435,11 +435,8 @@ void startup_sound() {
  **  Where the devices are started and variables set
  *********************************************************************/
 void setup() {
-    Serial.setRxBufferSize(
-        SAFE_STACK_BUFFER_SIZE / 4
-    ); // Must be invoked before Serial.begin(). Default is 256 chars
     Serial.begin(115200);
-    delay(1000); // Give time for Serial to stabilize
+    // Serial.setRxBufferSize(SAFE_STACK_BUFFER_SIZE / 4);
     Serial.println("\n\n[BOOT] Willy ESP32-S3 Starting...");
 
     log_d("Total heap: %d", ESP.getHeapSize());
