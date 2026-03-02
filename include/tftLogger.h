@@ -158,6 +158,11 @@ public:
     size_t print(double n, int digits);
     size_t printf(const char *format, ...);
 
+    // Wrapper for LVGL flush
+    inline void pushColors(uint16_t *data, uint32_t len, bool swap = true) {
+        BRUCE_TFT_DRIVER::pushColors(data, len, swap);
+    }
+
 protected:
     bool isLogEqual(const tftLog &a, const tftLog &b);
     void pushLogIfUnique(const tftLog &l);

@@ -1207,6 +1207,7 @@ public:
 
     void setAddrWindow(int32_t xs, int32_t ys, int32_t w, int32_t h) {};
     void pushPixels(const void *data_in, uint32_t len) {};
+    void pushColors(uint16_t *data, uint32_t len, bool swap = true) {};
 
     void startWrite(void) {};
     void endWrite(void) {};

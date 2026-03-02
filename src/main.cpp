@@ -65,6 +65,10 @@ TouchPoint touchPoint;
 keyStroke KeyStroke;
 
 TaskHandle_t xHandle;
+void __attribute__((weak)) InputHandler() {
+    // Default empty implementation
+}
+
 void __attribute__((weak)) taskInputHandler(void *parameter) {
     Serial.println("[DBG] taskInputHandler started");
     while (true) {
@@ -158,7 +162,9 @@ void begin_storage() {
  **  Function: _setup_gpio()
  **  Now handled in board-specific interface.cpp to avoid conflicts.
  *********************************************************************/
-// Moved to boards/*/interface.cpp
+void __attribute__((weak)) _setup_gpio() {
+    // Default empty implementation
+}
 
 /*********************************************************************
  **  Function: _post_setup_gpio()
@@ -435,30 +441,9 @@ void startup_sound() {
  **  Where the devices are started and variables set
  *********************************************************************/
 void setup() {
-  Serial.begin(115200);
-  delay(500);
-  Serial.println("\n=== WILLY ESP S3 - TESTE DISPLAY ===");
-
-  // Reset manual do ILI9341 (obrigatório)
-  pinMode(14, OUTPUT);
-  digitalWrite(14, LOW);
-  delay(20);
-  digitalWrite(14, HIGH);
-  delay(150);
-
-  // Backlight forçado (mesmo que wired em 3.3V)
-  pinMode(21, OUTPUT); digitalWrite(21, HIGH); // teste pino 21 se quiser PWM
-
-  Serial.println("Chamando tft.init()...");
-  tft.init();                    // ou tft.begin() dependendo da versão
-  tft.setRotation(1);            // teste 0, 1, 2, 3
-  tft.fillScreen(TFT_BLACK);
-  tft.setTextColor(TFT_WHITE, TFT_BLACK);
-  tft.setTextSize(3);
-  tft.setCursor(20, 80);
-  tft.println("WILLY OK!");
-
-  Serial.println("Display init OK - Tela deve estar acesa!");
+    Serial.begin(115200);
+    // Serial.setRxBufferSize(SAFE_STACK_BUFFER_SIZE / 4);
+    Serial.println("\n\n[BOOT] Willy ESP32-S3 Starting...");
 
     log_d("Total heap: %d", ESP.getHeapSize());
     log_d("Free heap: %d", ESP.getFreeHeap());
