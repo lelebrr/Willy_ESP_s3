@@ -210,6 +210,8 @@ void setup_gpio() {
  **  Config tft
  *********************************************************************/
 void begin_tft() {
+    Serial.println("[BOOT] Iniciando tft.begin()...");
+    tft.begin();  // agora com User_Setup.h vai funcionar
     tft.setRotation(bruceConfigPins.rotation); // sometimes it misses the first command
     tft.invertDisplay(bruceConfig.colorInverted);
     tft.setRotation(bruceConfigPins.rotation);
@@ -463,8 +465,16 @@ void setup() {
 
     Serial.println("[BOOT] Initializing GPIOs...");
     setup_gpio();
+
+    // RESET MANUAL DO DISPLAY (OBRIGATÓRIO para evitar StoreProhibited no S3)
+    pinMode(14, OUTPUT);
+    digitalWrite(14, LOW);
+    delay(20);
+    digitalWrite(14, HIGH);
+    delay(120);
+    Serial.println("[BOOT] Reset display OK");
+
 #if defined(HAS_SCREEN)
-    tft.init();
     tft.setRotation(bruceConfigPins.rotation);
     tft.fillScreen(TFT_BLACK);
     // bruceConfig is not read yet.. just to show something on screen due to long boot time

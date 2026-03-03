@@ -678,7 +678,7 @@ void Pn532ble::hf14aMfuWriteDumpMode() {
             return;
         }
 
-        for (int i = 0; i < mfud.size(); i += 4) {
+        for (size_t i = 0; i < mfud.size(); i += 4) {
             std::vector<uint8_t> data(mfud.begin() + i, mfud.begin() + i + 4);
             bool res = pn532_ble.mfuWrbl(block, data);
             if (res) {

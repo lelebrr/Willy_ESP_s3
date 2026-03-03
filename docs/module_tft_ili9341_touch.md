@@ -12,13 +12,13 @@
 - **Resolução**: 320x240 pixels (2.4").
 - **Interface**: SPI (4-fios).
 - **Profundidade de Cor**: RGB 65k Cores.
-- **Tensão Lógica**: 3.3V (O VCC pode ser 5V se houver regulador LDO no módulo, mas os sinais SPI/Lógica **devem** ser 3.3V).
+- **Tensão Lógica**: 3.3V (VCC alimentado diretamente em 3.3V. Sinais SPI/Lógica também em 3.3V).
 
 ## Mapeamento de Pinos - Willy ESP32-S3
 
 | Pino do Display | Pino ESP32-S3 | Descrição |
 | :--- | :--- | :--- |
-| `VCC` | `5V / VIN` | Alimentação Principal (Recomendado se usar regulador onboard). |
+| `VCC` | `3.3V` | Alimentação Principal (3.3V direto, sem regulador LDO). |
 | `GND` | `GND` | Terra comum. |
 | `CS` | `10` | Seleção de Chip (Display). |
 | `RESET / RST` | `14` | Reset de Hardware. |

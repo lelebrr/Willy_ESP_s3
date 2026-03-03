@@ -721,12 +721,16 @@ void configureWebServer() {
 **  Start the WebUI
 **********************************************************************/
 void startWebUi(bool mode_ap) {
+#ifdef HAS_SCREEN
     bool keepWifiConnected = false;
+#endif
     if (WiFi.status() != WL_CONNECTED) {
         if (mode_ap) wifiConnectMenu(WIFI_AP);
         else wifiConnectMenu(WIFI_STA);
     } else {
+#ifdef HAS_SCREEN
         keepWifiConnected = true;
+#endif
     }
 
     // configure web server
