@@ -1,4 +1,4 @@
-﻿Processing willy_ili9341_custom (board: ESP-General; platform: https://github.com/pioarduino/platform-espressif32/releases/download/55.03.36/platform-espressif32.zip; framework: arduino)
+Processing willy_ili9341_custom (board: ESP-General; platform: https://github.com/pioarduino/platform-espressif32/releases/download/55.03.36/platform-espressif32.zip; framework: arduino)
 --------------------------------------------------------------------------------
 Library Manager: Installing h2zero/NimBLE-Arduino
 Library Manager: Installing whywilson/ESP-PN532-UART
@@ -104,3 +104,15 @@ Dependency Graph
 |-- PN532_SRIX
 |-- NetworkClientSecure @ 3.3.6
 |-- SPIFFS @ 3.3.6
+Building in release mode
+Retrieving maximum program size .pio\build\willy_ili9341_custom\firmware.elf
+Checking size .pio\build\willy_ili9341_custom\firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [====      ]  36.1% (used 118372 bytes from 327680 bytes)
+Flash: [========  ]  78.1% (used 3994823 bytes from 5111808 bytes)
+======================== [SUCCESS] Took 154.19 seconds ========================
+
+Environment           Status    Duration
+--------------------  --------  ------------
+willy_ili9341_custom  SUCCESS   00:02:34.190
+========================= 1 succeeded in 00:02:34.190 =========================

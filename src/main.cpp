@@ -446,8 +446,9 @@ void setup() {
     BLEConnected = false;
     bruceConfig.bright = 100; // theres is no value yet
     bruceConfigPins.rotation = ROTATION;
-    setup_gpio();
 #if defined(HAS_SCREEN)
+    // TFT must be initialized BEFORE setup_gpio() because initCC1101once()
+    // may use tft.getSPIinstance() when CC1101 shares MOSI with TFT.
     tft.init();
     tft.setRotation(bruceConfigPins.rotation);
     tft.fillScreen(TFT_BLACK);
@@ -457,6 +458,7 @@ void setup() {
 #else
     tft.begin();
 #endif
+    setup_gpio();
     begin_storage();
     begin_tft();
     init_clock();

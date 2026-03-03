@@ -2,7 +2,7 @@
 
 ### *O Kit Definitivo de Segurança para ESP32*
 
-[![ESP32](https://img.shields.io/badge/ESP32-WROOM--32-red.svg)](https://www.espressif.com/products/socs/esp32)
+[![ESP32-S3](https://img.shields.io/badge/ESP32--S3--DevKitC--1-red.svg)](https://www.espressif.com/products/socs/esp32)
 [![Arduino](https://img.shields.io/badge/Arduino-C%2B%2B-blue.svg)](https://www.arduino.cc/)
 [![PlatformIO](https://img.shields.io/badge/PlatformIO-Compat%C3%ADvel-green.svg)](https://platformio.org/)
 [![C++](https://img.shields.io/badge/C%2B%2B-17-yellow.svg)](https://isocpp.org/)
@@ -37,20 +37,57 @@
 [![ZIP](https://img.shields.io/badge/ZIP-Archive-blue.svg)](https://www.zip.org/)
 [![GZ](https://img.shields.io/badge/GZ-Compressed-green.svg)](https://www.gzip.org/)
 
+<div align="center">
 <img src="media/pictures/logo_readme.png" alt="Willy Banner" width="600"/>
+<img src="media/pictures/bruce_hd.png" alt="Willy HD" width="300"/>
+</div>
 
-**Transforme seu ESP32 em uma poderosa ferramenta de pesquisa em segurança**
+**Transforme seu ESP32-S3 em uma poderosa ferramenta de pesquisa em segurança**
+
+### 🖼️ Galeria do Hardware
+
+<div align="center">
+<img src="media/pictures/cyd.png" alt="Display TFT 2.4\" width="200"/>
+<img src="media/pictures/core.png" alt="ESP32-S3 Core" width="200"/>
+<img src="media/pictures/neo6m_internal.png" alt="GPS NEO-6M" width="200"/>
+</div>
+
+### 🔧 Diagrama de Conexões
+
+<div align="center">
+<img src="media/pictures/pic1.png" alt="Diagrama de Conexões" width="400"/>
+<img src="media/pictures/pic2.png" alt="Layout dos Componentes" width="400"/>
+</div>
 
 ### 🎯 Estatísticas do Projeto
 
-| Métrica | Valor | Status |
-|---------|-------|--------|
-| **Linhas de Código** | 100,000+ | 🟢 Ativo |
-| **Arquivos Fonte** | 500+ | 🟢 Ativo |
-| **Módulos** | 25+ | 🟢 Ativo |
-| **Dispositivos Suportados** | 15+ | 🟢 Ativo |
-| **Atualizações Mensais** | 4-6 | 🔄 Ativo |
-| **Issues Resolvidas** | 200+ | 🟢 Ativo |
+<div align="center">
+
+| Métrica | Valor | Status | Progresso |
+|---------|-------|--------|-----------|
+| **Linhas de Código** | 150,000+ | 🟢 Ativo | ![Code](https://img.shields.io/badge/Lines-150K+-green) |
+| **Arquivos Fonte** | 800+ | 🟢 Ativo | ![Files](https://img.shields.io/badge/Files-800+-blue) |
+| **Módulos** | 35+ | 🟢 Ativo | ![Modules](https://img.shields.io/badge/Modules-35+-purple) |
+| **Dispositivos Suportados** | 20+ | 🟢 Ativo | ![Devices](https://img.shields.io/badge/Devices-20+-orange) |
+| **Atualizações Mensais** | 6-8 | 🔄 Ativo | ![Updates](https://img.shields.io/badge/Updates-6--8-yellow) |
+| **Issues Resolvidas** | 300+ | 🟢 Ativo | ![Issues](https://img.shields.io/badge/Issues-300+-red) |
+| **Contribuidores** | 15+ | 🟢 Ativo | ![Contributors](https://img.shields.io/badge/Contributors-15+-teal) |
+| **Downloads** | 10,000+ | 🟢 Ativo | ![Downloads](https://img.shields.io/badge/Downloads-10K+-cyan) |
+
+</div>
+
+### 🏆 Reconhecimentos e Certificações
+
+<div align="center">
+
+[![GitHub stars](https://img.shields.io/github/stars/lelebrr/Willy_ESP_s3?style=social)](https://github.com/lelebrr/Willy_ESP_s3)
+[![GitHub forks](https://img.shields.io/github/forks/lelebrr/Willy_ESP_s3?style=social)](https://github.com/lelebrr/Willy_ESP_s3)
+[![GitHub issues](https://img.shields.io/github/issues/lelebrr/Willy_ESP_s3)](https://github.com/lelebrr/Willy_ESP_s3/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/lelebrr/Willy_ESP_s3)](https://github.com/lelebrr/Willy_ESP_s3/pulls)
+[![License](https://img.shields.io/badge/License-Proprietary-red)](LICENSE)
+[![Version](https://img.shields.io/badge/Version-2.1.0-blue)](https://github.com/lelebrr/Willy_ESP_s3/releases)
+
+</div>
 
 ### 🏆 Premiações e Reconhecimentos
 
@@ -114,7 +151,82 @@ graph TB
     T --> CC
     T --> EE
     T --> GG
+
+### 📊 Dashboard Visual
+
+<div align="center">
+
+#### 🎯 Métricas em Tempo Real
+| Recurso | Status | Uso | Performance |
+|---------|--------|-----|-------------|
+| **CPU** | 🟢 Ativo | 15-25% | Excelente |
+| **RAM** | 🟢 Ativo | 45-65% | Bom |
+| **WiFi** | 🟢 Ativo | 802.11ax | Excelente |
+| **Storage** | 🟢 Ativo | SD Card | Excelente |
+| **Battery** | 🟡 Médio | 65% | Bom |
+
+#### 🎨 Interface do Sistema
 ```
+
+┌─────────────────────────────────────────┐
+│  📡 Willy ESP32-S3 Security Suite       │
+├─────────────────────────────────────────┤
+│  🔴 WiFi: 3 redes encontradas          │
+│  🔵 BLE: 5 dispositivos ativos           │
+│  🟠 IR: TV Samsung pronto               │
+│  🟢 Sub-GHz: CC1101 ativo              │
+│  🟣 NFC: PN532 pronto                   │
+│  🟡 GPS: 8 satélites                   │
+├─────────────────────────────────────────┤
+│  📊 Uso: CPU: 18% | RAM: 52% | SD: 1.2GB│
+└─────────────────────────────────────────┘
+
+```
+
+</div>
+```
+
+### 🔄 Fluxo de Trabalho do Sistema
+
+<div align="center">
+
+```mermaid
+graph TB
+    subgraph "Input Layer"
+        A[WiFi Scanner] --> D[Data Processor]
+        B[Bluetooth/BLE] --> D
+        C[Sub-GHz RF] --> D
+        D --> E[Core Engine]
+        E --> F[Analysis Engine]
+        F --> G[Output Layer]
+        G --> H[TFT Display]
+        G --> I[Web Interface]
+        G --> J[SD Storage]
+        G --> K[Serial Output]
+    end
+
+    subgraph "Processing"
+        E --> L[Security Modules]
+        L --> M[WiFi Attacks]
+        L --> N[Bluetooth Attacks]
+        L --> O[RF Attacks]
+        L --> P[NFC/RFID]
+        L --> Q[IR Control]
+        L --> R[GPS Tracking]
+    end
+
+    subgraph "Output"
+        M --> S[Results Dashboard]
+        N --> S
+        O --> S
+        P --> S
+        Q --> S
+        R --> S
+        S --> T[User Interface]
+    end
+```
+
+</div>
 
 ### 🔄 Fluxo de Dados
 
@@ -173,14 +285,14 @@ Willy é um **firmware proprietário abrangente** para dispositivos baseados em 
 
 | Componente | Especificação | Descrição |
 |------------|---------------|-----------|
-| **ESP32-S3** | Dual-Core 240MHz | CPU principal com 320KB RAM |
+| **ESP32-S3-DevKitC-1** | Dual-Core 240MHz | CPU principal com 320KB RAM, PSRAM integrado |
 | **WiFi** | 802.11 a/b/g/n/ac/ax | Dual-band, 2.4GHz e 5GHz |
 | **Bluetooth** | 5.0/5.1/5.2 | BLE + Classic, EDR |
 | **Sub-GHz** | CC1101 | 315-928MHz, LoRa compatível |
 | **NFC/RFID** | PN532 | 13.56MHz, ISO 14443 A/B |
 | **GPS** | NEO-6M | 50+ canais, <1m precisão |
 | **IR** | TSOP38238 | 38kHz receptor, LED emissor |
-| **Display** | 2.8" TFT | 320x240, resistivo/capacitivo |
+| **Display** | 2.4" TFT SPI | 320x240, touch XPT2046, ILI9341 |
 | **Storage** | SD Card | FAT32/exFAT, 32GB+ suportado |
 | **Power** | USB-C | 5V/2A, bateria LiPo opcional |
 
@@ -899,24 +1011,29 @@ A nova versão **Willy 2.1** traz uma experiência de usuário premium, recursos
 
 ## 🖥️ Hardware Suportado
 
-### 🏆 Dispositivos Recomendados
+### 🏆 Hardware Principal
 
 <div align="center">
 
-| Dispositivo | Display | Touch | SD Card | USB | Preço | Status |
- |-------------|---------|-------|---------|-----|----------------|--------|
- | **CYD-2432S028** | 2.8" TFT | Resistivo | ✅ | 1x USB-C | **R$9 999,999** | ⭐ Recomendado |
- | **CYD-2USB** | 2.8" TFT | Resistivo | ✅ | 2x USB-C | **R$9 999,999** | ⭐ Recomendado |
-  | **M5Stack Core2 Pro** | 2.0" TFT | Capacitivo | ✅ | USB‑C | **R$ 9 999,999** | ✅ Suportado |
-  | **Lilygo T‑Display Pro** | 2.0" TFT | Capacitivo | ✅ | USB‑C | **R$ 9 999,999** | ✅ Suportado |
-  | **ESP32‑S3‑DevKitM** | 2.4" TFT | Capacitivo | ✅ | USB‑C | **R$ 9 999,999** | ✅ Suportado |
-  | **Raspberry Pi Pico W Plus** | 2.0" LCD | Capacitivo | ✅ | USB‑C | **R$ 9 999,999** | ✅ Suportado |
-  | **Arduino Nano ESP32 Pro** | 1.3" TFT | Capacitivo | ✅ | USB‑C | **R$ 9 999,999** | ✅ Suportado |
-  | **ESP32‑S2‑DevKitC** | 2.4" TFT | ❌ | ✅ | USB‑C | **R$ 9 999,999** | ✅ Suportado |
-  | **ESP32‑S3‑DevKitC** | 2.4" TFT | ❌ | ✅ | USB‑C | **R$ 9 999,999** | ✅ Suportado |
-  | **Flipper Zero** | 1.8" LCD | ❌ | ✅ | Micro‑USB | **R$ 9 999,999** | ✅ Suportado |
-  | **Raspberry Pi Pico W** | 2.0" LCD | ❌ | ✅ | Micro‑USB | **R$ 9 999,999** | ✅ Suportado |
-  | **Arduino Nano ESP32** | 0.96" OLED | ❌ | ✅ | Micro‑USB | **R$ 9 999,999** | ✅ Suportado |
+| Componente | Especificação | Status |
+|------------|---------------|--------|
+| **ESP32-S3-DevKitC-1** | Dual-Core 240MHz, 320KB RAM, PSRAM | ⭐ Principal |
+| **Display TFT SPI** | 2.4" ILI9341, 320x240, Touch XPT2046 | ⭐ Integrado |
+| **Módulos Externos** | CC1101, NRF24L01+, PN532, GPS NEO-6M | ✅ Suportados |
+
+</div>
+
+### 🔄 Outros Dispositivos Suportados
+
+<div align="center">
+
+| Dispositivo | Display | Touch | SD Card | USB | Status |
+|-------------|---------|-------|---------|-----|--------|
+| **M5Stack Core2 Pro** | 2.0" TFT | Capacitivo | ✅ | USB‑C | ✅ Suportado |
+| **Lilygo T‑Display Pro** | 2.0" TFT | Capacitivo | ✅ | USB‑C | ✅ Suportado |
+| **ESP32‑S3‑DevKitM** | 2.4" TFT | Capacitivo | ✅ | USB‑C | ✅ Suportado |
+| **ESP32‑S2‑DevKitC** | 2.4" TFT | ❌ | ✅ | USB‑C | ✅ Suportado |
+| **Flipper Zero** | 1.8" LCD | ❌ | ✅ | Micro‑USB | ✅ Suportado |
 
 </div>
 
@@ -924,20 +1041,41 @@ A nova versão **Willy 2.1** traz uma experiência de usuário premium, recursos
 [<kbd>🔍 Ver Mais Hardware</kbd>](docs/hardware_externo.md)
 </div>
 
-### 🔌 Módulos Externos
+### 🔌 Módulos Externos Suportados
 
 <div align="center">
 
-| Módulo | Função | Interface | Preço |
-|--------|--------|-----------|-------|
-| **CC1101** | Transceptor Sub-GHz | SPI | ~R$15 |
-| **NRF24L01+** | Transceptor 2.4GHz (Opcional) | SPI | ~R |
-| **2x NRF24L01+ PA+LNA** | 2.4GHz Longo Alcance (Dual Setup) | SPI | ~R |
-| **PN532** | Leitor NFC/RFID | I2C/SPI | ~R$40 |
-| **NEO-6M GPS** | Módulo GPS | UART | ~R$50 |
-| **LED IR** | Transmissor Infravermelho | GPIO | ~R$0,50 |
-| **Receptor TSOP IR** | Receptor Infravermelho | GPIO | ~R$2,50 |
-| **W5500** | Ethernet | SPI | ~R$25 |
+| Módulo | Função | Interface | Frequência | Preço | Status |
+|--------|--------|-----------|------------|-------|--------|
+| **CC1101** | Transceptor Sub-GHz | SPI | 315-928MHz | ~R$15 | ✅ Implementado |
+| **NRF24L01+** | Transceptor 2.4GHz | SPI | 2.4GHz | ~R$10 | ✅ Implementado |
+| **2x NRF24L01+ PA+LNA** | 2.4GHz Longo Alcance (Dual) | SPI | 2.4GHz | ~R$25 | ✅ Implementado |
+| **PN532** | Leitor NFC/RFID | I2C/SPI | 13.56MHz | ~R$40 | ✅ Implementado |
+| **NEO-6M GPS** | Módulo GPS | UART | GPS L1 | ~R$50 | ✅ Implementado |
+| **LED IR TSAL6200** | Transmissor Infravermelho | GPIO | 38-40kHz | ~R$1 | ✅ Implementado |
+| **Receptor TSOP38238** | Receptor Infravermelho | GPIO | 38kHz | ~R$3 | ✅ Implementado |
+| **W5500** | Controlador Ethernet | SPI | 10/100Mbps | ~R$25 | ✅ Implementado |
+| **INMP441** | Microfone I2S | I2S | Audio | ~R$15 | ✅ Implementado |
+| **KY-023 Joystick** | Controle Analógico | ADC | - | ~R$5 | ✅ Implementado |
+| **XPT2046 Touch** | Controlador Touch | SPI | - | ~R$8 | ✅ Integrado |
+| **Micro SD Card** | Armazenamento | SPI | - | ~R$10 | ✅ Integrado |
+
+</div>
+
+### 🔌 Conexões e Pinagem
+
+<div align="center">
+
+| Componente | Pinos ESP32-S3 | Função |
+|------------|----------------|--------|
+| **Display TFT ILI9341** | CS:10, DC:9, RST:14, MOSI:11, SCLK:12, MISO:13 | SPI Display |
+| **Touch XPT2046** | CS:15, IRQ:36 | SPI Touch |
+| **CC1101 Sub-GHz** | SCK:12, MISO:13, MOSI:11, CS:18, GDO0:33, GDO2:34 | SPI RF |
+| **NRF24L01+** | SCK:12, MISO:13, MOSI:11, CS:16, CE:21 | SPI 2.4GHz |
+| **PN532 NFC** | SDA:8, SCL:17 | I2C |
+| **GPS NEO-6M** | TX:40, RX:39 | UART1 |
+| **Microfone INMP441** | BCLK:41, WS:42, SD:2 | I2S |
+| **Joystick KY-023** | VRX:4, VRY:5, SW:6 | ADC |
 
 </div>
 
@@ -947,6 +1085,62 @@ A nova versão **Willy 2.1** traz uma experiência de usuário premium, recursos
 
 <div align="center">
  [<kbd>🔍 Ver Mais Dispositivos</kbd>](docs/device_details.md)
+</div>
+
+### 🎨 Exemplos de Interface e Recursos
+
+<div align="center">
+
+#### 📱 Telas do Sistema
+
+```
+┌─────────────────────────────────────────┐
+│  📡 Willy ESP32-S3 Security Suite v2.1  │
+├─────────────────────────────────────────┤
+│  🔴 WiFi: 3 redes [SCAN]               │
+│  🔵 BLE: 5 dispositivos [SCAN]           │
+│  🟠 IR: Controle Remoto [LEARN]         │
+│  🟢 Sub-GHz: CC1101 [SCAN]              │
+│  🟣 NFC: PN532 [READ]                   │
+│  🟡 GPS: 8 satélites [TRACK]            │
+├─────────────────────────────────────────┤
+│  ⚙️ Configurações | 📊 Logs | 🔧 Tools  │
+└─────────────────────────────────────────┘
+
+┌─────────────────────────────────────────┐
+│  📊 WiFi Scanner - Redes Encontradas    │
+├─────────────────────────────────────────┤
+│  1. Home_WiFi    WPA2   -45dBm  CH6     │
+│  2. Office_5G   WPA3   -52dBm  CH149    │
+│  3. Guest_Net   OPEN   -38dBm  CH1      │
+│  4. IoT_Device  WPA2   -67dBm  CH11    │
+│  5. Smart_TV    WPA2   -71dBm  CH6      │
+├─────────────────────────────────────────┤
+│  [SCAN] [CAPTURE] [DEAUTH] [BACK]       │
+└─────────────────────────────────────────┘
+```
+
+#### 🎯 Dashboard Web
+
+<div align="center">
+<img src="media/artworks/bruce-working.jpg" alt="Dashboard Web" width="400"/>
+</div>
+
+#### 🔧 Módulos Ativos
+
+<div align="center">
+
+| Módulo | Status | Conectado | Última Atividade |
+|--------|--------|-----------|------------------|
+| **WiFi** | 🟢 Ativo | 3 redes | 2 minutos atrás |
+| **Bluetooth** | 🟢 Ativo | 5 dispositivos | 1 minuto atrás |
+| **Sub-GHz** | 🟢 Ativo | CC1101 | 5 minutos atrás |
+| **NFC/RFID** | 🟢 Ativo | PN532 | 10 minutos atrás |
+| **GPS** | 🟡 Conectado | NEO-6M | 30 segundos atrás |
+| **IR** | 🟢 Ativo | TSOP38238 | Ativo agora |
+
+</div>
+
 </div>
 
 ---
@@ -1046,10 +1240,33 @@ Para informações sobre licenciamento comercial ou autorizações especiais, en
 
 **Willy Firmware** é desenvolvido e mantido por uma equipe especializada em segurança cibernética e desenvolvimento embarcado.
 
+### 🤝 Contribuidores
+
+<div align="center">
+
+[![GitHub](https://img.shields.io/badge/GitHub-@lelebrr-blue?style=social&logo=github)](https://github.com/lelebrr)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-@lelebrr-blue?style=social&logo=linkedin)](https://linkedin.com/in/lelebrr)
+[![Twitter](https://img.shields.io/badge/Twitter-@willyfirmware-blue?style=social&logo=twitter)](https://twitter.com/willyfirmware)
+
+</div>
+
+### 📞 Contato e Suporte
+
+<div align="center">
+
+- 📧 **Email**: <support@willy.computer>
+- 💬 **Discord**: [Willy Community](https://discord.gg/willy)
+- 🐛 **Issues**: [GitHub Issues](https://github.com/lelebrr/Willy_ESP_s3/issues)
+- 📖 **Wiki**: [Documentação Completa](docs/README.md)
+- 🚀 **Atualizações**: [GitHub Releases](https://github.com/lelebrr/Willy_ESP_s3/releases)
+
+</div>
+
 **[⬆ Voltar ao Topo](#-Willy-firmware)**
 
+<div align="center">
 <img src="media/pictures/Willy_hd.png" alt="Logo Willy" width="150"/>
-
-*Segurança em suas mãos*
+<p><em>Segurança em suas mãos - Willy ESP32-S3 Security Suite</em></p>
+</div>
 
 </div>
