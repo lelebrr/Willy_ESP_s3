@@ -1,6 +1,6 @@
 ﻿# Willy Firmware
 
-### *O Kit Definitivo de Segurança para ESP32*
+## *O Kit Definitivo de Segurança para ESP32*
 
 [![ESP32-S3](https://img.shields.io/badge/ESP32--S3--DevKitC--1-red.svg)](https://www.espressif.com/products/socs/esp32)
 [![Arduino](https://img.shields.io/badge/Arduino-C%2B%2B-blue.svg)](https://www.arduino.cc/)
@@ -37,34 +37,26 @@
 [![ZIP](https://img.shields.io/badge/ZIP-Archive-blue.svg)](https://www.zip.org/)
 [![GZ](https://img.shields.io/badge/GZ-Compressed-green.svg)](https://www.gzip.org/)
 
-<div align="center">
-<img src="media/pictures/logo_readme.png" alt="Willy Banner" width="600"/>
-<img src="media/pictures/bruce_hd.png" alt="Willy HD" width="300"/>
-</div>
+![Willy Banner](media/pictures/logo_readme.png)
+![Willy HD](media/pictures/bruce_hd.png)
 
-**Transforme seu ESP32-S3 em uma poderosa ferramenta de pesquisa em segurança**
+### Transforme seu ESP32-S3 em uma poderosa ferramenta de pesquisa em segurança
 
 ### 🖼️ Galeria do Hardware
 
-<div align="center">
-<img src="media/pictures/cyd.png" alt="Display TFT 2.4\" width="200"/>
-<img src="media/pictures/core.png" alt="ESP32-S3 Core" width="200"/>
-<img src="media/pictures/neo6m_internal.png" alt="GPS NEO-6M" width="200"/>
-</div>
+![Display TFT 2.4"](media/pictures/cyd.png)
+![ESP32-S3 Core](media/pictures/core.png)
+![GPS NEO-6M](media/pictures/neo6m_internal.png)
 
 ### 🔧 Diagrama de Conexões
 
-<div align="center">
-<img src="media/pictures/pic1.png" alt="Diagrama de Conexões" width="400"/>
-<img src="media/pictures/pic2.png" alt="Layout dos Componentes" width="400"/>
-</div>
+![Diagrama de Conexões](media/pictures/pic1.png)
+![Layout dos Componentes](media/pictures/pic2.png)
 
 ### 🎯 Estatísticas do Projeto
 
-<div align="center">
-
 | Métrica | Valor | Status | Progresso |
-|---------|-------|--------|-----------|
+| --------- | ------- | -------- | ----------- |
 | **Linhas de Código** | 150,000+ | 🟢 Ativo | ![Code](https://img.shields.io/badge/Lines-150K+-green) |
 | **Arquivos Fonte** | 800+ | 🟢 Ativo | ![Files](https://img.shields.io/badge/Files-800+-blue) |
 | **Módulos** | 35+ | 🟢 Ativo | ![Modules](https://img.shields.io/badge/Modules-35+-purple) |
@@ -74,11 +66,7 @@
 | **Contribuidores** | 15+ | 🟢 Ativo | ![Contributors](https://img.shields.io/badge/Contributors-15+-teal) |
 | **Downloads** | 10,000+ | 🟢 Ativo | ![Downloads](https://img.shields.io/badge/Downloads-10K+-cyan) |
 
-</div>
-
 ### 🏆 Reconhecimentos e Certificações
-
-<div align="center">
 
 [![GitHub stars](https://img.shields.io/github/stars/lelebrr/Willy_ESP_s3?style=social)](https://github.com/lelebrr/Willy_ESP_s3)
 [![GitHub forks](https://img.shields.io/github/forks/lelebrr/Willy_ESP_s3?style=social)](https://github.com/lelebrr/Willy_ESP_s3)
@@ -87,8 +75,6 @@
 [![License](https://img.shields.io/badge/License-Proprietary-red)](LICENSE)
 [![Version](https://img.shields.io/badge/Version-2.1.0-blue)](https://github.com/lelebrr/Willy_ESP_s3/releases)
 
-</div>
-
 ### 🏆 Premiações e Reconhecimentos
 
 - **🥇 Melhor Projeto de Segurança 2024** - Security Conference
@@ -96,9 +82,7 @@
 - **🥉 Melhor Firmware 2024** - IoT Security Awards
 - **⭐ Projeto Destaque 2024** - GitHub Trending
 
-[📖 Documentação](docs/README.md) • [🚀 Início Rápido](#-início-rápido) • [⚡ Recursos](#-recursos) • [📜 Licença](#-licença)
-
-</div>
+[📖 Documentação](docs/README.md) • [🚀 Início Rápido](#-início-rápido) • [⚡ Recursos](#-recursos-principais) • [📜 Licença](#-licença)
 
 ---
 
@@ -154,11 +138,11 @@ graph TB
 
 ### 📊 Dashboard Visual
 
-<div align="center">
+
 
 #### 🎯 Métricas em Tempo Real
 | Recurso | Status | Uso | Performance |
-|---------|--------|-----|-------------|
+| --------- | -------- | ----- | ------------- |
 | **CPU** | 🟢 Ativo | 15-25% | Excelente |
 | **RAM** | 🟢 Ativo | 45-65% | Bom |
 | **WiFi** | 🟢 Ativo | 802.11ax | Excelente |
@@ -166,7 +150,7 @@ graph TB
 | **Battery** | 🟡 Médio | 65% | Bom |
 
 #### 🎨 Interface do Sistema
-```
+```text
 
 ┌─────────────────────────────────────────┐
 │  📡 Willy ESP32-S3 Security Suite       │
@@ -183,12 +167,7 @@ graph TB
 
 ```
 
-</div>
-```
-
 ### 🔄 Fluxo de Trabalho do Sistema
-
-<div align="center">
 
 ```mermaid
 graph TB
@@ -226,8 +205,6 @@ graph TB
     end
 ```
 
-</div>
-
 ### 🔄 Fluxo de Dados
 
 ```mermaid
@@ -248,7 +225,7 @@ sequenceDiagram
 ### 📊 Métricas de Desempenho
 
 | Componente | Uso CPU | Uso RAM | Uso Flash | Desempenho |
-|------------|---------|---------|-----------|------------|
+| ------------ | --------- | --------- | ----------- | ------------ |
 | **WiFi Scanner** | 15-25% | 80-120KB | 50-80KB | Excelente |
 | **BLE Scanner** | 10-20% | 60-100KB | 40-70KB | Excelente |
 | **RF Scanner** | 20-30% | 100-150KB | 60-90KB | Bom |
@@ -284,7 +261,7 @@ Willy é um **firmware proprietário abrangente** para dispositivos baseados em 
 ### 📋 Especificações Técnicas
 
 | Componente | Especificação | Descrição |
-|------------|---------------|-----------|
+| ------------ | --------------- | ----------- |
 | **ESP32-S3-DevKitC-1** | Dual-Core 240MHz | CPU principal com 320KB RAM, PSRAM integrado |
 | **WiFi** | 802.11 a/b/g/n/ac/ax | Dual-band, 2.4GHz e 5GHz |
 | **Bluetooth** | 5.0/5.1/5.2 | BLE + Classic, EDR |
@@ -352,7 +329,7 @@ Willy é um **firmware proprietário abrangente** para dispositivos baseados em 
 #### 📊 Dados & Análise
 
 | Métrica | Detalhes | Fonte |
-|---------|----------|-------|
+| --------- | ---------- | ------- |
 | **Redes Escaneadas** | 10,000+ | Banco de dados interno |
 | **Handshakes Capturados** | 5,000+ | WPA/WPA2/WPA3 |
 | **Vulnerabilidades Encontradas** | 2,000+ | WPS, criptografia fraca |
@@ -362,7 +339,7 @@ Willy é um **firmware proprietário abrangente** para dispositivos baseados em 
 #### 🎯 Aplicações Específicas
 
 | Aplicação | Descrição | Código em SD |
-|-----------|-----------|--------------|
+| ----------- | ----------- | -------------- |
 | **Wardriving** | Mapeamento de redes | `sd_files/wifi/wardrive.js` |
 | **Pentest** | Testes de segurança | `sd_files/wifi/pentest.sh` |
 | **Forense** | Análise de incidentes | `sd_files/wifi/forensic.py` |
@@ -386,7 +363,7 @@ Willy é um **firmware proprietário abrangente** para dispositivos baseados em 
 #### 🔍 Descoberta & Análise
 
 | Ferramenta | Descrição | Capacidades |
-|------------|-----------|-------------|
+| ------------ | ----------- | ------------- |
 | **Scanner BLE** | Descoberta de dispositivos | RSSI, serviços, características |
 | **Analisador Bluetooth** | Inspeção de pacotes | Captura raw, análise protocolos |
 | **Monitor Airtag** | Rastreamento AirTags | Detecção, localização, alertas |
@@ -397,7 +374,7 @@ Willy é um **firmware proprietário abrangente** para dispositivos baseados em 
 #### 💥 Ataques BLE
 
 | Categoria | Técnica | Alvo | Eficácia |
-|-----------|---------|------|----------|
+| ----------- | --------- | ------ | ---------- |
 | **BLE Spam** | Flood de dispositivos | Todos os BLE | 95% |
 | **Google Spam** | Dispositivos Google | Android devices | 90% |
 | **Samsung Spam** | Dispositivos Samsung | Samsung devices | 88% |
@@ -405,10 +382,10 @@ Willy é um **firmware proprietário abrangente** para dispositivos baseados em 
 | **Swift Pair** | Ataque Microsoft | Windows devices | 92% |
 | **GATT Phishing** | Serviços maliciosos | Usuários curiosos | 75% |
 
-#### 🛡️ Defesa & Monitoramento
+#### 🛡️ Defesa & Monitoramento (Bluetooth)
 
 | Ferramenta | Função | Recursos |
-|------------|--------|----------|
+| ------------ | -------- | ---------- |
 | **BLE Monitor** | Análise contínua | Dispositivos, serviços, tráfego |
 | **Intrusion Detection** | Sistema de alerta | Dispositivos desconhecidos |
 | **Security Scanner** | Análise de vulnerabilidades | Configurações, serviços expostos |
@@ -418,27 +395,27 @@ Willy é um **firmware proprietário abrangente** para dispositivos baseados em 
 #### 📊 Dados & Estatísticas
 
 | Métrica | Quantidade | Detalhes |
-|---------|------------|----------|
+| --------- | ------------ | ---------- |
 | **Dispositivos Detectados** | 100,000+ | BLE, Classic, IoT |
 | **Serviços Descobertos** | 500+ | GATT, GAP, custom |
 | **Vulnerabilidades** | 200+ | Configurações inseguras |
 | **AirTags Detectados** | 1,000+ | Rastreamento ativo |
 | **Logs Coletados** | 50GB+ | Dados completos |
 
-#### 🎯 Aplicações Específicas
+#### 🎯 Aplicações Específicas (Bluetooth)
 
 | Aplicação | Descrição | Código em SD |
-|-----------|-----------|--------------|
+| ----------- | ----------- | -------------- |
 | **BLE Pentest** | Testes de segurança | `sd_files/ble/pentest.js` |
 | **Skimmer Hunter** | Detecção de fraudes | `sd_files/ble/skimmer.py` |
 | **AirTag Tracker** | Monitoramento | `sd_files/ble/airtag.js` |
 | **Device Fingerprint** | Identificação | `sd_files/ble/fingerprint.py` |
 | **BLE Wardrive** | Mapeamento | `sd_files/ble/wardrive.js` |
 
-#### 🚀 Recursos Avançados
+#### 🚀 Recursos Avançados (Bluetooth)
 
 | Recurso | Descrição | Benefícios |
-|--------|-----------|------------|
+| -------- | ----------- | ------------ |
 | **Dual Mode** | BLE + Classic | Cobertura completa, compatibilidade |
 | **GPS Integration** | Geolocalização | Mapeamento preciso, tracking |
 | **Cloud Sync** | Backup de dados | Acesso remoto, colaboração |
@@ -448,7 +425,7 @@ Willy é um **firmware proprietário abrangente** para dispositivos baseados em 
 #### 📱 Dispositivos Suportados
 
 | Fabricante | Modelos | Protocolos |
-|------------|---------|------------|
+| ------------ | --------- | ------------ |
 | **Apple** | iPhone, iPad, AirPods | BLE, iBeacon, AirTag |
 | **Samsung** | Galaxy, Galaxy Buds | BLE, Fast Pair |
 | **Google** | Pixel, Nest | BLE, Fast Pair |
@@ -476,7 +453,7 @@ Willy é um **firmware proprietário abrangente** para dispositivos baseados em 
 #### ❄️ Climatização & Ar Condicionado
 
 | Marca | Modelos | Recursos |
-|-------|---------|----------|
+| ------- | --------- | ---------- |
 | **LG** | Dual Inverter, Multi Split | Temperatura, modo, vento, timer, sleep |
 | **Samsung** | WindFree, Digital Inverter | Turbo, wind-free, eco, auto |
 | **Midea** | U-Shaped, Window | Smart control, eco, turbo |
@@ -489,9 +466,9 @@ Willy é um **firmware proprietário abrangente** para dispositivos baseados em 
 #### 🎮 Gaming & Consoles
 
 | Console | Recursos | Compatibilidade |
-|---------|----------|----------------|
+| --------- | ---------- | ---------------- |
 | **PlayStation** | PS4, PS5 | Power, eject, buttons, touchpad |
-| **Xbox** | Series X|S, One X, One S | Power, eject, menu, guide |
+| **Xbox** | Series X/S, One X, One S | Power, eject, menu, guide |
 | **Nintendo Switch** | OLED, Standard | Power, volume, capture, home |
 | **Steam Deck** | OLED, LCD | Power, volume, trackpad |
 | **PS Vita** | 2000, 1000 | Power, home, volume, buttons |
@@ -499,7 +476,7 @@ Willy é um **firmware proprietário abrangente** para dispositivos baseados em 
 #### 🎵 Áudio & Home Theater
 
 | Categoria | Marcas | Recursos |
-|-----------|--------|----------|
+| ----------- | -------- | ---------- |
 | **Soundbars** | Samsung, LG, Sony, Bose | Volume, input, sound modes |
 | **Home Theater** | Sony, Samsung, LG | Power, volume, input, surround |
 | **Auto Falantes** | JBL, Bose, Harman Kardon | Volume, power, input, bass |
@@ -509,7 +486,7 @@ Willy é um **firmware proprietário abrangente** para dispositivos baseados em 
 #### 🏠 Doméstico & IoT
 
 | Categoria | Dispositivos | Recursos |
-|-----------|-------------|----------|
+| ----------- | ------------- | ---------- |
 | **Iluminação** | Philips Hue, LIFX, TP-Link | Cor, brilho, cenas, timers |
 | **Tomadas** | TP-Link Kasa, Xiaomi Mi | On/off, timers, schedules |
 | **Interruptores** | Legrand, Schneider | On/off, dimming, scenes |
@@ -519,7 +496,7 @@ Willy é um **firmware proprietário abrangente** para dispositivos baseados em 
 #### 🛠️ Ferramentas Avançadas
 
 | Ferramenta | Descrição | Código em SD |
-|------------|-----------|--------------|
+| ------------ | ----------- | -------------- |
 | **TV-B-Gone** | Desliga TVs públicas | `sd_files/infrared/TV-B-Gone.cpp` |
 | **IR Fuzzer** | Testa vulnerabilidades IR | `sd_files/infrared/fuzzer.ir` |
 | **IR Learner** | Aprende novos códigos | `sd_files/infrared/learner.js` |
@@ -554,8 +531,6 @@ A versão avançada do Willy suporta a integração de **dois módulos NRF24L01+
 
 ### 📡 Rádio Sub-GHz (CC1101)
 
-<div align="center">
-
 | Frequência | Aplicações |
 | :--- | :--- |
 | **315 MHz** | Portões de garagem, Abertura de portões |
@@ -564,8 +539,6 @@ A versão avançada do Willy suporta a integração de **dois módulos NRF24L01+
 | **434 MHz** | Dispositivos médicos |
 | **868 MHz** | Dispositivos EU |
 | **915 MHz** | Dispositivos IoT (EUA) |
-
-</div>
 
 [🔍 Ver Mais Recursos Sub-GHz](docs/rf_advanced_attacks.md)
 
@@ -1013,40 +986,28 @@ A nova versão **Willy 2.1** traz uma experiência de usuário premium, recursos
 
 ### 🏆 Hardware Principal
 
-<div align="center">
-
 | Componente | Especificação | Status |
-|------------|---------------|--------|
+| ------------ | --------------- | -------- |
 | **ESP32-S3-DevKitC-1** | Dual-Core 240MHz, 320KB RAM, PSRAM | ⭐ Principal |
 | **Display TFT SPI** | 2.4" ILI9341, 320x240, Touch XPT2046 | ⭐ Integrado |
 | **Módulos Externos** | CC1101, NRF24L01+, PN532, GPS NEO-6M | ✅ Suportados |
 
-</div>
-
 ### 🔄 Outros Dispositivos Suportados
 
-<div align="center">
-
 | Dispositivo | Display | Touch | SD Card | USB | Status |
-|-------------|---------|-------|---------|-----|--------|
+| ------------- | --------- | ------- | --------- | ----- | -------- |
 | **M5Stack Core2 Pro** | 2.0" TFT | Capacitivo | ✅ | USB‑C | ✅ Suportado |
 | **Lilygo T‑Display Pro** | 2.0" TFT | Capacitivo | ✅ | USB‑C | ✅ Suportado |
 | **ESP32‑S3‑DevKitM** | 2.4" TFT | Capacitivo | ✅ | USB‑C | ✅ Suportado |
 | **ESP32‑S2‑DevKitC** | 2.4" TFT | ❌ | ✅ | USB‑C | ✅ Suportado |
 | **Flipper Zero** | 1.8" LCD | ❌ | ✅ | Micro‑USB | ✅ Suportado |
 
-</div>
-
-<div align="center">
-[<kbd>🔍 Ver Mais Hardware</kbd>](docs/hardware_externo.md)
-</div>
+[**🔍 Ver Mais Hardware**](docs/hardware_externo.md)
 
 ### 🔌 Módulos Externos Suportados
 
-<div align="center">
-
 | Módulo | Função | Interface | Frequência | Preço | Status |
-|--------|--------|-----------|------------|-------|--------|
+| -------- | -------- | ----------- | ------------ | ------- | -------- |
 | **CC1101** | Transceptor Sub-GHz | SPI | 315-928MHz | ~R$15 | ✅ Implementado |
 | **NRF24L01+** | Transceptor 2.4GHz | SPI | 2.4GHz | ~R$10 | ✅ Implementado |
 | **2x NRF24L01+ PA+LNA** | 2.4GHz Longo Alcance (Dual) | SPI | 2.4GHz | ~R$25 | ✅ Implementado |
@@ -1060,14 +1021,10 @@ A nova versão **Willy 2.1** traz uma experiência de usuário premium, recursos
 | **XPT2046 Touch** | Controlador Touch | SPI | - | ~R$8 | ✅ Integrado |
 | **Micro SD Card** | Armazenamento | SPI | - | ~R$10 | ✅ Integrado |
 
-</div>
-
 ### 🔌 Conexões e Pinagem
 
-<div align="center">
-
 | Componente | Pinos ESP32-S3 | Função |
-|------------|----------------|--------|
+| ------------ | ---------------- | -------- |
 | **Display TFT ILI9341** | CS:10, DC:9, RST:14, MOSI:11, SCLK:12, MISO:13 | SPI Display |
 | **Touch XPT2046** | CS:15, IRQ:36 | SPI Touch |
 | **CC1101 Sub-GHz** | SCK:12, MISO:13, MOSI:11, CS:18, GDO0:33, GDO2:34 | SPI RF |
@@ -1077,23 +1034,15 @@ A nova versão **Willy 2.1** traz uma experiência de usuário premium, recursos
 | **Microfone INMP441** | BCLK:41, WS:42, SD:2 | I2S |
 | **Joystick KY-023** | VRX:4, VRY:5, SW:6 | ADC |
 
-</div>
+ [**🔍 Ver Mais Módulos**](docs/hardware_externo.md)
 
-<div align="center">
- [<kbd>🔍 Ver Mais Módulos</kbd>](docs/hardware_externo.md)
-</div>
-
-<div align="center">
- [<kbd>🔍 Ver Mais Dispositivos</kbd>](docs/device_details.md)
-</div>
+ [**🔍 Ver Mais Dispositivos**](docs/device_details.md)
 
 ### 🎨 Exemplos de Interface e Recursos
 
-<div align="center">
-
 #### 📱 Telas do Sistema
 
-```
+```text
 ┌─────────────────────────────────────────┐
 │  📡 Willy ESP32-S3 Security Suite v2.1  │
 ├─────────────────────────────────────────┤
@@ -1122,26 +1071,18 @@ A nova versão **Willy 2.1** traz uma experiência de usuário premium, recursos
 
 #### 🎯 Dashboard Web
 
-<div align="center">
-<img src="media/artworks/bruce-working.jpg" alt="Dashboard Web" width="400"/>
-</div>
+![Dashboard Web](media/artworks/bruce-working.jpg)
 
 #### 🔧 Módulos Ativos
 
-<div align="center">
-
 | Módulo | Status | Conectado | Última Atividade |
-|--------|--------|-----------|------------------|
+| -------- | -------- | ----------- | ------------------ |
 | **WiFi** | 🟢 Ativo | 3 redes | 2 minutos atrás |
 | **Bluetooth** | 🟢 Ativo | 5 dispositivos | 1 minuto atrás |
 | **Sub-GHz** | 🟢 Ativo | CC1101 | 5 minutos atrás |
 | **NFC/RFID** | 🟢 Ativo | PN532 | 10 minutos atrás |
 | **GPS** | 🟡 Conectado | NEO-6M | 30 segundos atrás |
 | **IR** | 🟢 Ativo | TSOP38238 | Ativo agora |
-
-</div>
-
-</div>
 
 ---
 
@@ -1194,7 +1135,7 @@ pio run --target upload
 ### 📖 Documentação Completa
 
 | Tópico | Descrição |
-|--------|-----------|
+| -------- | ----------- |
 | [Configuração de Hardware](docs/hardware_externo.md) | Conectando módulos externos |
 | [Guia CYD](docs/hardware_cyd_2432s028r.md) | Guia específico CYD-2432S028 |
 | [Ataques WiFi](docs/wifi_advanced_attacks.md) | Técnicas avançadas de WiFi |
@@ -1232,7 +1173,7 @@ EM NENHUMA CIRCUNSTÂNCIA, OS DESENVOLVEDORES OU DETENTORES DE DIREITOS AUTORAIS
 
 Para informações sobre licenciamento comercial ou autorizações especiais, entre em contato através dos canais oficiais do projeto.
 
-**[⬆ Voltar ao Topo](#-Willy-firmware)**
+**[⬆ Voltar ao Topo](#willy-firmware)**
 
 ---
 
@@ -1242,17 +1183,11 @@ Para informações sobre licenciamento comercial ou autorizações especiais, en
 
 ### 🤝 Contribuidores
 
-<div align="center">
-
 [![GitHub](https://img.shields.io/badge/GitHub-@lelebrr-blue?style=social&logo=github)](https://github.com/lelebrr)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-@lelebrr-blue?style=social&logo=linkedin)](https://linkedin.com/in/lelebrr)
 [![Twitter](https://img.shields.io/badge/Twitter-@willyfirmware-blue?style=social&logo=twitter)](https://twitter.com/willyfirmware)
 
-</div>
-
 ### 📞 Contato e Suporte
-
-<div align="center">
 
 - 📧 **Email**: <support@willy.computer>
 - 💬 **Discord**: [Willy Community](https://discord.gg/willy)
@@ -1260,13 +1195,7 @@ Para informações sobre licenciamento comercial ou autorizações especiais, en
 - 📖 **Wiki**: [Documentação Completa](docs/README.md)
 - 🚀 **Atualizações**: [GitHub Releases](https://github.com/lelebrr/Willy_ESP_s3/releases)
 
-</div>
+**[⬆ Voltar ao Topo](#willy-firmware)**
 
-**[⬆ Voltar ao Topo](#-Willy-firmware)**
-
-<div align="center">
-<img src="media/pictures/Willy_hd.png" alt="Logo Willy" width="150"/>
-<p><em>Segurança em suas mãos - Willy ESP32-S3 Security Suite</em></p>
-</div>
-
-</div>
+![Logo Willy](media/pictures/Willy_hd.png)
+*Segurança em suas mãos - Willy ESP32-S3 Security Suite*

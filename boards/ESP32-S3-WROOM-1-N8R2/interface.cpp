@@ -1,7 +1,7 @@
-#include "core/powerSave.h"
-#include <interface.h>
-#include <globals.h>
-#include "core/settings.h"
+#include "../../src/core/powerSave.h"
+#include "../../src/interface.h"
+#include "../../src/globals.h"
+#include "../../src/core/settings.h"
 
 /***************************************************************************************
 ** Function name: _setup_gpio()

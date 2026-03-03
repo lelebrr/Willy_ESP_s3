@@ -649,6 +649,7 @@ void js_bruce_init(JSContext *ctx) {
     JSValue bruce = JS_NewObject(ctx);
     JS_SetPropertyStr(ctx, bruce, "delay", JS_NewCFunctionParams(ctx, FUNC_DELAY, JS_UNDEFINED));
     JS_SetPropertyStr(ctx, bruce, "millis", JS_NewCFunctionParams(ctx, FUNC_MILLIS, JS_UNDEFINED));
+    JS_SetPropertyStr(ctx, bruce, "log", JS_NewCFunctionParams(ctx, PRINTLN, JS_UNDEFINED));
     JS_SetPropertyStr(ctx, global_obj, "bruce", bruce);
 
     // Print functions
