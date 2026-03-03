@@ -154,7 +154,7 @@ void sendRfCommand(struct RfCodes rfcode, bool hideDefaultUI) {
     String protocol = rfcode.protocol;
     String preset = rfcode.preset;
     String data = rfcode.data;
-    uint64_t key = rfcode.key;
+    // uint64_t key = rfcode.key;
     byte modulation = 2; // possible values for CC1101: 0 = 2-FSK, 1 =GFSK, 2=ASK, 3 = 4-FSK, 4 = MSK
     float deviation = 1.58;
     float rxBW = 270.83; // Receive bandwidth
@@ -268,7 +268,7 @@ void sendRfCommand(struct RfCodes rfcode, bool hideDefaultUI) {
         // split data into words, convert to int, and store them in transmittimings
         int startIndex = 0;
         index = 0;
-        for (transmittimings_idx = 0; transmittimings_idx < buff_size; transmittimings_idx++) {
+        for (transmittimings_idx = 0; transmittimings_idx < (size_t)buff_size; transmittimings_idx++) {
             index = data.indexOf(' ', startIndex);
             if (index == -1) {
                 transmittimings[transmittimings_idx] = data.substring(startIndex).toInt();

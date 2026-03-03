@@ -160,7 +160,7 @@ void packetCounter() {
             padprintln("Data: " + String(data_count));
             padprintln("Mgmt: " + String(mgmt_count));
             padprintln("");
-            padprintln("Taxa: ~" + String((total_packets * 1000) / (millis() + 1)) + " pkt/s");
+            padprintln("Taxa: ~" + String((uint32_t)((total_packets * 1000) / (millis() + 1))) + " pkt/s");
             padprintln("");
             padprintln("ESC para sair");
             last_update = millis();
@@ -389,7 +389,7 @@ void pingScan() {
             padprintln("Hosts ativos: " + String(alive_hosts.size()));
             padprintln("");
 
-            for (int j = max(0, (int)alive_hosts.size() - 5); j < alive_hosts.size(); j++) {
+            for (int j = std::max(0, (int)alive_hosts.size() - 5); j < (int)alive_hosts.size(); j++) {
                 padprintln(alive_hosts[j]);
             }
 

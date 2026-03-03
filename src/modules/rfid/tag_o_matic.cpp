@@ -372,7 +372,7 @@ void TagOMatic::create_ndef_message() {
 
 void TagOMatic::create_ndef_text() {
     _rfid->ndefMessage.payloadType = RFIDInterface::NDEF_TEXT;
-    byte uic = 0;
+    // byte uic = 0;
     byte i;
 
     _rfid->ndefMessage.payload[0] = 0x02; // language size
@@ -671,7 +671,7 @@ int TagOMatic::load_file_headless(String filename) {
             String uidStr = _rfid->printableUID.uid;
             uidStr.replace(" ", "");
             _rfid->uid.size = uidStr.length() / 2;
-            for (int i = 0; i < _rfid->uid.size && i < 10; i++) {
+            for (int i = 0; i < (int)_rfid->uid.size && i < 10; i++) {
                 _rfid->uid.uidByte[i] = strtoul(uidStr.substring(i * 2, i * 2 + 2).c_str(), NULL, 16);
             }
             // CALCULATE BCC (Block Check Character)

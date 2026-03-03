@@ -115,7 +115,7 @@ PRINT:
 
                 if (raw[i] > 20000) raw[i] = 20000;
                 if (raw[i + 1] > 20000) raw[i + 1] = 20000;
-                if (line_w + (raw[i] + raw[i + 1]) / TIME_DIVIDER > tftWidth) {
+                if (line_w + (raw[i] + raw[i + 1]) / TIME_DIVIDER > (unsigned int)tftWidth) {
                     line_w = 10;
                     line_h += 10;
                 }

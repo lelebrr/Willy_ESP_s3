@@ -9,7 +9,6 @@
 #include "esp_task_wdt.h"
 #include "esp_wifi.h"
 #include <functional>
-#include <lvgl.h>
 #include <string>
 #include <vector>
 #include "ui/cyber_menu.h"
@@ -212,6 +211,7 @@ void setup_gpio() {
 void begin_tft() {
     Serial.println("[BOOT] Iniciando tft.begin()...");
     tft.begin();  // agora com User_Setup.h vai funcionar
+
     tft.setRotation(bruceConfigPins.rotation); // sometimes it misses the first command
     tft.invertDisplay(bruceConfig.colorInverted);
     tft.setRotation(bruceConfigPins.rotation);
@@ -240,9 +240,9 @@ void boot_screen() {
     Serial.println("[BOOT] Drawing version string...");
     tft.drawCentreString(BRUCE_VERSION, tftWidth / 2, 25, 1);
     tft.setTextSize(FM);
-    Serial.println("[BOOT] Drawing 'PREDATORY FIRMWARE' string...");
+    Serial.println("[BOOT] Drawing 'WILLY FIRMWARE' string...");
     tft.drawCentreString(
-        "PREDATORY FIRMWARE", tftWidth / 2, tftHeight + 2, 1
+        "WILLY FIRMWARE", tftWidth / 2, tftHeight + 2, 1
     ); // will draw outside the screen on non touch devices
     Serial.println("[BOOT] Finished boot_screen().");
 }
@@ -273,22 +273,14 @@ void boot_screen_anim() {
             if (LittleFS.exists("/boot.gif")) boot_img = 4;
         }
     }
-    Serial.println("[BOOT] Checking theme override...");
-    if (bruceConfig.theme.boot_img) boot_img = 5; // override others
-
-    Serial.println("[BOOT] Forcing TFT sync...");
     tft.drawPixel(0, 0, 0);       // Forces back communication with TFT, to avoid ghosting
-                                  // Start image loop
-    Serial.println("[BOOT] Starting while loop...");
-    while (millis() < static_cast<unsigned long>(i + 7000)) { // boot image lasts for 7 secs
+    // Start image loop
+    while (millis() < i + 7000) { // boot image lasts for 5 secs
         if ((millis() - i > 2000) && !drawn) {
-            Serial.println("[BOOT] 2 seconds elapsed, starting drawing logic...");
             tft.fillRect(0, 45, tftWidth, tftHeight - 45, bruceConfig.bgColor);
             if (boot_img > 0 && !drawn) {
-                Serial.printf("[BOOT] boot_img = %d, drawing image...\n", boot_img);
                 tft.fillScreen(bruceConfig.bgColor);
                 if (boot_img == 5) {
-                    Serial.println("[BOOT] Drawing from theme FS...");
                     drawImg(
                         *bruceConfig.themeFS(),
                         bruceConfig.getThemeItemImg(bruceConfig.theme.paths.boot_img),
@@ -297,32 +289,30 @@ void boot_screen_anim() {
                         true,
                         3600
                     );
+                    Serial.println("Image from SD theme");
                 } else if (boot_img == 1) {
-                    Serial.println("[BOOT] Drawing /boot.jpg from SD...");
                     drawImg(SD, "/boot.jpg", 0, 0, true);
+                    Serial.println("Image from SD");
                 } else if (boot_img == 2) {
-                    Serial.println("[BOOT] Drawing /boot.jpg from LittleFS...");
                     drawImg(LittleFS, "/boot.jpg", 0, 0, true);
+                    Serial.println("Image from LittleFS");
                 } else if (boot_img == 3) {
-                    Serial.println("[BOOT] Drawing /boot.gif from SD...");
                     drawImg(SD, "/boot.gif", 0, 0, true, 3600);
+                    Serial.println("Image from SD");
                 } else if (boot_img == 4) {
-                    Serial.println("[BOOT] Drawing /boot.gif from LittleFS...");
                     drawImg(LittleFS, "/boot.gif", 0, 0, true, 3600);
+                    Serial.println("Image from LittleFS");
                 }
-                Serial.println("[BOOT] Image drawing call finished.");
                 tft.drawPixel(0, 0, 0); // Forces back communication with TFT, to avoid ghosting
             }
             drawn = true;
         }
 #if !defined(LITE_VERSION)
-        if (!boot_img && (millis() - i > 2200) && (millis() - i) < 2700) {
-            // Serial.println("[BOOT] Drawing rect..."); // Too verbose
+        if (!boot_img && (millis() - i > 2200) && (millis() - i) < 2700)
             tft.drawRect(2 * tftWidth / 3, tftHeight / 2, 2, 2, bruceConfig.priColor);
-        }
         if (!boot_img && (millis() - i > 2700) && (millis() - i) < 2900)
             tft.fillRect(0, 45, tftWidth, tftHeight - 45, bruceConfig.bgColor);
-        if (!boot_img && (millis() - i > 2900) && (uint32_t)(millis() - i) < 3400)
+        if (!boot_img && (millis() - i > 2900) && (millis() - i) < 3400)
             tft.drawXBitmap(
                 2 * tftWidth / 3 - 30,
                 5 + tftHeight / 2,
@@ -333,8 +323,7 @@ void boot_screen_anim() {
                 bruceConfig.priColor
             );
         if (!boot_img && (millis() - i > 3400) && (millis() - i) < 3600) tft.fillScreen(bruceConfig.bgColor);
-        if (!boot_img && (millis() - i > 3600)) {
-            // Serial.println("[BOOT] Drawing main bits..."); // Too verbose
+        if (!boot_img && (millis() - i > 3600))
             tft.drawXBitmap(
                 (tftWidth - 238) / 2,
                 (tftHeight - 133) / 2,
@@ -344,18 +333,14 @@ void boot_screen_anim() {
                 bruceConfig.bgColor,
                 bruceConfig.priColor
             );
-        }
 #endif
         if (check(AnyKeyPress)) // If any key or M5 key is pressed, it'll jump the boot screen
         {
-            Serial.println("[BOOT] Key press detected, jumping...");
             tft.fillScreen(bruceConfig.bgColor);
             delay(10);
             return;
         }
-        vTaskDelay(pdMS_TO_TICKS(50)); // Increase delay for debug print visibility logic
     }
-    Serial.println("[BOOT] Loop finished.");
 
     // Clear splashscreen
     tft.fillScreen(bruceConfig.bgColor);
@@ -415,7 +400,6 @@ void init_led() {
  **  Play sound or tone depending on device hardware
  *********************************************************************/
 void startup_sound() {
-#ifndef DISABLE_AUDIO
     if (bruceConfig.soundEnabled == 0) return; // if sound is disabled, do not play sound
 #if !defined(LITE_VERSION)
 #if defined(BUZZ_PIN)
@@ -435,7 +419,6 @@ void startup_sound() {
     }
 #endif
 #endif
-#endif
 }
 
 /*********************************************************************
@@ -443,9 +426,10 @@ void startup_sound() {
  **  Where the devices are started and variables set
  *********************************************************************/
 void setup() {
+    Serial.setRxBufferSize(
+        SAFE_STACK_BUFFER_SIZE / 4
+    ); // Must be invoked before Serial.begin(). Default is 256 chars
     Serial.begin(115200);
-    // Serial.setRxBufferSize(SAFE_STACK_BUFFER_SIZE / 4);
-    Serial.println("\n\n[BOOT] Willy ESP32-S3 Starting...");
 
     log_d("Total heap: %d", ESP.getHeapSize());
     log_d("Free heap: %d", ESP.getFreeHeap());
@@ -462,179 +446,44 @@ void setup() {
     BLEConnected = false;
     bruceConfig.bright = 100; // theres is no value yet
     bruceConfigPins.rotation = ROTATION;
-
-    Serial.println("[BOOT] Initializing GPIOs...");
     setup_gpio();
-
-    // RESET MANUAL DO DISPLAY (OBRIGATÓRIO para evitar StoreProhibited no S3)
-    pinMode(14, OUTPUT);
-    digitalWrite(14, LOW);
-    delay(20);
-    digitalWrite(14, HIGH);
-    delay(120);
-    Serial.println("[BOOT] Reset display OK");
-
 #if defined(HAS_SCREEN)
+    tft.init();
     tft.setRotation(bruceConfigPins.rotation);
     tft.fillScreen(TFT_BLACK);
     // bruceConfig is not read yet.. just to show something on screen due to long boot time
-    tft.setTextColor(TFT_CYAN, TFT_BLACK);
+    tft.setTextColor(TFT_PURPLE, TFT_BLACK);
     tft.drawCentreString("Booting", tft.width() / 2, tft.height() / 2, 1);
 #else
     tft.begin();
 #endif
-
-    // Explicit backlight initialization for debugging black screen
-    Serial.println("[DBG] Initializing Backlight...");
-#ifdef TFT_BL
-    if (TFT_BL >= 0) {
-        Serial.printf("[DBG] TFT_BL Pin: %d\n", TFT_BL);
-        pinMode(TFT_BL, OUTPUT);
-        digitalWrite(TFT_BL, HIGH);
-        Serial.println("[DBG] Backlight set to HIGH");
-    } else {
-        Serial.println("[DBG] TFT_BL Pin is -1 (Always on or not defined)");
-    }
-#else
-    // Force GPIO 3 just in case it's the backlight pin and not defined
-    Serial.println("[DBG] Forcing GPIO 3 HIGH (Backlight potential)...");
-    pinMode(3, OUTPUT);
-    digitalWrite(3, HIGH);
-    Serial.println("[DBG] TFT_BL Pin not defined");
-#endif
-    Serial.println("Starting begin_storage()...");
     begin_storage();
-    Serial.println("begin_storage() completed successfully.");
-    Serial.println("Starting begin_tft()...");
     begin_tft();
-    Serial.println("begin_tft() completed successfully.");
-
-    Serial.println("Starting initLVGL()...");
-    initLVGL(); // Initialize LVGL
-    Serial.println("initLVGL() completed successfully.");
-
-    if (lvgl_mutex && xSemaphoreTake(lvgl_mutex, portMAX_DELAY) == pdTRUE) {
-        show_willy_splash(lv_scr_act()); // Show Willy splash screen
-        xSemaphoreGive(lvgl_mutex);
-    }
-
-    for (unsigned int i = 0; i < 55; i++) { // Wait for animation (approx 5.5s)
-        if (lvgl_mutex && xSemaphoreTake(lvgl_mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
-            lv_timer_handler();
-            xSemaphoreGive(lvgl_mutex);
-        }
-        vTaskDelay(pdMS_TO_TICKS(100));
-    }
-    // Load a completely new screen to avoid dangling references
-    // from the splash screen animations before InputHandler and loop() take over
-    if (lvgl_mutex && xSemaphoreTake(lvgl_mutex, portMAX_DELAY) == pdTRUE) {
-        lv_anim_del_all();
-        lv_obj_t *new_scr = lv_obj_create(NULL);
-        lv_scr_load_anim(new_scr, LV_SCR_LOAD_ANIM_FADE_ON, 300, 0, true);
-        lv_timer_handler(); // process screen load
-        xSemaphoreGive(lvgl_mutex);
-    }
-
-    // SD Card presence check - warn if not found
-    if (!sdcardMounted) {
-        tft.fillScreen(TFT_BLACK);
-        tft.setTextColor(TFT_RED, TFT_BLACK);
-        tft.setTextSize(FM);
-        tft.drawCentreString("AVISO", tftWidth / 2, tftHeight / 2 - 30, 1);
-        tft.setTextColor(TFT_YELLOW, TFT_BLACK);
-        tft.setTextSize(FP);
-        tft.drawCentreString("Cartao SD nao encontrado!", tftWidth / 2, tftHeight / 2, 1);
-        tft.drawCentreString("Insira o cartao e reinicie.", tftWidth / 2, tftHeight / 2 + 16, 1);
-        tft.setTextColor(TFT_DARKGREY, TFT_BLACK);
-        tft.drawCentreString("Pressione qualquer tecla...", tftWidth / 2, tftHeight / 2 + 40, 1);
-        uint32_t warnStart = millis();
-        while (millis() - warnStart < 3000) {
-            if (check(AnyKeyPress)) break;
-            vTaskDelay(pdMS_TO_TICKS(50));
-        }
-        tft.fillScreen(bruceConfig.bgColor);
-    }
-
-    Serial.println("Initializing clock...");
     init_clock();
-    Serial.println("Clock initialized.");
-
-    Serial.println("Initializing LED...");
     init_led();
-    Serial.println("LED initialized.");
 
-    // Inicializa sistema de logging centralizado Willy
-    if (sdcardMounted) {
-        willyLogger.begin();
-        willyLogger.logSystemStatus();
-        willyLogger.info(COMP_SYSTEM, "Willy iniciado - versao " BRUCE_VERSION);
-
-        // Mostra aviso de log ativo
-        willyLogger.showLogWarning();
-    }
-
-    Serial.println("Reserving options capacity...");
     options.reserve(20); // preallocate some options space to avoid fragmentation
-    Serial.println("Options reserved.");
 
     // Set WiFi country to avoid warnings and ensure max power
-    Serial.println("Setting WiFi country...");
     const wifi_country_t country = {
         .cc = "US",
         .schan = 1,
         .nchan = 14,
+#ifdef CONFIG_ESP_PHY_MAX_TX_POWER
+        .max_tx_power = CONFIG_ESP_PHY_MAX_TX_POWER, // 20
+#endif
         .policy = WIFI_COUNTRY_POLICY_MANUAL
     };
 
     esp_wifi_set_max_tx_power(80); // 80 translates to 20dBm
     esp_wifi_set_country(&country);
-    Serial.println("WiFi country set.");
 
     // Some GPIO Settings (such as CYD's brightness control must be set after tft and sdcard)
-    Serial.println("Starting _post_setup_gpio()...");
     _post_setup_gpio();
-    Serial.println("_post_setup_gpio() completed successfully.");
     // end of post gpio begin
 
     // #ifndef USE_TFT_eSPI_TOUCH
-#if defined(HAS_SCREEN)
-    Serial.println("Opening theme file...");
-    bruceConfig.openThemeFile(bruceConfig.themeFS(), bruceConfig.themePath, false);
-    Serial.println("Theme file opened.");
-
-    if (!bruceConfig.instantBoot) {
-        Serial.println("Legacy boot screen disabled (Using Willy Splash).");
-    }
-    if (bruceConfig.wifiAtStartup) {
-        Serial.println("Creating wifiConnectTask...");
-#if !defined(LITE_VERSION)
-        xTaskCreate(
-            wifiConnectTask,   // Task function
-            "wifiConnectTask", // Task Name
-            4096,              // Stack size
-            NULL,              // Task parameters
-            2,                 // Task priority (0 to 3), loopTask has priority 2.
-            NULL               // Task handle (not used)
-        );
-#endif
-        Serial.println("wifiConnectTask created.");
-    }
-#endif
-    //  start a task to handle serial commands while the webui is running
-    Serial.println("Starting serial commands handler task...");
-    startSerialCommandsHandlerTask(true);
-    Serial.println("Serial commands handler task started.");
-
-    Serial.println("Waking up screen...");
-    wakeUpScreen();
-    Serial.println("Screen woken up.");
-
-    if (bruceConfig.startupApp != "" && !startupApp.startApp(bruceConfig.startupApp)) {
-        bruceConfig.setStartupApp("");
-    }
-
     // This task keeps running all the time, will never stop
-    Serial.println("Creating InputHandler task...");
     xTaskCreate(
         taskInputHandler,              // Task function
         "InputHandler",                // Task Name
@@ -643,7 +492,32 @@ void setup() {
         2,                             // Task priority (0 to 3), loopTask has priority 2.
         &xHandle                       // Task handle (not used)
     );
-    Serial.println("InputHandler task created. setup() finished.");
+    // #endif
+#if defined(HAS_SCREEN)
+    bruceConfig.openThemeFile(bruceConfig.themeFS(), bruceConfig.themePath, false);
+    if (!bruceConfig.instantBoot) {
+        boot_screen_anim();
+        startup_sound();
+    }
+    if (bruceConfig.wifiAtStartup) {
+        log_i("Loading Wifi at Startup");
+        xTaskCreate(
+            wifiConnectTask,   // Task function
+            "wifiConnectTask", // Task Name
+            4096,              // Stack size
+            NULL,              // Task parameters
+            2,                 // Task priority (0 to 3), loopTask has priority 2.
+            NULL               // Task handle (not used)
+        );
+    }
+#endif
+    //  start a task to handle serial commands while the webui is running
+    startSerialCommandsHandlerTask(true);
+
+    wakeUpScreen();
+    if (bruceConfig.startupApp != "" && !startupApp.startApp(bruceConfig.startupApp)) {
+        bruceConfig.setStartupApp("");
+    }
 }
 
 /**********************************************************************
@@ -652,7 +526,6 @@ void setup() {
  **********************************************************************/
 #if defined(HAS_SCREEN)
 void loop() {
-    static bool _dbg_first_loop = true; if (_dbg_first_loop) { Serial.println("[DBG] loop() entered!"); _dbg_first_loop = false; }
 #if !defined(LITE_VERSION) && !defined(DISABLE_INTERPRETER)
     if (interpreter_state > 0) {
         vTaskDelete(serialcmdsTaskHandle); // stop serial commands while in interpreter
@@ -661,68 +534,28 @@ void loop() {
         Serial.println("Entering interpreter...");
         while (interpreter_state > 0) { vTaskDelay(pdMS_TO_TICKS(500)); }
         Serial.println("Exiting interpreter...");
-        if (interpreter_state == -1) {
-#if !defined(LITE_VERSION) && !defined(DISABLE_INTERPRETER)
-            interpreterTaskHandler = NULL;
-#endif
-        }
+        if (interpreter_state == -1) { interpreterTaskHandler = NULL; }
         startSerialCommandsHandlerTask();
         previousMillis = millis(); // ensure that will not dim screen when get back to menu
     }
 #endif
-    // Set Cyber Menu as default UI
-    static bool menu_initialized = false;
-    if (!menu_initialized) {
-        if (lvgl_mutex && xSemaphoreTake(lvgl_mutex, portMAX_DELAY) == pdTRUE) {
-            setup_cyber_menu(lv_scr_act());
-            menu_initialized = true;
-            xSemaphoreGive(lvgl_mutex);
-        }
-    }
+    tft.fillScreen(bruceConfig.bgColor);
 
-    // LVGL timer handling removed from here, now centralized in taskInputHandler() for stability
-
-    if (pending_cyber_menu_name != NULL) {
-        String targetName = (const char*)pending_cyber_menu_name;
-        pending_cyber_menu_name = NULL; // reset immediately
-
-        // Clear LVGL screen before booting the traditional menu to avoid visual collision
-        if (lvgl_mutex && xSemaphoreTake(lvgl_mutex, portMAX_DELAY) == pdTRUE) {
-            lv_obj_clean(lv_scr_act());
-            lv_timer_handler();
-            xSemaphoreGive(lvgl_mutex);
-        }
-
-        // Action maps directly to the name of the classic menu
-        auto menuOptions = mainMenu.getItems();
-        for (auto m : menuOptions) {
-            if (m->getName() == targetName) {
-                tft.fillScreen(bruceConfig.bgColor);
-                m->optionsMenu();
-                break;
-            }
-        }
-
-        // Upon return, we re-arm LVGL menu initialization
-        menu_initialized = false;
-        tft.fillScreen(bruceConfig.bgColor); // clear old Bruce rendering
-    }
-
-    delay(5);
+    mainMenu.begin();
+    delay(1);
 }
 #else
 
 void loop() {
-    static bool _dbg_first_loop = true; if (_dbg_first_loop) { Serial.println("[DBG] loop() entered!"); _dbg_first_loop = false; }
     tft.setLogging();
     Serial.println(
         "\n"
-        "██████  ██████  ██    ██  ██████ ███████ \n"
-        "██   ██ ██   ██ ██    ██ ██      ██      \n"
-        "██████  ██████  ██    ██ ██      █████   \n"
-        "██   ██ ██   ██ ██    ██ ██      ██      \n"
-        "██████  ██   ██  ██████   ██████ ███████ \n"
-        "                                         \n"
+        "██      ██ ██ ██      ██      ██    ██ \n"
+        "██      ██ ██ ██      ██       ██  ██  \n"
+        "██  ██  ██ ██ ██      ██        ████   \n"
+        "██ ████ ██ ██ ██      ██         ██    \n"
+        " ███  ███  ██ ███████ ███████    ██    \n"
+        "                                       \n"
         "         PREDATORY FIRMWARE\n\n"
         "Tips: Connect to the WebUI for better experience\n"
         "      Add your network by sending: wifi add ssid password\n\n"

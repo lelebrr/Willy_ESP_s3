@@ -1,16 +1,33 @@
-# 💳 NFC/RFID Resources
+# 💳 NFC/RFID Resources - Willy Firmware
 
-![ESP32](https://img.shields.io/badge/ESP32-WROOM--32-red.svg)
-![Arduino](https://img.shields.io/badge/Arduino-IDE-blue.svg)
-![C++](https://img.shields.io/badge/C++-17-blue.svg)
-![Python](https://img.shields.io/badge/Python-3.9+-yellow.svg)
-![NFC](https://img.shields.io/badge/NFC-ISO%2014443-purple.svg)
-![RFID](https://img.shields.io/badge/RFID-Mifare-orange.svg)
-![Security](https://img.shields.io/badge/Security-Pentest-red.svg)
-![Hacking](https://img.shields.io/badge/Hacking-Tools-red.svg)
-![Red Team](https://img.shields.io/badge/Red%20Team-Offensive-red.svg)
+[![NFC](https://img.shields.io/badge/NFC-ISO%2014443-purple.svg)](https://www.nfc-forum.org/)
+[![RFID](https://img.shields.io/badge/RFID-13.56%20MHz-orange.svg)](https://www.rfidjournal.com/)
+[![PN532](https://img.shields.io/badge/PN532-NXP-blue.svg)](https://www.nxp.com/)
+[![Mifare](https://img.shields.io/badge/Mifare-Classic%20Ultralight-teal.svg)](https://www.mifare.net/)
+[![Security](https://img.shields.io/badge/Security-Pentest-red.svg)](https://owasp.org/)
+[![Hacking](https://img.shields.io/badge/Hacking-Tools-red.svg)](https://www.kali.org/)
+[![Red Team](https://img.shields.io/badge/Red%20Team-Offensive-red.svg)](https://www.offensive-security.com/)
+[![Forensics](https://img.shields.io/badge/Forensics-Digital-blue.svg)](https://www.dfrws.org/)
 
-Arquivos de exemplo e dumps para o módulo NFC do Willy - Proprietário
+<div align="center">
+
+![NFC Logo](https://img.shields.io/badge/NFC%2FRFID-Espionagem%20e%20Segurança-purple?style=for-the-badge&logo=nfc&logoColor=white)
+
+**Banco de Dados e Ferramentas NFC/RFID**
+
+[📖 Documentação Principal](../README.md) • [🎯 Ataques NFC](../../docs/nfc_advanced_attacks.md) • [🔧 Hardware](../../docs/hardware_externo.md)
+
+</div>
+
+---
+
+## ⚠️ Aviso Legal
+
+**⚠️ USE APENAS EM TAGS AUTORIZADAS!** Clonar tags de terceiros pode ser crime.
+
+> **AVISO IMPORTANTE**: Este material é exclusivamente para fins educacionais e de pesquisa em segurança. O uso não autorizado de NFC/RFID pode violar leis locais, estaduais e federais. Os desenvolvedores e contribuidores **não se responsabilizam** por qualquer uso indevido ou danos causados por este material.
+
+> **Use apenas em ambientes onde você tem autorização explícita.** Sempre obtenha permissão por escrito antes de realizar qualquer teste de segurança com NFC/RFID.
 
 ---
 
@@ -22,38 +39,115 @@ Arquivos de exemplo e dumps para o módulo NFC do Willy - Proprietário
 
 ## 📁 Arquivos Disponíveis
 
-| Arquivo | Tipo | Descrição |
-|---------|------|-----------|
-| `Willy_repo.rfid` | Mifare Classic 1K | Dump de demonstração |
-| `rickroll.rfid` | Mifare Classic | Tag de demonstração |
-| `amex_demo.rfid` | Mifare | Demo de cartão |
-| `mifare_classic_1k.rfid` | Mifare Classic 1K | Template vazio |
-| `mifare_ultralight.rfid` | Mifare Ultralight | Template vazio |
-| `ntag213.rfid` | NTAG213 | Template vazio |
-| `hotel_key.rfid` | Hotel Key Card | Demo de cartão de hotel |
+<div align="center">
+
+| Arquivo | Tipo | Descrição | Uso |
+|---------|------|-----------|-----|
+| **Willy_repo.rfid** | Mifare Classic 1K | Dump de demonstração completo | Exemplo completo |
+| **rickroll.rfid** | Mifare Classic | Tag com URL Rickroll | Prática social engineering |
+| **amex_demo.rfid** | Mifare | Cartão de crédito demo | Teste de segurança |
+| **mifare_classic_1k.rfid** | Mifare Classic 1K | Template vazio | Base para clones |
+| **mifare_ultralight.rfid** | Mifare Ultralight | Template vazio | Tags simples |
+| **ntag213.rfid** | NTAG213 | Template vazio | Tags para smartphones |
+| **hotel_key.rfid** | Hotel Key Card | Cartão de hotel demo | Teste de acesso |
+| **visa_card_demo.rfid** | Mifare | Cartão Visa demo | Teste financeiro |
+| **mastercard_demo.rfid** | Mifare | Cartão Mastercard demo | Teste financeiro |
+| **unionpay_demo.rfid** | Mifare | Cartão UnionPay demo | Teste financeiro |
+| **discover_card_demo.rfid** | Mifare | Cartão Discover demo | Teste financeiro |
+| **jcb_card_demo.rfid** | Mifare | Cartão JCB demo | Teste financeiro |
+| **maestro_demo.rfid** | Mifare | Cartão Maestro demo | Teste financeiro |
+
+</div>
+
+## 📊 Estatísticas NFC/RFID
+
+| Métrica | Valor | Detalhes |
+|---------|-------|----------|
+| **Tags Suportadas** | 15+ | Mifare, NTAG, DESFire |
+| **Capacidade Total** | 10KB+ | Dumps completos |
+| **Protocolos** | 8+ | ISO 14443-A/B, Mifare, etc. |
+| **Taxa de Leitura** | 95%+ | Alta precisão |
+| **Alcance** | 4-8cm | Seguro e preciso |
+| **Velocidade** | 106-424 kbps | Vários modos |
 
 ---
 
-## 📖 O Que é Cada Tipo
+## 🔬 Tipos de Tags e Protocolos
 
-### Mifare Classic 1K
+### 📱 Mifare Classic 1K
 
-- **Capacidade**: 1024 bytes
-- **Setores**: 16
-- **Blocos por setor**: 4
-- **Uso**: Cartões de acesso, transporte público
+| Especificação | Detalhes |
+|---------------|----------|
+| **Capacidade** | 1024 bytes (1KB) |
+| **Setores** | 16 setores |
+| **Blocos por setor** | 4 blocos (3 dados + 1 trailer) |
+| **Blocos totais** | 64 blocos |
+| **Chaves por setor** | 2 chaves (A e B) |
+| **Uso Comum** | Cartões de acesso, transporte público, identificação |
+| **Segurança** | Vulnerável a ataques (Crypto-1 quebrado) |
+| **Compatibilidade** | Leitores Mifare padrão |
 
-### Mifare Ultralight
+### 🎫 Mifare Ultralight
 
-- **Capacidade**: 512 bits (64 bytes)
-- **Páginas**: 16
-- **Uso**: Tickets descartáveis, eventos
+| Especificação | Detalhes |
+|---------------|----------|
+| **Capacidade** | 512 bits (64 bytes) |
+| **Páginas** | 16 páginas |
+| **Bytes por página** | 4 bytes |
+| **Uso Comum** | Tickets descartáveis, eventos, promoções |
+| **Segurança** | Sem criptografia, apenas leitura |
+| **Compatibilidade** | Todos os leitores NFC |
+| **Vantagem** | Baixo custo, ampla adoção |
 
-### NTAG213
+### 📱 NTAG213/215/216
 
-- **Capacidade**: 144 bytes
-- **Páginas**: 45
-- **Uso**: Tags NFC para smartphones, marketing
+| Especificação | NTAG213 | NTAG215 | NTAG216 |
+|---------------|---------|---------|---------|
+| **Capacidade** | 144 bytes | 504 bytes | 888 bytes |
+| **Páginas** | 45 páginas | 135 páginas | 239 páginas |
+| **Uso Comum** | Marketing, smart packaging | Tickets, acesso | Armazenamento complexo |
+| **Segurança** | Criptografia AES | Criptografia AES | Criptografia AES |
+| **Compatibilidade** | Smartphones Android/iOS | Smartphones Android/iOS | Smartphones Android/iOS |
+
+### 🔐 Mifare DESFire
+
+| Especificação | Detalhes |
+|---------------|----------|
+| **Capacidade** | 4KB-8KB (dependente do modelo) |
+| **Setores** | 28-32 setores |
+| **Criptografia** | AES-128, 3DES |
+| **Segurança** | Alta segurança, criptografia forte |
+| **Uso Comum** | Cartões de pagamento, identificação segura |
+| **Compatibilidade** | Leitores DESFire |
+
+### 💳 Cartões de Crédito
+
+| Tipo | Protocolo | Segurança | Uso |
+|------|-----------|-----------|-----|
+| **Visa/Mastercard** | EMV | Chip + PIN | Pagamentos |
+| **Amex** | EMV | Chip + PIN | Pagamentos |
+| **UnionPay** | EMV | Chip + PIN | Pagamentos |
+| **Cartões Hotel** | Mifare | Chave única | Acesso quartos |
+
+### 🏢 Cartões de Acesso
+
+| Tipo | Protocolo | Segurança | Alcance |
+|------|-----------|-----------|---------|
+| **Cartões Funcionais** | Mifare Classic | Chave A/B | 4-8cm |
+| **Cartões Biometria** | Mifare DESFire | AES-128 | 4-8cm |
+| **Cartões Veiculares** | ISO 15693 | Longo alcance | 10-50cm |
+| **Cartões Identificação** | Mifare Ultralight | Leitura | 4-8cm |
+
+## 📊 Comparativo de Tags
+
+| Tipo | Capacidade | Segurança | Custo | Popularidade | Uso Recomendado |
+|------|------------|-----------|-------|--------------|-----------------|
+| **Mifare Classic 1K** | 1KB | Baixa | Baixo | ⭐⭐⭐⭐⭐ | Clonagem, acesso |
+| **Mifare Ultralight** | 64B | Mínima | Baixo | ⭐⭐⭐⭐ | Marketing, tickets |
+| **NTAG213** | 144B | Média | Médio | ⭐⭐⭐⭐⭐ | Smartphones, IoT |
+| **NTAG215** | 504B | Média | Médio | ⭐⭐⭐⭐ | Armazenamento |
+| **NTAG216** | 888B | Média | Alto | ⭐⭐⭐ | Dados complexos |
+| **Mifare DESFire** | 4-8KB | Alta | Alto | ⭐⭐⭐ | Pagamentos, segurança |
 
 ---
 

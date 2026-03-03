@@ -260,7 +260,7 @@ bool RFID125::write_file(String filename) {
     if (!file) { return false; }
 
     String file_data = "";
-    for (byte i = 0; i < RFID125_PACKET_SIZE; i++) {
+    for (uint8_t i = 0; i < (uint8_t)RFID125_PACKET_SIZE; i++) {
         file_data += _tag_data[i] < 0x10 ? " 0" : " ";
         file_data += String(_tag_data[i], HEX);
     }
@@ -280,7 +280,7 @@ bool RFID125::write_file(String filename) {
 
 void RFID125::format_data() {
     _printable_data = "";
-    for (byte i = 1; i < RFID125_PACKET_SIZE - 3; i += 2) {
+    for (uint8_t i = 1; i < (uint8_t)RFID125_PACKET_SIZE - 3; i += 2) {
         _printable_data += String(_tag_data[i]);
         _printable_data += String(_tag_data[i + 1]);
         _printable_data += " ";

@@ -65,7 +65,7 @@ static const OUIEntry iot_oui_database[] = {
     {{0xF0, 0x03, 0x8C}, "Nest", "Camera", true},
     {{0xFC, 0xA6, 0x67}, "Yeelight", "Smart Bulb", true},
 };
-static const int iot_oui_count = sizeof(iot_oui_database) / sizeof(OUIEntry);
+static const int iot_oui_count = (int)(sizeof(iot_oui_database) / sizeof(OUIEntry));
 
 // Clientes detectados
 static std::map<uint64_t, ClientInfo> detected_clients;
@@ -405,7 +405,7 @@ void clientBatteryDrain() {
     // Menu para selecionar AP alvo
     int selected_idx = -1;
     options.clear();
-    for (size_t i = 0; i < ap_list.size(); i++) {
+    for (int i = 0; i < (int)ap_list.size(); i++) {
         String name = String((char*)ap_list[i].ssid);
         if (name.length() == 0) name = "<Hidden>";
         int idx = i;

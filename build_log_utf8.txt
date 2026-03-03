@@ -1,0 +1,23 @@
+﻿Processing willy_ili9341_custom (board: ESP-General; platform: https://github.com/pioarduino/platform-espressif32/releases/download/55.03.36/platform-espressif32.zip; framework: arduino)
+--------------------------------------------------------------------------------
+pio : ERROR: Python version 
+must be between 3.10 and 
+3.13.
+No linha:1 caractere:1
++ pio run -e 
+willy_ili9341_custom > 
+build_log.txt 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          
+    : NotSpecified:     
+(ERROR: Python v...     
+3.10 and 3.13.:Strin    g) 
+[], RemoteExcepti    on
+    + FullyQualifiedErro    
+rId : NativeCommandE    rror
+ 
+Current Python version: 
+3.14.3
+Supported versions: 3.10, 
+3.11, 3.12, 3.13

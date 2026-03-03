@@ -116,7 +116,6 @@ const char *pwnd_names[] = {
 void beacon_task(void *pvParameters) {
     const uint8_t channels[] = {1, 6, 11}; // Liste des canaux Wi-Fi à utiliser
     const int num_channels = sizeof(channels) / sizeof(channels[0]);
-    const int num_pwnd_faces = sizeof(pwnd_faces) / sizeof(pwnd_faces[0]);
 
     while (spamRunning) {
         if (dos_pwnd) {

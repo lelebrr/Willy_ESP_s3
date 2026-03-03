@@ -188,7 +188,7 @@ bool isItEAPOL(const wifi_promiscuous_pkt_t *packet) {
     int len = packet->rx_ctrl.sig_len;
 
     // length check to ensure packet is large enough for EAPOL (minimum length)
-    if (len < (24 + 8 + 4)) { // 24 bytes for the MAC header, 8 for LLC/SNAP, 4 for EAPOL minimum
+    if ((int)len < (24 + 8 + 4)) { // 24 bytes for the MAC header, 8 for LLC/SNAP, 4 for EAPOL minimum
         return false;
     }
 
@@ -228,7 +228,7 @@ int classifyEapolMessage(const wifi_promiscuous_pkt_t *pkt) {
     // MAC header (24 + qosOffset) + LLC/SNAP (8) + EAPOL header (4) + Descriptor Type (1)
     int keyInfoOffset = 24 + qosOffset + 8 + 4 + 1;
 
-    if (pkt->rx_ctrl.sig_len < keyInfoOffset + 2) return -1; // safety check
+    if ((int)pkt->rx_ctrl.sig_len < keyInfoOffset + 2) return -1; // safety check
 
     uint16_t keyInfo = (payload[keyInfoOffset] << 8) | payload[keyInfoOffset + 1];
 
@@ -469,7 +469,7 @@ static String resolveSsidForFrame(FrameInfo &info, const wifi_promiscuous_pkt_t 
 
 static FrameInfo analyzeFrame(wifi_promiscuous_pkt_t *pkt) {
     FrameInfo info;
-    if (!pkt) { return info; } // removed redundant pkt->payload check
+    (void)pkt;
     const uint16_t len = pkt->rx_ctrl.sig_len;
     if (len < 24) { return info; }
 

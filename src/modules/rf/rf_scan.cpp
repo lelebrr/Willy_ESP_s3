@@ -155,7 +155,7 @@ void RFScan::read_raw() {
     String _data = "";
     std::vector<int> durations;
     std::vector<int> indexed_durations;
-    uint64_t result = 0;
+    // uint64_t result = 0;
     uint8_t repetition = 0;
 
     received.te = 0;
@@ -725,7 +725,7 @@ RestartRec:
             }
         }
     }
-Exit:
+// Exit:
     vTaskDelay(1 / portTICK_PERIOD_MS);
 
     deinitRfModule();

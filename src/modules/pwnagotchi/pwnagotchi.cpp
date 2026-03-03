@@ -91,11 +91,11 @@ void advertise(uint8_t channel) {
 void set_pwnagotchi_exit(bool new_value) { pwnagotchi_exit = new_value; }
 
 void brucegotchi_start() {
-    int tmp = 0;              // Control workflow
+    uint32_t tmp = 0;          // Control workflow
     bool shot = false;        // Control deauth faces
     bool pwgrid_done = false; // Control to start advertising
     bool Deauth_done = false; // Control to start deauth
-    uint8_t _times = 0;       // control delays without impacting control btns
+    uint32_t _times = 0;       // control delays without impacting control btns
     set_pwnagotchi_exit(false);
 
     tft.fillScreen(bruceConfig.bgColor);

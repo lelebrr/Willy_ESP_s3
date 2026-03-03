@@ -267,9 +267,9 @@ void pwnSnifferCallback(void *buf, wifi_promiscuous_pkt_type_t type) {
     if (type == WIFI_PKT_MGMT) {
         // Remove frame check sequence bytes
         int len = snifferPacket->rx_ctrl.sig_len - 4;
-        int fctl = ntohs(frameControl->fctl);
-        const wifi_ieee80211_packet_t *ipkt = (wifi_ieee80211_packet_t *)snifferPacket->payload;
-        const WifiMgmtHdr *hdr = &ipkt->hdr;
+        // int fctl = ntohs(frameControl->fctl);
+        // const wifi_ieee80211_packet_t *ipkt = (wifi_ieee80211_packet_t *)snifferPacket->payload;
+        // const WifiMgmtHdr *hdr = &ipkt->hdr;
 
         // if ((snifferPacket->payload[0] == 0x80) && (buf == 0)) {
         if ((snifferPacket->payload[0] == 0x80)) {

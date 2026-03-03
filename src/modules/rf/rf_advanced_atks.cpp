@@ -202,7 +202,7 @@ void StealthLowPowerExfilBeacon() {
     // Bit 1: 500us High, 500us Low
     // Bit 0: 250us High, 750us Low
     rawData += "1000 -1000 ";
-    for (int i=0; i<payload.length(); i++) {
+    for (unsigned int i=0; i<payload.length(); i++) {
         char c = payload[i];
         for (int b=7; b>=0; b--) {
             if (c & (1 << b)) rawData += "500 -500 ";
@@ -315,7 +315,7 @@ void ProtocolFuzzerSmart() {
 
     tft.setTextColor(getColorVariation(bruceConfig.priColor), bruceConfig.bgColor);
 
-    while (fuzzedDone < (1 << fuzzBits)) {
+    while (fuzzedDone < (1U << fuzzBits)) {
         if (check(EscPress)) break;
 
         baseCode.key = baseKey | fuzzedDone;

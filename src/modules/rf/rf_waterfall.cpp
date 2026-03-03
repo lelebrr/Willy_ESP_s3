@@ -79,8 +79,8 @@ void rf_waterfall_run() {
     tft.fillRect(0, 0, screen_width, display_top, TFT_BLACK);
 
     int selected_item = 0;
-    bool exitting = false;
-    unsigned long exit_time = 0;
+    // bool exitting = false;
+    // unsigned long exit_time = 0;
 
     while (1) {
         for (int i = 0; i < 4; i++) {

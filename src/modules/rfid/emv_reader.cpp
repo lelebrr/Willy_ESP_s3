@@ -35,7 +35,7 @@ void EMVReader::setup() {
 void EMVReader::parse_pan(std::vector<uint8_t> *afl_content, EMVCard *card) {
     auto pos = find(afl_content->begin(), afl_content->end(), 0x5A);
     uint8_t len = *(pos + 1);
-    uint8_t pan_begin = distance(afl_content->begin(), pos) + 2;
+    uint8_t pan_begin = (uint8_t)distance(afl_content->begin(), pos) + 2;
     card->pan = (uint8_t *)malloc(len);
     memcpy(card->pan, &afl_content->data()[pan_begin], len);
     card->pan_len = len;
@@ -378,7 +378,7 @@ std::string BinToAscii(uint8_t *BinData, size_t size)
 {
     char AsciiHexNo[5];
     std::string Return;
-    for (int i = 0; i < size; i++) {
+    for (size_t i = 0; i < size; i++) {
         sprintf(AsciiHexNo, "%02X", BinData[i]);
         Return += AsciiHexNo;
     }

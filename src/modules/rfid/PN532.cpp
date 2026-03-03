@@ -89,7 +89,7 @@ bool PN532::begin() {
 int PN532::read(int cardBaudRate) {
     pageReadStatus = FAILURE;
 
-    bool felica = false;
+    // bool felica = false;
     if (cardBaudRate == PN532_MIFARE_ISO14443A) {
         if (!nfc.startPassiveTargetIDDetection(cardBaudRate)) return TAG_NOT_PRESENT;
         if (!nfc.readDetectedPassiveTargetID()) return FAILURE;
@@ -693,7 +693,7 @@ int PN532::write_ndef_blocks() {
     std::vector<byte> ndef_payload_vec(payload_size);
     byte *ndef_payload = ndef_payload_vec.data();
     byte i;
-    bool blockWriteSuccess;
+    // bool blockWriteSuccess;
     uint8_t success;
 
     ndef_payload[0] = ndefMessage.begin;

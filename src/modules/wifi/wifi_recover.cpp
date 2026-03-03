@@ -139,7 +139,7 @@ static bool parse_pcap_handshake(FS &fs, const String &path, HandshakeData &hs) 
     }
 
     // Bruce uses network type 105 (802.11 raw, no radiotap)
-    if (gh.network != 105) { padprintf("Aviso: Tipo rede %u (esperado 105)\n", gh.network); }
+    if (gh.network != 105) { padprintf("Aviso: Tipo rede %u (esperado 105)\n", (unsigned int)gh.network); }
 
     bool have_m1 = false, have_m2 = false, have_m3 = false, have_m4 = false;
     bool have_beacon = false;
@@ -253,7 +253,7 @@ static bool parse_pcap_handshake(FS &fs, const String &path, HandshakeData &hs) 
         uint8_t *eapol = pkt + pos;
         uint16_t eapol_len = (uint16_t)((eapol[2] << 8) | eapol[3]);
 
-        if ((size_t)(pos + 4 + eapol_len) > incl_len) {
+        if ((size_t)pos + 4 + eapol_len > (size_t)incl_len) {
             free(pkt);
             continue;
         }
@@ -634,7 +634,7 @@ void wifi_crack_handshake(const String &wordlist_path, const String &pcap_path) 
             uint64_t elapsed = now_us() - start_time;
             double rate = (elapsed > 0) ? (attempts * 1000000.0 / elapsed) : 0;
             double seconds = elapsed / 1000000.0;
-            padprintf("\rTent: %u  %.1f/s  Tempo: %.1fs   ", attempts, rate, seconds);
+            padprintf("\rTent: %u  %.1f/s  Tempo: %.1fs   ", (unsigned int)attempts, rate, seconds);
 
             // show a small "current candidate" snippet (trim to fit)
             String cand = line;

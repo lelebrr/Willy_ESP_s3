@@ -137,14 +137,14 @@ void wsl_bypasser_send_raw_frame(const wifi_ap_record_t *ap_record, uint8_t chan
         if (j < 5) Serial.print(":");
     }
     Serial.print(" and Tgt: ");
-    for (int j = 0; j < 6; j++) {
-        Serial.print(target[j], HEX);
-        if (j < 5) Serial.print(":");
-    }
+    // for (int j = 0; j < 6; j++) {
+    //     Serial.print(target[j], HEX);
+    //     if (j < 5) Serial.print(":");
+    // }
 
     esp_err_t err;
     err = esp_wifi_set_channel(chan, WIFI_SECOND_CHAN_NONE);
-    if (err != ESP_OK) Serial.println("Error changing channel");
+    // if (err != ESP_OK) Serial.println("Error changing channel");
     vTaskDelay(50 / portTICK_PERIOD_MS);
     memcpy(&deauth_frame[4], target, 6); // Client MAC Address for Station Deauth
     memcpy(&deauth_frame[10], ap_record->bssid, 6);
@@ -170,7 +170,7 @@ void wifi_atk_info(String tssid, String mac, uint8_t channel) {
     while (1) {
         if (check(SelPress)) {
             returnToMenu = false;
-            return;
+            (void)tssid; (void)mac; (void)channel;
         }
         if (check(EscPress)) {
             returnToMenu = true;

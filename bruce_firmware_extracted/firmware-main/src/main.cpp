@@ -237,7 +237,7 @@ void boot_screen() {
     tft.drawCentreString(BRUCE_VERSION, tftWidth / 2, 25, 1);
     tft.setTextSize(FM);
     tft.drawCentreString(
-        "PREDATORY FIRMWARE", tftWidth / 2, tftHeight + 2, 1
+        "WILLY FIRMWARE", tftWidth / 2, tftHeight + 2, 1
     ); // will draw outside the screen on non touch devices
 }
 
@@ -536,12 +536,12 @@ void loop() {
     tft.setLogging();
     Serial.println(
         "\n"
-        "██████  ██████  ██    ██  ██████ ███████ \n"
-        "██   ██ ██   ██ ██    ██ ██      ██      \n"
-        "██████  ██████  ██    ██ ██      █████   \n"
-        "██   ██ ██   ██ ██    ██ ██      ██      \n"
-        "██████  ██   ██  ██████   ██████ ███████ \n"
-        "                                         \n"
+        "██      ██ ██ ██      ██      ██    ██ \n"
+        "██      ██ ██ ██      ██       ██  ██  \n"
+        "██  ██  ██ ██ ██      ██        ████   \n"
+        "██ ████ ██ ██ ██      ██         ██    \n"
+        " ███  ███  ██ ███████ ███████    ██    \n"
+        "                                       \n"
         "         PREDATORY FIRMWARE\n\n"
         "Tips: Connect to the WebUI for better experience\n"
         "      Add your network by sending: wifi add ssid password\n\n"
@@ -554,3 +554,4 @@ void loop() {
     vTaskDelay(10 / portTICK_PERIOD_MS);
 }
 #endif
+

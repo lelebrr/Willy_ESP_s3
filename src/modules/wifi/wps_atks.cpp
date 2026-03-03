@@ -738,7 +738,7 @@ static void pixieSniffer(void* buf, wifi_promiscuous_pkt_type_t type) {
     if (type != WIFI_PKT_DATA) return;
     wifi_promiscuous_pkt_t* pkt = (wifi_promiscuous_pkt_t*)buf;
     const uint8_t* d = pkt->payload;
-    int len = pkt->rx_ctrl.sig_len;
+    int len = (int)pkt->rx_ctrl.sig_len;
     if (len < 40) return;
 
     // Verifica se é do AP alvo

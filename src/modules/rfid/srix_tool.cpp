@@ -291,7 +291,7 @@ void SRIXTool::read_tag() {
             return;
         }
 
-        const uint16_t off = (uint16_t)b * 4;
+        const uint16_t off = (uint16_t)((uint32_t)b * 4);
         _dump[off + 0] = block[0];
         _dump[off + 1] = block[1];
         _dump[off + 2] = block[2];
@@ -341,7 +341,7 @@ void SRIXTool::write_tag() {
 
     uint8_t block[4];
     for (uint8_t b = 0; b < 128; b++) {
-        const uint16_t off = (uint16_t)b * 4;
+        const uint16_t off = (uint16_t)((uint32_t)b * 4);
         block[0] = _dump[off + 0];
         block[1] = _dump[off + 1];
         block[2] = _dump[off + 2];
@@ -380,7 +380,7 @@ void SRIXTool::write_tag() {
     String failed_blocks = "";
 
     for (uint8_t b = 0; b < 128; b++) {
-        const uint16_t off = (uint16_t)b * 4;
+        const uint16_t off = (uint16_t)((uint32_t)b * 4);
         block[0] = _dump[off + 0];
         block[1] = _dump[off + 1];
         block[2] = _dump[off + 2];

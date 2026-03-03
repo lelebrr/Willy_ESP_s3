@@ -583,7 +583,7 @@ int RFID2::write_ndef_blocks() {
     byte payload_size = ndef_size % 4 == 0 ? ndef_size : ndef_size + (4 - (ndef_size % 4));
     byte ndef_payload[payload_size];
     byte i;
-    bool blockWriteSuccess;
+    // bool blockWriteSuccess;
 
     ndef_payload[0] = ndefMessage.begin;
     ndef_payload[1] = ndefMessage.messageSize;

@@ -108,6 +108,7 @@ void NFCRelayMITM() {
                 if (check(EscPress)) break;
                 // Target Initialization
                 uint8_t uid[] = { 0x12, 0x34, 0x56, 0x78 }; // Default or forwarded UID
+                (void)uid; // suppress unused
                 nfcModule->nfc.TgInitAsTarget();
 
                 uint8_t rxBuffer[255];
@@ -606,7 +607,7 @@ void MobilePaymentSnifferMSRP() {
                 tft.fillRect(10, tftHeight / 2, tftWidth - 20, 20, bruceConfig.bgColor);
                 tft.setCursor(10, tftHeight / 2);
                 tft.print("DATA CAPT:");
-                for (int i = 0; i < min((int)rxLen, 8); i++) {
+                for (int i = 0; i < (int)min((size_t)rxLen, (size_t)8); i++) {
                     tft.print(rxBuf[i], HEX);
                     tft.print(" ");
                 }

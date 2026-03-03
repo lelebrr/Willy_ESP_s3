@@ -91,7 +91,7 @@ void drawFooterData(uint8_t friends_run, uint8_t friends_tot, String last_friend
 }
 
 void updateUi(bool show_toolbars) {
-    uint8_t mood_id = getCurrentMoodId();
+    // uint8_t mood_id = getCurrentMoodId();
     String mood_face = getCurrentMoodFace();
     String mood_phrase = getCurrentMoodPhrase();
     bool mood_broken = isCurrentMoodBroken();

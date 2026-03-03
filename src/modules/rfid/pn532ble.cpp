@@ -277,7 +277,7 @@ void Pn532ble::showDeviceInfo() {
     uint8_t *version = pn532_ble.cmdResponse.data;
     uint8_t dataSize = pn532_ble.cmdResponse.dataSize;
     String versionStr = "Version: ";
-    for (size_t i = 0; i < dataSize; i++) {
+    for (size_t i = 0; i < (size_t)dataSize; i++) {
         versionStr += version[i] < 0x10 ? " 0" : " ";
         versionStr += String(version[i], HEX);
     }
@@ -789,8 +789,8 @@ void Pn532ble::hf14aMfWriteDumpMode() {
             area.scrollDown();
             area.draw();
             delay(500);
-            uint8_t blockSize = mfd.size() / 16;
-            for (uint8_t i = 0; i < blockSize; i++) {
+            uint16_t blockSize = mfd.size() / 16;
+            for (uint16_t i = 0; i < blockSize; i++) {
                 std::vector<uint8_t> data(mfd.begin() + i * 16, mfd.begin() + i * 16 + 16);
                 std::vector<uint8_t> blockWriteCommand = {0xCF, pwd[0], pwd[1], pwd[2], pwd[3], 0xCD, i};
                 blockWriteCommand.insert(blockWriteCommand.end(), data.begin(), data.end());
@@ -855,7 +855,7 @@ void Pn532ble::hf14aMfWriteDumpMode() {
 }
 
 void Pn532ble::hf14aMfWriteDump(ScrollableTextArea &area) {
-    uint8_t blockSize = mfd.size() / 16;
+    uint16_t blockSize = mfd.size() / 16;
     uint8_t sectorCount = mfd.size() == 4096 ? 40 : (mfd.size() / 64);
     for (uint8_t s = 0; s < sectorCount; s++) {
         pn532_ble.hf14aScan();
@@ -933,6 +933,7 @@ void Pn532ble::hf15ReadDumpMode() {
                 return;
             }
             String blockStr = String(i) + " ";
+            // const uint16_t off = (uint16_t)((uint32_t)i * 4); // Unused variable
             for (uint8_t j = 0; j < 4; j++) {
                 iso15dump.push_back(res[j + 1]);
                 blockStr += res[j + 1] < 0x10 ? "0" : "";
