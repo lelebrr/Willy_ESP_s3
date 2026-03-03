@@ -1,4 +1,4 @@
-// User_Setup.h - WILLY ESP S3 + ILI9341 + XPT2046 (criado em 02/03/2026)
+// User_Setup.h - WILLY ESP S3 + ILI9341 + XPT2046 (versão corrigida 03/03/2026)
 #define USER_SETUP_LOADED
 
 #define ILI9341_DRIVER
@@ -15,8 +15,7 @@
 
 #define TFT_BL   -1               // backlight fixo 3.3V
 
-// USE_HSPI_PORT removido: no ESP32-S3, HSPI=SPI3 (errado). Default FSPI/SPI2 é o correto para pinos 10-13.
-
+#define USE_HSPI_PORT             // ← OBRIGATÓRIO (mesmo no S3 para esses pinos)
 #define SPI_FREQUENCY      20000000
 #define SPI_READ_FREQUENCY 10000000
 #define SPI_TOUCH_FREQUENCY 2500000

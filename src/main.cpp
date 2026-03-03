@@ -426,43 +426,55 @@ void startup_sound() {
  **  Where the devices are started and variables set
  *********************************************************************/
 void setup() {
-    Serial.setRxBufferSize(
-        SAFE_STACK_BUFFER_SIZE / 4
-    ); // Must be invoked before Serial.begin(). Default is 256 chars
-    Serial.begin(115200);
+  Serial.begin(115200);
+  delay(500);
+  Serial.println("\n=== WILLY ESP S3 - BOOT CORRIGIDO ===");
 
-    log_d("Total heap: %d", ESP.getHeapSize());
-    log_d("Free heap: %d", ESP.getFreeHeap());
-    if (psramInit()) log_d("PSRAM Started");
-    if (psramFound()) log_d("PSRAM Found");
-    else log_d("PSRAM Not Found");
-    log_d("Total PSRAM: %d", ESP.getPsramSize());
-    log_d("Free PSRAM: %d", ESP.getFreePsram());
+  // Reset manual (único lugar)
+  pinMode(14, OUTPUT);
+  digitalWrite(14, LOW); delay(20);
+  digitalWrite(14, HIGH); delay(120);
 
-    // declare variables
-    prog_handler = 0;
-    sdcardMounted = false;
-    wifiConnected = false;
-    BLEConnected = false;
-    bruceConfig.bright = 100; // theres is no value yet
-    bruceConfigPins.rotation = ROTATION;
+  Serial.println("[BOOT] Reset display OK");
+
+  // NENHUM tft.init() aqui (deixa para begin_tft())
+  // NENHUM hack de backlight GPIO 21/3
+
+  log_d("Total heap: %d", ESP.getHeapSize());
+  log_d("Free heap: %d", ESP.getFreeHeap());
+  if (psramInit()) log_d("PSRAM Started");
+  if (psramFound()) log_d("PSRAM Found");
+  else log_d("PSRAM Not Found");
+  log_d("Total PSRAM: %d", ESP.getPsramSize());
+  log_d("Free PSRAM: %d", ESP.getFreePsram());
+
+  // declare variables
+  prog_handler = 0;
+  sdcardMounted = false;
+  wifiConnected = false;
+  BLEConnected = false;
+  bruceConfig.bright = 100; // theres is no value yet
+  bruceConfigPins.rotation = ROTATION;
+
+  Serial.println("[BOOT] Initializing GPIOs...");
+  setup_gpio();
+
 #if defined(HAS_SCREEN)
-    // TFT must be initialized BEFORE setup_gpio() because initCC1101once()
-    // may use tft.getSPIinstance() when CC1101 shares MOSI with TFT.
-    tft.init();
-    tft.setRotation(bruceConfigPins.rotation);
-    tft.fillScreen(TFT_BLACK);
-    // bruceConfig is not read yet.. just to show something on screen due to long boot time
-    tft.setTextColor(TFT_PURPLE, TFT_BLACK);
-    tft.drawCentreString("Booting", tft.width() / 2, tft.height() / 2, 1);
+  Serial.println("Starting begin_tft()...");
+  begin_tft();                    // ← aqui fica o tft.init() oficial
+  Serial.println("begin_tft() OK");
 #else
-    tft.begin();
+  tft.begin();
 #endif
-    setup_gpio();
-    begin_storage();
-    begin_tft();
-    init_clock();
-    init_led();
+
+  Serial.println("Starting begin_storage()...");
+  begin_storage();
+
+  Serial.println("Starting initLVGL()...");
+  initLVGL();
+
+  init_clock();
+  init_led();
 
     options.reserve(20); // preallocate some options space to avoid fragmentation
 

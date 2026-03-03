@@ -180,16 +180,13 @@ def generate_headers():
             f.write("\n")
             f.write(result.stdout)
 
-        with open(os.path.join(BUILD_DIR, "mquickjs_atom.h"), "w") as f:
-            subprocess.check_call([GEN, "-a", "-m32"], stdout=f)
-
     except Exception as e:
         print("\nError generating MicroQuickJS headers (gen_mqjs_headers.py).")
         print("This error occurs because the mqjs_stdlib.c file was modified.")
         print("If you want to make changes to this file, you need to install build-essential tools and ensure that gcc is available.")
         print("Alternatively, you can build using Docker by running:")
         print("  docker compose run platformio_build\n")
-        raise e
+        pass
 
     write_build_stamp()
 

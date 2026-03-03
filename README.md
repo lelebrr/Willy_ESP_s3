@@ -62,16 +62,10 @@
 | **Módulos** | 35+ | 🟢 Ativo | ![Modules](https://img.shields.io/badge/Modules-35+-purple) |
 | **Dispositivos Suportados** | 20+ | 🟢 Ativo | ![Devices](https://img.shields.io/badge/Devices-20+-orange) |
 | **Atualizações Mensais** | 6-8 | 🔄 Ativo | ![Updates](https://img.shields.io/badge/Updates-6--8-yellow) |
-| **Issues Resolvidas** | 300+ | 🟢 Ativo | ![Issues](https://img.shields.io/badge/Issues-300+-red) |
-| **Contribuidores** | 15+ | 🟢 Ativo | ![Contributors](https://img.shields.io/badge/Contributors-15+-teal) |
-| **Downloads** | 10,000+ | 🟢 Ativo | ![Downloads](https://img.shields.io/badge/Downloads-10K+-cyan) |
+| **Issues Resolvidas** | 100+ | 🟢 Ativo | ![Issues](https://img.shields.io/badge/Issues-100+-red) |
 
 ### 🏆 Reconhecimentos e Certificações
 
-[![GitHub stars](https://img.shields.io/github/stars/lelebrr/Willy_ESP_s3?style=social)](https://github.com/lelebrr/Willy_ESP_s3)
-[![GitHub forks](https://img.shields.io/github/forks/lelebrr/Willy_ESP_s3?style=social)](https://github.com/lelebrr/Willy_ESP_s3)
-[![GitHub issues](https://img.shields.io/github/issues/lelebrr/Willy_ESP_s3)](https://github.com/lelebrr/Willy_ESP_s3/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/lelebrr/Willy_ESP_s3)](https://github.com/lelebrr/Willy_ESP_s3/pulls)
 [![License](https://img.shields.io/badge/License-Proprietary-red)](LICENSE)
 [![Version](https://img.shields.io/badge/Version-2.1.0-blue)](https://github.com/lelebrr/Willy_ESP_s3/releases)
 
@@ -82,7 +76,7 @@
 - **🥉 Melhor Firmware 2024** - IoT Security Awards
 - **⭐ Projeto Destaque 2024** - GitHub Trending
 
-[📖 Documentação](docs/README.md) • [🚀 Início Rápido](#-início-rápido) • [⚡ Recursos](#-recursos-principais) • [📜 Licença](#-licença)
+[📖 Documentação](docs/module_tft_ili9341_touch.md) • [🚀 Início Rápido](#-início-rápido) • [⚡ Recursos](#-recursos-principais) • [📜 Licença](#-licença)
 
 ---
 
